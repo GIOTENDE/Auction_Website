@@ -1,5 +1,5 @@
 <html lang="en-Us">
-<?php require '../Database_CW/includes/pagetop.php'; ?>
+<?php require '../Auction_Website/includes/pagetop.php'; ?>
 <head>
 
 	<meta charset="utf-8">
@@ -48,5 +48,5 @@
 	</div> <!-- end login -->
 
 </body>
-<?php require '../Database_CW/includes/footer.php'; ?>
+<?php require '../Auction_Website/includes/footer.php'; ?>
 </html>
