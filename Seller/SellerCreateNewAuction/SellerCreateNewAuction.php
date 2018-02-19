@@ -11,30 +11,38 @@ $connection = mysqli_connect($servername,$username,$password,$dbname)
 
                 $connection->close();
 ?>
-
+<?php require '../Auction_Website/includes/pagetop.php'; ?>
 <link rel="stylesheet" href="/AuctionWebsite/Seller/SellerCreateNewAuction/SellerCreateNewAuction.css" type="text/css">
 
+<form action="javascript:void(0);" method="get">
+
+			<fieldset>
+<div id="login">
 <html>
 <head>
   <title>Auction an Item</title>
 </head>
-<body>
+
 
 <form method="post" action="process.php" enctype="multipart/form-data">
  
   <div class="form-group">
     <h2 class="heading">Auction Item</h2>
-
+<div id="login">
   <!-- Add title -->
     <div class="controls">
-      <input type="text" id="prod_name" class="floatLabel" name="prod_name">
-      <label for="name">Descriptive title of item</label>
+      <label for="name">Descriptive title of item:</label>
+      <br>
+      <input type="text" id="prod_name" class="floatLabel" name="prod_name" placeholder="Reserve Price" >
+      
     </div>
 
   <!-- Add category -->
     <div class="controls">
+      <label for="fruit">Select Category</label>
+      <br>
       <i class="fa fa-sort"></i>
-      <select class="floatLabel" name = "prod_category" id ="prod_category">
+      <select class="floatLabel" name = "prod_category" id ="prod_category" >
         <option value="blank"></option>
         <option value="Collectables">Collectables and antiques</option>
         <option value="Home">Home and Garden</option>
@@ -46,19 +54,19 @@ $connection = mysqli_connect($servername,$username,$password,$dbname)
         <option value="Motors">Motors</option>
         <option value="Other">Other</option>
       </select>
-      <label for="fruit">Category</label>
     </div>
   </div>
 
   <!-- Add Condition -->
   <div class="controls">
+    <label for="fruit">Select Condition</label>
+      <br>
       <i class="fa fa-sort"></i>
       <select class="floatLabel" name = "prod_condition" id ="prod_condition" >
         <option value="blank"></option>
         <option value="New">New</option>
         <option value="Used">Used</option>
       </select>
-      <label for="fruit">Condition</label>
     </div>
   </div>
 
@@ -66,32 +74,39 @@ $connection = mysqli_connect($servername,$username,$password,$dbname)
 
    <!--form action="upload.php" method="post" enctype="multipart/form-data"-->
        <p> Select image to upload:</p>
-        <input type="file" name="prod_picture" onclick="add_image()"/>
-        <input type="submit" name="submit" value="UPLOAD"/>
+        <input type="file"
+       onchange="readURL(this);" />
+<img id="blah" src="http://placehold.it/180" alt="your image" />
+
     <!--/form--> 
 
 
   <div class="controls">
+     <label for="comments">Detailed Description of Item:</label>
+    <br>
       <textarea name="prod_description" class="floatLabel" id="prod_description"></textarea>
-      <label for="comments">Detailed Description of Item</label>
+     
       <br>
     </div>
 
     <div class="controls">
-      <input type="text" id="prod_start_price" class="floatLabel" name="prod_start_price">
-      <label for="name">Starting Price</label>
+      <label for="name">Auction Starting Price</label>
+      <br>
+      <input type="text" id="prod_start_price" class="floatLabel" name="prod_start_price" placeholder="Starting Price">
     </div>
 
     <div class="controls">
-      <input type="text" id="prod_reserve_price" class="floatLabel" name="prod_reserve_price">
-      <label for="name">Reserve Price</label>
+      <label for="name">Auction Reserve Price:</label>
+      <br>
+      <input type="text" id="prod_reserve_price" class="floatLabel" name="prod_reserve_price" placeholder="Reserve Price">
     </div>
 
     <div class="controls">
-      <input type="text" id="prod_end_date" class="floatLabel" name="prod_end_date">
-      <label for="name">End Date</label>
+      <label for="name">End date of auction:</label>
+      <br>
+      <input type="date" id="prod_end_date" class="floatLabel" name="prod_end_date" >
     </div>
-
+  <br>
      <input type="submit" name = "submit" id="submit">
   </div>
 
@@ -103,7 +118,7 @@ if (isset($_POST['submit'])){
 }
 ?>
 </pre>
-
+<?php require '../Auction_Website/includes/footer.php'; ?>
 </body>
 </html>
 
