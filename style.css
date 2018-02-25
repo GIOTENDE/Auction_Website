@@ -108,5 +108,17 @@ form fieldset a:hover { text-decoration: underline; }
 	width: 300px;
 }
 
+select {
+  background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 300px;
+}
 
 
