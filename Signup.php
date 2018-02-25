@@ -7,9 +7,27 @@ $_SESSION['message'] = '';
 if($_SERVER['REQUEST METHOD'] == 'POST'){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
-		$username = $mysql ->
+		$username = $mysql->real_escape_string($_POST['username']);
+		$email_address = $mysql->real_escape_string($_POST['email_address']);
+		$password = md5($_POST['password']);// md5 hash passord security
+		$fullname = $mysql->real_escape_string($_POST['fullname']);
+		$mobilenumber = $mysql->real_escape_string($_POST['mobilenumber']);
+		$address = $mysql->real_escape_string($_POST['address']);
+		$Seller_or_Buyer= $mysql->real_escape_string($_POST['Seller_or_Buyer']);
+		$sql = "INSERT INTO users (username, email_address, password, fullname, mobilenumber, address, Seller_or_Buyer)"."VALUES ('$username','$email_address','$password','$fullname','$mobilenumber','$address','$Seller_or_Buyer')";
+		//if query is successful, redirect to welcome.php page, done!
+		if ($msqli->query($sql)=== true){
+			$_SESSION['message'] = 'Registration successful! Added $username to the database';
+		}
+		else{
+			$_SESSION['message'] = "User could not be added to the database!";
+		}
+	}
+	else{
+		$_SESSION['message'] = "Two Passwords to not match";
 	}
 }
+
 
 ?>
 
@@ -36,7 +54,9 @@ if($_SERVER['REQUEST METHOD'] == 'POST'){
 		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 
 			<fieldset>
-
+			<h1>Insert Full Name: </h1>
+<p><input type="text" placeholder="John Doe" name= "fullname" required></p>
+            <h1>Insert Username: </h1>
 				<p><input type="text" placeholder="Username" name="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
 <h1><strong>Create Password:</h1>
 				<p><input type="password" required value="Password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
@@ -47,11 +67,11 @@ if($_SERVER['REQUEST METHOD'] == 'POST'){
 <!-- JS because of IE support; better: placeholder="Password" -->
   
 <h1>Insert Email Adress: </h1>
-<p><input type="text" placeholder="Email" required></p>
+<p><input type="text" placeholder="Email" name= "email_address" required></p>
 <h1>Phone Number:</h1>			
-<p><input type="text" placeholder="Email" required></p>
+<p><input type="text" placeholder="Phone Number" name="mobilenumber" required></p>
  <h1>Postal Adress:</h1>
-<p><input type="text" placeholder="Postal Adress" required></p>
+<p><input type="text" placeholder="Postal Adress" name="address" required></p>
 			</fieldset>
   <div>
   <label for="fruit">Select Account Type</label>
