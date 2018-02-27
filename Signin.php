@@ -1,8 +1,7 @@
-<html lang="en-Us">
-<?php require '../Auction_Website/includes/pagetop.php'; 
 
+<?php
+  session_start();
    include("config.php");
-   session_start();
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
@@ -24,7 +23,9 @@
          $error = "Your Login Name or Password is invalid";
       }
    }
+require '../Auction_Website/includes/pagetop.php';
 ?>
+<html lang="en-Us">
 <head>
 
 	<meta charset="utf-8">

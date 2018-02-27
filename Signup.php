@@ -1,14 +1,13 @@
-<html lang="en-Us">
 
 <?php 
-require '../Auction_Website/includes/pagetop.php'; 
+session_start();
 $db = mysqli_init();
 mysqli_ssl_set($db,NULL,NULL, "/var/www/html/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL) ; 
 mysqli_real_connect($db, 'compgc06group35db.mysql.database.azure.com', 'compgc06group35@compgc06group35db', 'Aakash123', 'auctionwebsite', 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
 if (mysqli_connect_errno($db)) {
 die('Failed to connect to MySQL: '.mysqli_connect_error());
 }
-session_start();
+
 $_SESSION['message'] = '';
 if($_SERVER['REQUEST METHOD'] == 'POST'){
 	// two passwords are matching
@@ -34,8 +33,9 @@ if($_SERVER['REQUEST METHOD'] == 'POST'){
 	}
 }
 
-
+require '../Auction_Website/includes/pagetop.php'; 
 ?>
+<html lang="en-Us">
 
 <head>
 
