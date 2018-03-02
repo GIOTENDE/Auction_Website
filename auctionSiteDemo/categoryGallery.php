@@ -19,7 +19,7 @@
     </div>
 
         <div class="gallery">
-            <ahref="dynamicProductList.php?category=Home and Garden">
+            <a href="dynamicProductList.php?category=Home and Garden">
                 <img src="Images/pic_homeGarden.jpg" alt="Home and Garden" width="300" height="200">
             </a>
             <div class="desc">Home & Garden</div>
