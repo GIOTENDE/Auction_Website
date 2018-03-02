@@ -1,0 +1,169 @@
+*{
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+
+}
+
+/*.left {*/
+  /*background-color:#2196F3;*/
+  /*padding:5px;*/
+  /*float:left;*/
+  /*width:33%;*/
+  /*!*box-sizing: border-box;*!*/
+/*}*/
+
+/*.middle {*/
+  /*background-color:#f1f1f1;*/
+  /*padding:5px;*/
+  /*float:left;*/
+  /*width:33%;*/
+  /*!*box-sizing: border-box;*!*/
+/*}*/
+
+/*.right {*/
+  /*background-color:#4CAF50;*/
+  /*padding:5px;*/
+  /*float:left;*/
+  /*width:34%;*/
+  /*!*box-sizing: border-box;*!*/
+/*}*/
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: s;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+
+body {
+  font-family: arial;
+  font-size: 15px;
+  line-height: 1.5em;
+  background: #f4f4f4;
+}
+
+#container {
+  background: #333333;
+  margin: 50px auto;
+
+  overflow: auto;
+  width: 65%;
+
+}
+
+#container2 {
+  background: #f4f4f4;
+  margin: 50px auto;
+
+  overflow: auto;
+  width: 65%;
+
+}
+
+header h1 {
+  color: #ffffff;
+  font-size: 22px;
+  padding: 15px 0 10px 10px;
+  border-bottom: 1px solid #ffffff;
+}
+
+header h3 {
+  color: #ffffff;
+  font-size: 16px;
+  padding: 15px 0 10px 10px;
+  border-bottom: 1px solid #ffffff;
+}
+
+#messages {
+  width: 90%;
+  background: #f4f4f4;
+  height: 400px;
+  margin: 20px auto;
+  overflow: auto;
+}
+
+.message {
+  list-style: none;
+  padding: 8px;
+  border-bottom: 1px #cccccc dotted;
+}
+
+.message span {
+  color:#aaaaaa;
+}
+
+#input {
+  width: 90%;
+  margin: auto;
+  padding: 0;
+}
+
+#searchBar {
+  color: #ffffff;
+  font-size: 22px;
+  padding: 0px 0 0px 0px;
+  border-bottom: 1px solid #ffffff;
+}
+
+#pictureRow {
+  width: 90%;
+  margin: auto;
+  padding: 5px;
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: 20px;
+}
+
+#input input[type='text'] {
+  height: 25px;
+  width: 48%;
+  padding: 3px;
+  margin-bottom: 20px;
+  border: #666666 solid 1px;
+}
+
+#user {
+  float: left;
+}
+
+#newmessage{
+  float: right;
+}
+
+input#show-btn {
+ -webkit-appearance:button;
+  height: 30px;
+  padding: 5px;
+  width: 100%;
+  margin: 10px auto;
+  margin-bottom: 30px;
+}
+
+.error {
+  background: red;
+  color: #ffffff;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+ 
+@media only screen and (max-width: 768px) {
+  #input input[type='text'] {
+    width: 98%;
+    float: none;
+  }
+}
