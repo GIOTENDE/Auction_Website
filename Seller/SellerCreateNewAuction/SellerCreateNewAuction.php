@@ -2,7 +2,7 @@
 <?php
 include '../../config.php';
 session_start();
-echo $_SESSION['userID'];
+$userID = $_SESSION['userID'];
 
 $prod_name=$prod_category=$prod_condition=$prod_picture=$prod_description=$prod_reserve_price=$prod_start_price=$prod_end_date="";
 $prod_name_temp=$prod_category_temp=$prod_condition_temp=$prod_picture_temp=$prod_description_temp=$prod_reserve_price_temp=$prod_start_price_temp=$prod_end_date_temp="";

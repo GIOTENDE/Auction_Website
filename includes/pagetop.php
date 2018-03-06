@@ -15,6 +15,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">Buyer</a></li>
             <li><a href="#contact">Seller</a></li>
+            <a href="../../logout.php">Logout</a>
           </ul>
         </div>
       </div>

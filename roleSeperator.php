@@ -1,7 +1,8 @@
 <?php
 include("config.php");
+session_start();
 
-$role="";
+$role=$_SESSION['Seller_or_Buyer'];
 
 if($role=="Seller"){
     header('Location: Seller/SellerProfile/SellerProfile.php'); 

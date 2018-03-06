@@ -3,57 +3,49 @@
 
    include("config.php");
 
-   function Login()
-{
-    if(empty($_POST['username']))
-    {
-        $this->HandleError("UserName is empty!");
-        return false;
-    }
-    
-    if(empty($_POST['password']))
-    {
-        $this->HandleError("Password is empty!");
-        return false;
-    }
-    
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-    
-    if(!$this->CheckLoginInDB($username,$password))
-    {
-        return false;
-    }
-    
-    session_start();
-    
-    $_SESSION[$this->GetLoginSessionVar()] = $username;
-    
-    return true;
-}
+   $postCheck=true;
+   $username=$password="";
+   function validate_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+  }
 
-function CheckLoginInDB($username,$password)
-{
-    if(!$this->DBLogin())
-    {
-        $this->HandleError("Database login failed!");
-        return false;
-    }          
-    $username = $this->SanitizeForSQL($username);
-    $pwdmd5 = md5($password);
-    $qry = "Select name, email from $this->tablename ".
-        " where username='$username' and password='$pwdmd5' ".
-        " and confirmcode='y'";
-    
-    $result = mysql_query($qry,$this->connection);
-    
-    if(!$result || mysql_num_rows($result) <= 0)
-    {
-        $this->HandleError("Error logging in. ".
-            "The username or password does not match");
-        return false;
-    }
-    return true;
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+   if(isset($_POST["submit"])){
+	if (empty($_POST["username"])) {
+		$usernameErr = "Please Enter Your Username"."<br>";
+		$postCheck = false;
+	  } else {
+		$username = validate_input($_POST["username"]);
+	  }
+
+	  if (empty($_POST["password"])) {
+		$passwordErr = "Please Enter Your Password"."<br>";
+		$postCheck = false;
+	  } else {
+		$password1 = validate_input($_POST["password"]);
+		$password = md5($password1);
+	  }
+
+	  if ($postCheck){
+		 
+		$getUserDetails=mysqli_query($db, "SELECT userID, Seller_or_Buyer, username FROM users WHERE username = '$username' and password = '$password'");
+		session_start();
+		if (mysqli_num_rows($getUserDetails) > 0) {
+			
+			while($row = mysqli_fetch_assoc($getUserDetails)) {
+			
+		$_SESSION['username']=$username;
+		$_SESSION['userID']=$row['userID'];
+		$_SESSION['Seller_or_Buyer']=$row['Seller_or_Buyer'];
+		header('Location: roleSeperator.php');
+   }
+}
+}
+}     
 }
    /*
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -99,7 +91,7 @@ require '../Auction_Website/includes/pagetop.php';
 
 		<h1><strong>Welcome.</strong> Please login.</h1>
 
-		<form action="" method="post">
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
 			<fieldset>
 
@@ -109,7 +101,7 @@ require '../Auction_Website/includes/pagetop.php';
 
 		
 
-				<p><input type="submit" value="Login"></p>
+				<p><input type="submit" name="submit" id="submit" class="button" value="Login" ></p>
 
 			</fieldset>
 

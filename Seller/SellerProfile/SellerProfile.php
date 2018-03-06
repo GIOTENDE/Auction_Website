@@ -1,17 +1,18 @@
 <?php 
 include '../../config.php'; 
+
 session_start();
-$username = "THEDONALD";
-$_SESSION['username']= $username;//$userID;
+$userID = $_SESSION['userID'];
+
+$username="";
 $fullname = "";
-$userID = "";
 $dateWOtime = "";
 $timeWOdate = "";
 $jsformat="";
 //echo $_SESSION['username'];
 
 //
-$getUserDetails = mysqli_query($db,"SELECT userID, username, fullName FROM users WHERE username=(('$username'))");
+$getUserDetails = mysqli_query($db,"SELECT userID, username, fullName FROM users WHERE userID=(('$userID'))");
 if (mysqli_num_rows($getUserDetails) > 0) {
     while($row = mysqli_fetch_assoc($getUserDetails)) {
         //echo "username: " . $row["username"]. " - fullName: " . $row["fullName"] . "<br>";
@@ -21,7 +22,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 } else {
     echo "0 results";
 }
-$getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_date, prod_end_date, prod_end_price prod_buyerID FROM product WHERE prod_sellerID=(('$userID'))");
+$getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_date, prod_end_date, prod_highest_price prod_buyerID FROM product WHERE prod_sellerID=(('$userID'))");
 ?>
 
 <!--    HEADER      -->
@@ -136,10 +137,10 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
             </td>
              <!--    PRODUCT CURRENT PRICE COLUMN    -->
           <td><?php 
-          if (empty($row['prod_end_price'])){
+          if (empty($row['prod_highest_price'])){
               echo "<p class='incomplete'>Auction has not ended!</p>";
           }else{
-          echo  '£'.$row['prod_end_price'];
+          echo  '£'.$row['prod_highest_price'];
           }
           ?></td>
            <!--    PRODUCT BUYER COLUMN    -->

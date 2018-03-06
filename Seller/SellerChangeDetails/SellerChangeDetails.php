@@ -1,7 +1,8 @@
 
 <?php 
 include("../../config.php");
-
+session_start();
+$userID = $_SESSION['userID'];
 
 
 $_SESSION['message'] = '';
