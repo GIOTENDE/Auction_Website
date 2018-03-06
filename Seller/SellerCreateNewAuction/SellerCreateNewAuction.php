@@ -142,7 +142,22 @@ if (empty($_POST["prod_end_date"])) {
   $prod_end_dateErr = "Product end date is required!"."<br>";
   $postCheck = false;
 } else {
-  $prod_end_date = validate_input($_POST["prod_end_date"]);
+  $unformattedDate=validate_input($_POST["prod_end_date"]);
+
+          //   $splitDate = explode("T", $unformattedDate);
+          //   $dateWOtime=$splitDate[0];
+          //   $timeWOdate=$splitDate[1];
+          //   $splitDateMore = explode("-", $dateWOtime);
+          //   $date = $splitDateMore[2]."-".$splitDateMore[1]."-".$splitDateMore[0];
+          //   $correctDate=$date." ".$timeWOdate;
+          //  // echo $correctDate;
+          //   $convertdate=date_create_from_format("d-m-Y H:i", $correctDate);
+          //   //end date 
+          //   $converteddate=$convertdate->format("d-m-Y H:i");
+          //   $dateEnd= new DateTime($converteddate);
+          //  $prod_end_date = $dateEnd;
+
+           $prod_end_date=validate_input($_POST["prod_end_date"]);
 }
 
 //Execute the query

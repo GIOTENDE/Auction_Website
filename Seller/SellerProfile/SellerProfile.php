@@ -89,23 +89,24 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
           <td><?php
           //format end date
             $unformattedDate=$row['prod_end_date'];
-            $splitDate = explode("T", $unformattedDate);
-            $dateWOtime=$splitDate[0];
-            $timeWOdate=$splitDate[1];
-            $splitDateMore = explode("-", $dateWOtime);
-            $date = $splitDateMore[2]."-".$splitDateMore[1]."-".$splitDateMore[0];
-            $correctDate=$date." ".$timeWOdate;
-           // echo $correctDate;
-            $convertdate=date_create_from_format("d-m-Y H:i", $correctDate);
-            //end date 
-            $converteddate=$convertdate->format("d-m-Y H:i");
+        //     $splitDate = explode("T", $unformattedDate);
+        //     $dateWOtime=$splitDate[0];
+        //     $timeWOdate=$splitDate[1];
+        //     $splitDateMore = explode("-", $dateWOtime);
+        //     $date = $splitDateMore[2]."-".$splitDateMore[1]."-".$splitDateMore[0];
+        //     $correctDate=$date." ".$timeWOdate;
+        //    // echo $correctDate;
+        //     $convertdate=date_create_from_format("d-m-Y H:i", $correctDate);
+        //     //end date 
+        //     $converteddate=$convertdate->format("d-m-Y H:i");
             $today= new DateTime();
-            $dateEnd= new DateTime($converteddate);
+            $dateEnd= new DateTime($unformattedDate);
             $remaining=$today->diff($dateEnd);
             if ($today<$dateEnd){
-            echo $converteddate."<br>";
+            echo $unformattedDate."<br>";
             echo $remaining->format('%d d %h h %i m');
             }else{
+                echo $unformattedDate."<br>";
             echo "<p class='incomplete'>Auction Ended!<p>";
             }
 
@@ -117,7 +118,7 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
 
 
             //JavaScript format 
-            $jsFormat = $convertdate-> format('M d, Y H:i:s');
+            //$jsFormat = $convertdate-> format('M d, Y H:i:s');
 
             
 

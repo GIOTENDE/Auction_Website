@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}else{echo "subbmit not working";}
 }
 
-require '../Auction_Website/includes/pagetop.php'; 
+require '../../includes/pagetop.php'; 
 ?>
 <html lang="en-Us">
 
@@ -42,7 +42,7 @@ require '../Auction_Website/includes/pagetop.php';
 
 	<meta charset="utf-8">
 
-	<link rel="stylesheet" href="../Auction_Website/style.css">
+	<link rel="stylesheet" href="../../style.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
 	<!--[if lt IE 9]>
@@ -61,35 +61,26 @@ require '../Auction_Website/includes/pagetop.php';
 		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 
 			<fieldset>
-			<h1>Insert Full Name: </h1>
+			<h1>Change Full Name: </h1>
 <p><input type="text" placeholder="John Doe" name= "fullname" required></p>
-            <h1>Insert Username: </h1>
+            <h1>Change Username: </h1>
 				<p><input type="text" placeholder="Username" name="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
-<h1><strong>Create Password:</h1>
+<h1><strong>Change Password:</h1>
 				<p><input type="password" required value="Password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
 
-  <h1><strong>Repeat Password:</h1>
+  <h1><strong>Re-enter Password:</h1>
 				<p><input type="password" required value="Password"  name = "confirmpassword" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
       
 <!-- JS because of IE support; better: placeholder="Password" -->
   
-<h1>Insert Email Adress: </h1>
+<h1>Change Email Adress: </h1>
 <p><input type="text" placeholder="Email" name= "email_address" required></p>
-<h1>Phone Number:</h1>			
+<h1>Change Phone Number:</h1>			
 <p><input type="text" placeholder="Phone Number" name="mobilenumber" required></p>
- <h1>Postal Adress:</h1>
-<p><input type="text" placeholder="Postal Adress" name="address" required></p>
+ <h1>Change Postal Address:</h1>
+<p><input type="text" placeholder="Postal Address" name="address" required></p>
 			</fieldset>
-  <div>
-  <label for="fruit">Select Account Type</label>
-      <br>
-      <i class="fa fa-sort"></i>
-      <select class="floatLabel" name = "Seller_or_Buyer" id ="Seller_or_Buyer" >
-        <option value="blank"></option>
-        <option value="Buyer">Buyer</option>
-        <option value="Seller">Seller</option>
-    </select>
-         </div>
+ 
 
 		</form>
 
@@ -103,6 +94,6 @@ require '../Auction_Website/includes/pagetop.php';
 
 </body>
 
-<?php require '../Auction_Website/includes/footer.php'; ?>
+<?php require '../../includes/footer.php'; ?>
 
 </html>

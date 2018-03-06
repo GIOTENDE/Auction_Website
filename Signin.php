@@ -2,7 +2,60 @@
 <?php
 
    include("config.php");
-   
+
+   function Login()
+{
+    if(empty($_POST['username']))
+    {
+        $this->HandleError("UserName is empty!");
+        return false;
+    }
+    
+    if(empty($_POST['password']))
+    {
+        $this->HandleError("Password is empty!");
+        return false;
+    }
+    
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    
+    if(!$this->CheckLoginInDB($username,$password))
+    {
+        return false;
+    }
+    
+    session_start();
+    
+    $_SESSION[$this->GetLoginSessionVar()] = $username;
+    
+    return true;
+}
+
+function CheckLoginInDB($username,$password)
+{
+    if(!$this->DBLogin())
+    {
+        $this->HandleError("Database login failed!");
+        return false;
+    }          
+    $username = $this->SanitizeForSQL($username);
+    $pwdmd5 = md5($password);
+    $qry = "Select name, email from $this->tablename ".
+        " where username='$username' and password='$pwdmd5' ".
+        " and confirmcode='y'";
+    
+    $result = mysql_query($qry,$this->connection);
+    
+    if(!$result || mysql_num_rows($result) <= 0)
+    {
+        $this->HandleError("Error logging in. ".
+            "The username or password does not match");
+        return false;
+    }
+    return true;
+}
+   /*
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
@@ -22,7 +75,7 @@
       }else {
          $error = "Your Login Name or Password is invalid";
       }
-   }
+   }*/
 require '../Auction_Website/includes/pagetop.php';
 ?>
 <html lang="en-Us">
@@ -46,13 +99,13 @@ require '../Auction_Website/includes/pagetop.php';
 
 		<h1><strong>Welcome.</strong> Please login.</h1>
 
-		<form action="javascript:void(0);" method="get">
+		<form action="" method="post">
 
 			<fieldset>
 
-				<p><input type="text" required value="Username" onBlur="if(this.value=='')this.value='Username'" onFocus="if(this.value=='Username')this.value='' " name="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
+				<p><input type="text" required value="Username" onBlur="if(this.value=='')this.value='Username'" onFocus="if(this.value=='Username')this.value='' " name="username" id="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
 
-				<p><input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " name="password"></p> <!-- JS because of IE support; better: placeholder="Password" -->
+				<p><input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " name="password" id="password"></p> <!-- JS because of IE support; better: placeholder="Password" -->
 
 		
 
@@ -67,7 +120,7 @@ require '../Auction_Website/includes/pagetop.php';
 		<p>
 
 
-			<button class="facebook">Sign Up</button>
+			<a href="Signup.php" ><button class="facebook">Sign Up</button></a>
 
 		</p>
 
