@@ -20,21 +20,31 @@
       <div id="searchBar">
 
         <ul>
+            <form action="dynamicProductList.php" method ="post">
             <input type="text" id="search" name="search" placeholder="Search for an item"/>
-            <select name="categories">
-                <option value="All Categories">All Categories</option>
-                <option value="Antiques">Antiques</option>
-                <option value="Home & Garden">Home & Garden</option>
-                <option value="Sports & Active Goods">Sports & Active Goods</option>
+
+
+            <select name="searchCategories">
+                <option value="*">All Categories</option>
+                <option value="Collectables and antiques">Antiques</option>
+                <option value="Home and Garden">Home & Garden</option>
+                <option value="Sporting Goods">Sports & Active Goods</option>
                 <option value="Electronics">Electronics</option>
-                <option value="Jewellery & Watches">Jewellery & Watches</option>
-                <option value="Toys & Games">Toys & Games</option>
+                <option value="Jewellery and Watches">Jewellery & Watches</option>
+                <option value="Toys and Games">Toys & Games</option>
                 <option value="Fashion">Fashion</option>
-                <option value="Fashion">Fashion</option>
+                <option value="Motors">Fashion</option>
                 <option value="Other">Other</option>
             </select>
-            <input id="show-btn" type="submit" name="submit" value="Search"/>
+
+            <input id="show-btn" type="submit" name="submit" value="Search">
+            </form>
         </ul>
 
       </div>
+
+
+
     </div>
+
+
