@@ -34,8 +34,10 @@ mysqli_query($connection,"INSERT INTO product (prod_name,prod_category,prod_cond
     }else {
         echo "Please select an image.";
     }
+}else{
+    echo "ERROR";
 }
 ?>
 
-<a href="/AuctionWebsite/Seller/SellerCreateNewAuction/displayImage.php">Display Images</a> <br>
+<a href="displayImage.php">Display Images</a> <br>
 
