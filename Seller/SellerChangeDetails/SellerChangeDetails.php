@@ -4,33 +4,43 @@ include("../../config.php");
 session_start();
 $userID = $_SESSION['userID'];
 
+$username = $email_address = $password = $fullname = $mobilenumber = $address ="";
 
-$_SESSION['message'] = '';
+$_SESSION['message']="";
+$getUserDetails=mysqli_query($db,"SELECT username, email_address, password, fullName, mobilenumber, address FROM users WHERE userID='$userID'");
+if (mysqli_num_rows($getUserDetails) > 0) {
+    while($row = mysqli_fetch_assoc($getUserDetails)) {
+
+		$username = $row["username"];
+		$email_address = $row["email_address"];
+		$password = $row["password"];
+		$fullname = $row["fullName"];
+		$mobilenumber = $row["mobilenumber"];
+		$address = $row["address"];
+		
+	}
+}
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST["submit"])){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
+
 		$username = ($_POST['username']);
 		$email_address = ($_POST['email_address']);
 		$password = md5($_POST['password']);// md5 hash passord security
 		$fullname = ($_POST['fullname']);
 		$mobilenumber = ($_POST['mobilenumber']);
 		$address = ($_POST['address']);
-		$Seller_or_Buyer= ($_POST['Seller_or_Buyer']);
-		$sql = "INSERT INTO users (username, email_address, password, fullname, mobilenumber, address, Seller_or_Buyer)"."VALUES ('$username','$email_address','$password','$fullname','$mobilenumber','$address','$Seller_or_Buyer')";
+
 		//if query is successful, redirect to signup.php page, done!
 		
-		mysqli_query($db,$sql);
-			
-		/*if ($mysqli->query($sql)=== true){
-			$_SESSION['message'] = 'Registration successful! Added $username to the database';
-		}
-		else{
-			$_SESSION['message'] = "User could not be added to the database!";
-		}*/
+		mysqli_query($db,"UPDATE users SET username='$username', email_address='$email_address', password='$password', fullname='$fullname', mobilenumber='$mobilenumber', address='$address' WHERE userID='$userID'");
+		echo "Changes Saved!";
+	
 	}
 	else{
-		$_SESSION['message'] = "Two Passwords to not match";
+		echo "Two Passwords to not match";
 	} 
 	}else{echo "subbmit not working";}
 }
@@ -58,28 +68,28 @@ require '../../includes/pagetop.php';
 
     <h1><strong><br>Create a new account:</strong></h1>
 
-		<form class="form" action="Signup.php" method="post" enctype="miltipart/form-data" autocomplete="off">
+		<form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="miltipart/form-data" autocomplete="off">
 		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 
 			<fieldset>
 			<h1>Change Full Name: </h1>
-<p><input type="text" placeholder="John Doe" name= "fullname" required></p>
+<p><input type="text" value="<?php echo $fullname; ?>" name= "fullname" required></p>
             <h1>Change Username: </h1>
-				<p><input type="text" placeholder="Username" name="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
+				<p><input type="text" value="<?php echo $username; ?>" name="username"></p> <!-- JS because of IE support; better: placeholder="Username" -->
 <h1><strong>Change Password:</h1>
-				<p><input type="password" required value="Password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
+				<p><input type="password" required placeholder="Please a new/old password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
 
   <h1><strong>Re-enter Password:</h1>
-				<p><input type="password" required value="Password"  name = "confirmpassword" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
+				<p><input type="password" required placeholder="Re-enter your new/old password"  name = "confirmpassword" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " required></p>
       
 <!-- JS because of IE support; better: placeholder="Password" -->
   
-<h1>Change Email Adress: </h1>
-<p><input type="text" placeholder="Email" name= "email_address" required></p>
+<h1>Change Email Address: </h1>
+<p><input type="text" value="<?php echo $email_address; ?>" name= "email_address" required></p>
 <h1>Change Phone Number:</h1>			
-<p><input type="text" placeholder="Phone Number" name="mobilenumber" required></p>
+<p><input type="text" value="<?php echo $mobilenumber; ?>" name="mobilenumber" required></p>
  <h1>Change Postal Address:</h1>
-<p><input type="text" placeholder="Postal Address" name="address" required></p>
+<p><input type="text" value="<?php echo $address; ?>" name="address" required></p>
 			</fieldset>
  
 
@@ -88,7 +98,7 @@ require '../../includes/pagetop.php';
         <p><br>
 
           
-  <input type="submit" name="submit" id="submit" class="button" value="Sign Up">
+  <input type="submit" name="submit" id="submit" class="button" value="Change Details">
   <br>
           </p>
 	</div> <!-- end login -->
