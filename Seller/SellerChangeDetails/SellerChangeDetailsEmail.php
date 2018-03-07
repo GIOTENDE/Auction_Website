@@ -22,8 +22,7 @@ $message = "
 Full Name:      $fullname <br>
 Username:       $username <br>
 Email:          $email_address <br>
-Mobile Number:  $mobilenumber <br>
-Role:           $Seller_or_Buyer <br><br>
+Mobile Number:  $mobilenumber <br><br>
 
 Happy Trading!
 
