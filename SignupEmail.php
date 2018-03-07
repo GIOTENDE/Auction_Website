@@ -2,7 +2,7 @@
 include("config.php");
 
 $url = 'https://api.sendgrid.com/';
- $user = 'EmailAPIKey';
+ //$user = 'EmailAPIKey';
  $pass = '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';
 
 $to = $email_address;
@@ -42,7 +42,7 @@ Role: <?php echo $Seller_or_Buyer ?> <br>
 //mail($to,$subject,$message,$headers);
 
  $params = array(
-      'api_user' => $user,
+      //'api_user' => $user,
       'api_key' => $pass,
       'to' => $email_address,
       'subject' => $subject,
