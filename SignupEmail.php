@@ -37,4 +37,5 @@ $headers .= 'From: <noreply@auction_webste.com>' . "\r\n";
 //$headers .= 'Cc: myboss@example.com' . "\r\n";
 
 mail($to,$subject,$message,$headers);
+echo "DONE";
 ?>
