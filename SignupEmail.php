@@ -19,11 +19,13 @@ $message = "
 <p>Thank you for submitting your completed application.</p>
 <p>Account Details</p>
 <p>
-Full Name: <?php echo $fullname ?> <br>
-Username: <?php echo $username ?> <br>
-Email: <?php echo $email_address ?> <br>
-Mobile Number: <?php echo $mobilenumber ?> <br>
-Role: <?php echo $Seller_or_Buyer ?> <br>
+Full Name: <?php echo $fullname; ?> <br>
+Username: <?php echo $username; ?> <br>
+Email: <?php echo $email_address; ?> <br>
+Mobile Number: <?php echo $mobilenumber; ?> <br>
+Role: <?php echo $Seller_or_Buyer; ?> <br><br>
+
+Happy Trading!
 
 </p>
 </div>
