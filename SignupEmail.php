@@ -46,7 +46,7 @@ Role: <?php echo $Seller_or_Buyer ?> <br>
       'api_key' => $pass,
       'to' => $email_address,
       'subject' => $subject,
-      'html' => $message,
+      'html' => 'testing body',
       'text' => 'testing body',
       'from' => 'noreply@auction_website.com',
    );
