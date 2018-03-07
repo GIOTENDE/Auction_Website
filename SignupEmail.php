@@ -7,10 +7,12 @@ $subject = "Welcome to Auction Website";
 $message = "
 <html>
 <head>
-<title>Welcome to Auction Website</title>
+<title>Welcome to our Auction Website</title>
 </head>
 
 <body>
+<div style='font-family:arial, sans-serif; font-size:15px; color: #444; max-width:720px; margin:0 auto; line-height:120%'>
+
 <p>Thank you for submitting your completed application.</p>
 <p>Account Details</p>
 <p>
@@ -21,7 +23,7 @@ Mobile Number: <?php echo $mobilenumber ?> <br>
 Role: <?php echo $Seller_or_Buyer ?> <br>
 
 </p>
-
+</div>
 </body>
 </html>
 ";
