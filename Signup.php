@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	else{
 		$_SESSION['message'] = "Two Passwords to not match";
 	} 
-	}else{echo "subbmit not working";}
+	}else{echo "submit not working";}
 }
 
 include '/includes/pagetop.php'; 
@@ -59,7 +59,7 @@ include '/includes/pagetop.php';
     <h1><strong><br>Create a new account:</strong></h1>
 
 		<form class="form" action="Signup.php" method="post" enctype="miltipart/form-data" autocomplete="off">
-		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+		<!-- <div class="alert alert-error"><?= $_SESSION['message'] ?></div> -->
 
 			<fieldset>
 			<h1>Insert Full Name: </h1>

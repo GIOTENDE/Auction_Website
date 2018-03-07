@@ -50,7 +50,7 @@ Role: <?php echo $Seller_or_Buyer ?> <br>
       'text' => 'testing body',
       'from' => 'noreply@auction_website.com',
    );
-
+echo $email_address;
  $request = $url.'api/mail.send.json';
 
  // Generate curl request
