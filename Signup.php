@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}else{echo "subbmit not working";}
 }
 
-include '../Auction_Website/includes/pagetop.php'; 
+include '/includes/pagetop.php'; 
 ?>
 <html lang="en-Us">
 
@@ -103,6 +103,6 @@ include '../Auction_Website/includes/pagetop.php';
 
 </body>
 
-<?php include '../Auction_Website/includes/footer.php'; ?>
+<?php include '/includes/footer.php'; ?>
 
 </html>
