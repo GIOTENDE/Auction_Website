@@ -2,8 +2,8 @@
 include("config.php");
 
 $url = 'https://api.sendgrid.com/';
- //$user = 'EmailAPIKey';
- $pass = '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';
+ $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
+ $pass = 'Group35Email';
 
 $to = $email_address;
 $subject = "Welcome to Auction Website";
@@ -42,7 +42,7 @@ Role: <?php echo $Seller_or_Buyer ?> <br>
 //mail($to,$subject,$message,$headers);
 
  $params = array(
-      //'api_user' => $user,
+      'api_user' => $user,
       'api_key' => $pass,
       'to' => $email_address,
       'subject' => $subject,
