@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		mysqli_query($db,$sql);
 		include 'SignupEmail.php';
+		echo 'COMPLETED';
 		/*if ($mysqli->query($sql)=== true){
 			$_SESSION['message'] = 'Registration successful! Added $username to the database';
 		}
