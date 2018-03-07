@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		//if query is successful, redirect to signup.php page, done!
 		
 		mysqli_query($db,"UPDATE users SET username='$username', email_address='$email_address', password='$password', fullname='$fullname', mobilenumber='$mobilenumber', address='$address' WHERE userID='$userID'");
+		include 'SellerChangeDetailsEmail.php';
 		echo "Changes Saved!";
 	
 	}
