@@ -3,7 +3,7 @@ include("config.php");
 
 $url = 'https://api.sendgrid.com/';
  $user = 'Group35Email';
- $pass = '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';
+ $pass = '';
 
 $to = $email_address;
 $subject = "Welcome to Auction Website";
