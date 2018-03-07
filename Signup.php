@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		//if query is successful, redirect to signup.php page, done!
 		
 		mysqli_query($db,$sql);
-			
+		include 'SignupEmail.php';
 		/*if ($mysqli->query($sql)=== true){
 			$_SESSION['message'] = 'Registration successful! Added $username to the database';
 		}
