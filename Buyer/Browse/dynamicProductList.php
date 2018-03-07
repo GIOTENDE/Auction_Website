@@ -1,73 +1,91 @@
 <?php include 'config.php'; ?>
 <?php include 'searchBarHeader.php'; ?>
+<script type="text/javascript"
+        src="dynamicProductListController.js">
+</script>
 
-<div id="container2">
+
+<?php
+
+$productSearch =  $_POST["search"];
+
+$category2 = $_POST["searchCategories"];
+
+$category1 = $_GET["category"];
+
+$dateNow = date("Y-m-d H:i:s");
+
+echo $productSearch;
+echo $category2;
+echo $category1;
+?>
+
+<div id="container">
+
+    <select name="Name Alphabetical" id="nameAlphabetical"  onclick="sortName()">
+        <option value="" disabled selected>Name</option>
+        <option value="Name Alphabetical">Name Alphabetical</option>
+    </select>
+
+    <select name="Ending soon" id="endingSoon"  onclick="endingSoon(value)">
+        <option value="" disabled selected>Sort by End Date</option>
+        <option value="End soon first">End soon first</option>
+        <option value="End soon last">End soon last</option>
+    </select>
+
+    <select name="Condition Filter" id="condition"  onclick="filterCategory()">
+        <option value="" disabled selected>Condition</option>
+        <option value="e">New or Used</option>
+        <option value="New">New</option>
+        <option value="Used">Used</option>
+    </select>
+
+    <select name="Reserve price" id="reservePrice"  onclick="sortReservePrice(value)">
+        <option value="" disabled selected>Sort Reserve Price</option>
+        <option value="High to Low">High to Low</option>
+        <option value="Low to High">Low to High</option>
+    </select>
+
+    <select name="Highest bid" id="highestBid"  onclick="sortHighestBid(value)">
+        <option value="" disabled selected>Sort Highest Bid</option>
+        <option value="High to Low">High to Low</option>
+        <option value="Low to High">Low to High</option>
+    </select>
 
 
-
-    <?php
-    $productSearch = $_POST["search"];
-    $category = $_POST["searchCategories"];
-    $dateNow = date("Y-m-d H:i:s");
-    ?>
-
-    <br>
-    <br>
 
 </div>
 
-<!--<div id="container">-->
-<!--    <header>-->
-<!--        <h1>Filter results</h1>-->
-<!--    </header>-->
-<!--    <div id="searchBar">-->
-<!---->
-<!--        <ul>-->
-<!--            <form action="dynamicProductList.php" method ="post">-->
-<!--                <input type="text" id="search" name="search" placeholder="Search for an item"/>-->
-<!---->
-<!---->
-<!--                <select name="searchCategories">-->
-<!--                    <option value="*">All Categories</option>-->
-<!--                    <option value="Collectables and antiques">Antiques</option>-->
-<!--                    <option value="Home and Garden">Home & Garden</option>-->
-<!--                    <option value="Sporting Goods">Sports & Active Goods</option>-->
-<!--                    <option value="Electronics">Electronics</option>-->
-<!--                    <option value="Jewellery and Watches">Jewellery & Watches</option>-->
-<!--                    <option value="Toys and Games">Toys & Games</option>-->
-<!--                    <option value="Fashion">Fashion</option>-->
-<!--                    <option value="Motors">Fashion</option>-->
-<!--                    <option value="Other">Other</option>-->
-<!--                </select>-->
-<!---->
-<!--                <input id="show-btn" type="submit" name="submit" value="Search">-->
-<!--            </form>-->
-<!--        </ul>-->
-<!---->
-<!--    </div>-->
-<!---->
-<!---->
-<!---->
-<!--</div>-->
 
 <div id="container2">
 
+
+
+
+
+
+
+
+
 <?php
-if(isset($_GET["category"])) {
-    $category = $_GET["category"];
-    $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture FROM product WHERE prod_category = '$category' AND '$dateNow' <= prod_end_date";
+if(isset($category1)) {
+
+    $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_category = '$category1' AND '$dateNow' <= prod_end_date";
+    echo "first loop";
 }
 
 
 // run search for all categories
-else if ($category == "*") {
-        $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
+else if ($category2 == "*") {
+        $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
+    echo "second loop";
     }
 
 // run search within a category
 else {
 
-        $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category')  AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
+        echo "third loop";
     }
 
 
@@ -80,28 +98,41 @@ $result = mysqli_query($db, $sql);
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     ?>
-    <div id="container2">
+    <table id="myTable">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>End date</th>
+            <th>Condition</th>
+            <th>Reserve Price</th>
+            <th>Current Bid</th>
+        </tr>
+
         <?php
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "Name: " . $row["prod_name"]. "<br>" .
-            "Category: " . $row["prod_category"]. "<br>" .
-            "Description: " . $row["prod_description"]. "<br>" .
-            "Start Price: " . $row["prod_start_price"]. "<br>" .
-            "Reserve Price: " . $row["prod_reserve_price"]. "<br>" .
-            "End date: " . $row["prod_end_date"]. "<br>" .
-            "Condition: " . $row["prod_condition"]. "<br>" .
-            "Picture File: " . $row["prod_picture"]. "<br>";
-            $picture1 = $row["prod_picture"];
-//            below needs changing when put on server
-            $picture2 = "Images/" . $picture1;
+    while($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+            <td> <?php $picture1 = $row["prod_picture"];
+            //            below needs changing when put on server
+                $picture2 = "Images/" . $picture1;
+                ?>
+                <img src= "<?php echo $picture2?>" alt="Image picture" width="300" height="200"> </td>
+            <td><?php echo    $row["prod_name"]; ?> </td>
+            <td><?php echo $row["prod_category"]; ?> </td>
+            <td><?php echo $row["prod_end_date"]; ?> </td>
+            <td><?php echo $row["prod_condition"]; ?> </td>
+            <td><?php echo  $row["prod_reserve_price"]; ?> </td>
+            <td><?php echo  $row["prod_highest_price"]; ?> </td>
 
 
-?>
-        <img src= "<?php echo $picture2?>" alt="Image picture" width="300" height="200">
+
+
+
+        </tr>
         <br>
  <?php   }
     ?>
-    </div>
+
     <?php
 } else {
     echo "0 results";
@@ -111,5 +142,6 @@ mysqli_close($db);
 ?>
 
 </div>
+
 
 
