@@ -42,7 +42,7 @@ include '../Auction_Website/includes/pagetop.php';
 
 	<meta charset="utf-8">
 
-	<link rel="stylesheet" href="../Auction_Website/style.css">
+	<link rel="stylesheet" href="style.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
 	<!--[if lt IE 9]>
