@@ -34,8 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	} 
 	}else{echo "submit not working";}
 }
-
-include '/includes/pagetop.php'; 
+include 'includes/pagetopsignin.php'; 
 ?>
 <html lang="en-Us">
 
@@ -91,19 +90,17 @@ include '/includes/pagetop.php';
         <option value="Seller">Seller</option>
     </select>
          </div>
-
-		</form>
-
+          <br>
+ 		
+ </form>
+<input type="submit" name="submit" id="submit" class="button" value="Sign Up">
         <p><br>
-
-          
-  <input type="submit" name="submit" id="submit" class="button" value="Sign Up">
   <br>
           </p>
 	</div> <!-- end login -->
 
 </body>
 
-<?php include '/includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
 
 </html>

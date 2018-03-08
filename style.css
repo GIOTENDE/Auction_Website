@@ -62,7 +62,7 @@ form fieldset input[type="text"], input[type="password"] {
   -webkit-appearance:none;
 }
 
-form fieldset input[type="submit"] {
+input[type="submit"] {
 	background-color: #008dde;
 	border: none;
 	border-radius: 3px;
