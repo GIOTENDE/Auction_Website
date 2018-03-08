@@ -46,12 +46,12 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
 <div id="button"> 
     <a href="../SellerCreateNewAuction/SellerCreateNewAuction.php">Auction an Item!</a>
 </div>
-
+<br>
 <!--        Button: CHANGE SELLER DETAILS -->
 <div id="button"> 
     <a href="../SellerChangeDetails/SellerChangeDetails.php">Change Customer Details</a>
 </div>
-
+<br>
 <!--        AUCTION HISTORY TABLE       -->
 <h1>Auction History Table</h1>
 <div class="tbl-header">

@@ -1,9 +1,15 @@
 #button {
-    width: 6em;
-    border: 2px solid green;
-    background: #ffe;
-    border-radius: 5px;
-}
+   background-color: #008dde;
+   margin: auto;
+   text-align: center;
+	border: none;
+	border-radius: 3px;
+	color: #fffff;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	width: 300px;
+  -webkit-appearance:none}
 td{
   word-wrap: break-word;
 }
@@ -15,18 +21,14 @@ a {
     text-decoration: none;
     border-radius: 5px;
 }
-a:hover {
-    color: red;
-    background: #eff;
-}
+
 .incomplete{
     color: red;
 }
 /* /********************************************************************************* */
 h1{
     font-size: 30px;
-    color: #fff;
-    text-transform: uppercase;
+    color: #5a5656;
     font-weight: 300;
     text-align: center;
     margin-bottom: 15px;
@@ -49,7 +51,7 @@ h1{
     text-align: left;
     font-weight: 500;
     font-size: 12px;
-    color: #fff;
+   color: #5a5656;
     text-transform: uppercase;
   }
   td{
@@ -58,7 +60,7 @@ h1{
     vertical-align:middle;
     font-weight: 300;
     font-size: 12px;
-    color: #fff;
+    color: #5a5656;    
     border-bottom: solid 1px rgba(255,255,255,0.1);
   }
   
@@ -66,11 +68,12 @@ h1{
   /* demo styles */
   
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-  body{
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
-    font-family: 'Roboto', sans-serif;
-  }
+body {
+	background: #f4f4f4;
+     color: #5a5656;
+	font: 100%/1.5em 'Open Sans', sans-serif;
+  margin: 0;
+}
   section{
     margin: 50px;
   }
@@ -84,7 +87,7 @@ h1{
     text-align: center;
     font-size: 10px;
     font-family: arial;
-    color: #fff;
+    color: #5a5656;
   }
   .made-with-love i {
     font-style: normal;
