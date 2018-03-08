@@ -1,29 +1,28 @@
 <?php
-include("config.php");
+include("../../config.php");
 
 $url = 'https://api.sendgrid.com/';
  $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
  $pass = 'Group35Email';
 
 $to = $email_address;
-$subject = "Welcome to Auction Website";
+$subject = "Auction Website: Account Details Changed";
 $message = "
 <html>
 <head>
-<title>Welcome to our Auction Website</title>
+<title>Account Details Changed</title>
 </head>
 
 <body>
 <div style='font-family:arial, sans-serif; font-size:15px; color: #444; max-width:720px; margin:0 auto; line-height:120%'>
 
-<p>Thank you for submitting your completed application.</p>
+<p>Your account details have been chnaged!</p>
 <p>Account Details</p>
 <p>
 Full Name:      $fullname <br>
 Username:       $username <br>
 Email:          $email_address <br>
-Mobile Number:  $mobilenumber <br>
-Role:           $Seller_or_Buyer <br><br>
+Mobile Number:  $mobilenumber <br><br>
 
 Happy Trading!
 

@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		mysqli_query($db,$sql);
 		include 'SignupEmail.php';
+		echo 'COMPLETED';
 		/*if ($mysqli->query($sql)=== true){
 			$_SESSION['message'] = 'Registration successful! Added $username to the database';
 		}
@@ -31,10 +32,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	else{
 		$_SESSION['message'] = "Two Passwords to not match";
 	} 
-	}else{echo "subbmit not working";}
+	}else{echo "submit not working";}
 }
 
-require '../Auction_Website/includes/pagetop.php'; 
+include '/includes/pagetop.php'; 
 ?>
 <html lang="en-Us">
 
@@ -42,7 +43,7 @@ require '../Auction_Website/includes/pagetop.php';
 
 	<meta charset="utf-8">
 
-	<link rel="stylesheet" href="../Auction_Website/style.css">
+	<link rel="stylesheet" href="style.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
 	<!--[if lt IE 9]>
@@ -58,7 +59,7 @@ require '../Auction_Website/includes/pagetop.php';
     <h1><strong><br>Create a new account:</strong></h1>
 
 		<form class="form" action="Signup.php" method="post" enctype="miltipart/form-data" autocomplete="off">
-		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+		<!-- <div class="alert alert-error"><?= $_SESSION['message'] ?></div> -->
 
 			<fieldset>
 			<h1>Insert Full Name: </h1>
@@ -103,6 +104,6 @@ require '../Auction_Website/includes/pagetop.php';
 
 </body>
 
-<?php require '../Auction_Website/includes/footer.php'; ?>
+<?php include '/includes/footer.php'; ?>
 
 </html>

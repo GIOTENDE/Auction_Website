@@ -5,6 +5,7 @@
 
    $postCheck=true;
    $username=$password="";
+
    function validate_input($data) {
 	$data = trim($data);
 	$data = stripslashes($data);
@@ -15,6 +16,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
 
    if(isset($_POST["submit"])){
+
 	if (empty($_POST["username"])) {
 		$usernameErr = "Please Enter Your Username"."<br>";
 		$postCheck = false;
@@ -43,6 +45,28 @@
 		$_SESSION['Seller_or_Buyer']=$row['Seller_or_Buyer'];
 		header('Location: roleSeperator.php');
    }
+}else{
+	echo "hello";
+	echo "
+	<div id='myModal' class='modal'>
+
+    <!-- Modal content -->
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <span class='close'>&times;</span>
+        <h2>Incorrect Login details</h2>
+      </div>
+      <div class='modal-body'>
+        <p>
+        Please Re-enter your login details!
+        </p>
+        <div class= 'modal-footer'>
+       </div>
+      </div>
+      
+    </div>
+  
+  </div>";
 }
 }
 }     
@@ -68,7 +92,7 @@
          $error = "Your Login Name or Password is invalid";
       }
    }*/
-//require '../Auction_Website/includes/pagetop.php';
+include '../Auction_Website/includes/pagetop.php';
 ?>
 <html lang="en-Us">
 <head>
@@ -119,5 +143,34 @@
 	</div> <!-- end login -->
 
 </body>
-<?php //require '../Auction_Website/includes/footer.php'; ?>
+<?php include '../Auction_Website/includes/footer.php'; ?>
 </html>
+<script>
+  window.onload = function(){
+  // Get the modal
+  var modal = document.getElementById('myModal');
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById('submit');
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName('close')[0];
+  modal.style.display = 'block';
+  // When the user clicks the button, open the modal 
+  // btn.onclick = function() {
+  //     modal.style.display = 'block';
+  // }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = 'none';
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = 'none';
+      }
+  }
+}
+  </script>
