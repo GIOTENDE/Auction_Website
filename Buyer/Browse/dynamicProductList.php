@@ -124,10 +124,6 @@ if (mysqli_num_rows($result) > 0) {
             <td><?php echo  $row["prod_reserve_price"]; ?> </td>
             <td><?php echo  $row["prod_highest_price"]; ?> </td>
 
-
-
-
-
         </tr>
         <br>
  <?php   }
