@@ -46,6 +46,7 @@
    }
 }
 }else{
+	echo "hello";
 	echo "<div id='myModal' class='modal'>
 
     <!-- Modal content -->
@@ -56,7 +57,7 @@
       </div>
       <div class='modal-body'>
         <p>
-        Please Re-enter your login details
+        Please Re-enter your login details!
         </p>
         <div class= 'modal-footer'>
        </div>
