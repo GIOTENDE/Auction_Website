@@ -68,7 +68,7 @@
          $error = "Your Login Name or Password is invalid";
       }
    }*/
-require '../Auction_Website/includes/pagetop.php';
+include '../Auction_Website/includes/pagetop.php';
 ?>
 <html lang="en-Us">
 <head>
@@ -119,5 +119,5 @@ require '../Auction_Website/includes/pagetop.php';
 	</div> <!-- end login -->
 
 </body>
-<?php require '../Auction_Website/includes/footer.php'; ?>
+<?php include '../Auction_Website/includes/footer.php'; ?>
 </html>
