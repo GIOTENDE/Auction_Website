@@ -28,7 +28,7 @@ $result = mysqli_query($db, $sql);
         $onWishlist = True;
     }
 mysqli_close($db);
-    
+
 date_default_timezone_set('Europe/London');
 $end_date = new DateTime($prod_end_date);
 $now = new DateTime("now");
