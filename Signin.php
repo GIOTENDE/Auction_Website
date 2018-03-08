@@ -45,7 +45,6 @@
 		$_SESSION['Seller_or_Buyer']=$row['Seller_or_Buyer'];
 		header('Location: roleSeperator.php');
    }
-}
 }else{
 	echo "hello";
 	echo "
@@ -99,6 +98,7 @@
     </div>
   
   </div>";
+}
 }
 }     
 }
