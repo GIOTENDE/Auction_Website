@@ -48,7 +48,6 @@
 }else{
 	echo "hello";
 	echo "
-	
 	<div id='myModal' class='modal'>
 
     <!-- Modal content -->
