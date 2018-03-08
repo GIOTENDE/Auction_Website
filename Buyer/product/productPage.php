@@ -1,7 +1,10 @@
-<?php include 'config.php'; ?>
+<?php include '../../config.php'; ?>
 
 <?php
-$_SESSION['user_ID'];
+session_start();
+//$userID = $_SESSION['userID'];
+$userID = 1;
+$onWishlist = False;
 $prod_ID = $_GET["prod_ID"];
 $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture FROM product WHERE prod_ID = '$prod_ID'";
 $result = mysqli_query($db, $sql);
@@ -18,7 +21,12 @@ $result = mysqli_query($db, $sql);
         $prod_picture = "Images/" . $prod_picture_directory; //needs changing?
     }
 
-    $sql2 = "SELECT user_ID, prod_ID FROM wishlist WHERE user_ID = '1'";
+    $sql2 = "SELECT buyer_ID, prod_ID FROM wishlist WHERE buyer_ID = '$userID' AND prod_ID = '$prod_ID'";
+    $result = mysqli_query($db, $sql2);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $onWishlist = True;
+    }
 mysqli_close($db);
 
 
@@ -46,7 +54,7 @@ $interval = $now->diff($end_date);
     <div class="row">
         <div class="col-sm-4">
             <img src="<?php echo $prod_picture; ?>" class="img-rounded img-responsive">
-            <button type="button" class="btn btn-warning">Save to wish list <span class="glyphicon glyphicon-heart"></button>
+            <button type="button" class="btn btn-warning"><?php echo $onWishlist? 'Remove from wish list': 'Save to wish list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
         <div class="col-sm-4"><?php echo $prod_description ?></div>
         <div class="col-sm-4 well"> <table style="width:100%">

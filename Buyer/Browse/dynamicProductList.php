@@ -84,16 +84,10 @@ else if ($category2 == "*") {
 // run search within a category
 else {
 
-        $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
         echo "third loop";
     }
-
-
-
-
-
 $result = mysqli_query($db, $sql);
-
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
@@ -110,13 +104,16 @@ if (mysqli_num_rows($result) > 0) {
         </tr>
 
         <?php
-    while($row = mysqli_fetch_assoc($result)) { ?>
+    while($row = mysqli_fetch_assoc($result)) {
+        $prod_ID = $row["prod_ID"];
+        ?>
         <tr>
             <td> <?php $picture1 = $row["prod_picture"];
-            //            below needs changing when put on server
-                $picture2 = "Images/" . $picture1;
-                ?>
-                <img src= "<?php echo $picture2?>" alt="Image picture" width="300" height="200"> </td>
+                $picture2 = "Images/" . $picture1;  ?>
+                <a href="../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>">
+                    <img src= "<?php echo $picture2?>" alt="Image picture" width="300" height="200">
+                </a>
+            </td>
             <td><?php echo    $row["prod_name"]; ?> </td>
             <td><?php echo $row["prod_category"]; ?> </td>
             <td><?php echo $row["prod_end_date"]; ?> </td>
