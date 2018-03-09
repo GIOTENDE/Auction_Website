@@ -55,6 +55,22 @@ strong {
 color: white;	
 }
 
+.floatLabel{background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 300px;
+  -webkit-appearance:none;
+}
+
+
+
+
 .form {
   background:#008dde;
   padding: 40px auto;
@@ -64,7 +80,7 @@ color: white;
   box-shadow:0 4px 10px 4px #008dde;
 }
 
-form fieldset input[type="text"], input[type="date"] {
+form fieldset input[type="text"], input[type="date"], input[type="date"] {
 	background: #e5e5e5;
 	border: none;
 	border-radius: 3px;
@@ -88,9 +104,10 @@ form fieldset input[type="submit"] {
 	font-family: inherit;
 	height: 50px;
 	text-transform: uppercase;
-	width: 320px;
+	width: 300px;
   -webkit-appearance:none;
 } 
+
 
 form fieldset a {
 	color: #5a5656;
@@ -109,7 +126,7 @@ select {
 	height: 50px;
 	outline: none;
 	padding: 0px 10px;
-	width: 320px;
+	width: 300px;
 }
 
 textarea {

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../Auction_Website/includes/styleheader.css">
+<link rel="stylesheet" href="styleheader.css">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -13,7 +13,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#log">Buyer</a></li>
             <li><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
