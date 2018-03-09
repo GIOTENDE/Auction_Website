@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="includes/styleheader.css">
+<link rel="stylesheet" href="/Auction_Website/includes/styleheader.css">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
