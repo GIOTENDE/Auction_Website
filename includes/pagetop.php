@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="/Auction_Website/includes/styleheader.css">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
+      <div class="topcontainer">
+        <div class="topnavbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="topsr-only">Toggle navigation</span>
+            <span class="topicon-bar"></span>
+            <span class="topicon-bar"></span>
+            <span class="topicon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="topnavbar-brand" href="#">Project name</a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+        <div class="topnavbar-collapse collapse">
+          <ul class="topnav navbar-nav">
+            <li class="topactive"><a href="#">Home</a></li>
             <li><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
