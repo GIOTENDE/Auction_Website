@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/Auction_Website/includes/styleheader.css">
+<link rel="stylesheet" href="../../includes/styleheader.css">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="topcontainer">
         <div class="topnavbar-header">
@@ -8,12 +8,12 @@
             <span class="topicon-bar"></span>
             <span class="topicon-bar"></span>
           </button>
-          <a class="topnavbar-brand" href="#">Project name</a>
+          <i class="topnavbar-brand" href="">Project name</i>
         </div>
         <div class="topnavbar-collapse collapse">
           <ul class="topnav navbar-nav">
-            <li class="topactive"><a href="#">Home</a></li>
-            <li><a href="../../logout.php">Logout</a></li>
+            <li class="topactive"><a>Home</a></li>
+            <i href="../../logout.php">Logout</i>
           </ul>
         </div>
       </div>
