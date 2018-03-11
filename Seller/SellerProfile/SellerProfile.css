@@ -10,13 +10,13 @@ body {
 }
  
 #button{
-  background-color: #008dde;
+  background-color: #D1D1D1;
   border: none;
   border-radius: 3px;
-  color: #f4f4f4;
+  color: #000000;
   cursor: pointer;
   font-family: inherit;
-  height: 50px;
+  height: 20px;
   text-transform: uppercase;
   width: 300px;
   -webkit-appearance:none;
@@ -26,5 +26,12 @@ body {
 }
 
 h1{
+  margin: auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+  vertical-align: middle;
+  text-align: center;
   margin:auto;
 }
