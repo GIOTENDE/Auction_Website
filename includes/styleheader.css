@@ -4,6 +4,7 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     margin: 0 0 60px; /* bottom has to be the same as footer height */
 }
