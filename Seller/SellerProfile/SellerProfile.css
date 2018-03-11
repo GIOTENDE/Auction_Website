@@ -1,118 +1,30 @@
-#button {
-   background-color: #008dde;
-   margin: auto;
-   text-align: center;
-	border: none;
-	border-radius: 3px;
-	color: #5a5656;
-	cursor: pointer;
-	font-family: inherit;
-	height: 50px;
-	width: 300px;
-  -webkit-appearance:none}
-td{
-  word-wrap: break-word;
-}
-a {
-    display: block;
-    width: 100%;
-    line-height: 2em;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
+@import "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
+
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-.incomplete{
-    color: red;
+body {
+    margin: 0 0 60px;/* bottom has to be the same as footer height */
 }
-/* /********************************************************************************* */
+ 
+#button{
+  background-color: #008dde;
+  border: none;
+  border-radius: 3px;
+  color: #f4f4f4;
+  cursor: pointer;
+  font-family: inherit;
+  height: 50px;
+  text-transform: uppercase;
+  width: 300px;
+  -webkit-appearance:none;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
 h1{
-    font-size: 30px;
-    color: #5a5656;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  table{
-    width:100%;
-    table-layout: fixed;
-  }
-  .tbl-header{
-    background-color: rgba(255,255,255,0.3);
-   }
-  .tbl-content{
-    height:auto;
-    overflow-x:auto;
-    margin-top: 0px;
-    border: 1px solid rgba(255,255,255,0.3);
-  }
-  th{
-    padding: 20px 15px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 12px;
-   color: #5a5656;
-    text-transform: uppercase;
-  }
-  td{
-    padding: 15px;
-    text-align: left;
-    vertical-align:middle;
-    font-weight: 300;
-    font-size: 12px;
-    color: #5a5656;    
-    border-bottom: solid 1px rgba(255,255,255,0.1);
-  }
-  
-  
-  /* demo styles */
-  
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-/*body {
-	background: #f4f4f4;
-     color: #5a5656;
-	font: 100%/1.5em 'Open Sans', sans-serif;
-  margin: 0;
-}*/
-  section{
-    margin: 50px;
-  }
-  
-  
-  /* follow me template */
-  .made-with-love {
-    margin-top: 40px;
-    padding: 10px;
-    clear: left;
-    text-align: center;
-    font-size: 10px;
-    font-family: arial;
-    color: #5a5656;
-  }
-  .made-with-love i {
-    font-style: normal;
-    color: #F50057;
-    font-size: 14px;
-    position: relative;
-    top: 2px;
-  }
-  .made-with-love a {
-    color: #fff;
-    text-decoration: none;
-  }
-  .made-with-love a:hover {
-    text-decoration: underline;
-  }
-  
-  
-  /* for custom scrollbar for webkit browser*/
-  
-  ::-webkit-scrollbar {
-      width: 6px;
-  } 
-  ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-  } 
-  ::-webkit-scrollbar-thumb {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-  }
+  margin:auto;
+}
