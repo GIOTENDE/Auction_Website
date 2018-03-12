@@ -34,13 +34,12 @@ $now = new DateTime("now");
 $interval = $now->diff($end_date);
 
 $dateNow = date("Y-m-d H:i:s");
-$sql3 = "SELECT DISTINCT bids.prod_id, product.prod_name, product.prod_highest_price, product.prod_picture, product.prod_end_date FROM bids, product WHERE buyer_id IN (SELECT buyer_id FROM bids WHERE bids.prod_id = '$prod_ID') AND NOT bids.prod_ID = '$prod_ID' AND '$dateNow' <= prod_end_date ORDER BY bid_id DESC LIMIT 3";
+$sql3 = "SELECT DISTINCT bids.prod_id, product.prod_name, product.prod_highest_price, product.prod_picture, product.prod_end_date FROM bids INNER JOIN product ON bids.prod_id = product.prod_id WHERE buyer_id IN (SELECT buyer_id FROM bids WHERE bids.prod_id = '$prod_ID') AND NOT bids.prod_ID = '$prod_ID' AND '$dateNow' <= prod_end_date ORDER BY bid_id DESC LIMIT 3";
 $result = mysqli_query($db, $sql3);
 $watchlistArray = array();
 while ($row = mysqli_fetch_assoc($result)) {
     $watchlistArray[] = $row;
 }
-
 mysqli_close($db);
 ?>
 
@@ -51,7 +50,6 @@ mysqli_close($db);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <script>
         $(document).ready(function () {
             $('#watchlist').click(function () {
@@ -65,6 +63,7 @@ mysqli_close($db);
                     });
                     $(this).html('Remove from watch list <span class="glyphicon glyphicon-heart"></span>');
                 } else {
+                    alert ($(this).html());
                     $.ajax({
                         url: 'watchlist.php',
                         data: {action: 'remove', 'buyer_ID': 1, 'prod_ID': <?php echo $prod_ID ?>},
@@ -74,9 +73,11 @@ mysqli_close($db);
                     });
                     $(this).html('Save to watch list <span class="glyphicon glyphicon-heart"></span>');
                 }
-            })
+            });
         })
     </script>
+    <script src="jquery.countdown.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -88,8 +89,7 @@ mysqli_close($db);
         <div class="col-sm-4">
             <img src="<?php echo $prod_picture; ?>" class="img-rounded img-responsive">
             <button type="button" id="watchlist"
-                    class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?>
-                <span class="glyphicon glyphicon-heart"></button>
+                    class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
         <div class="col-sm-4"><?php echo $prod_description ?></div>
         <div class="col-sm-4 well">
@@ -100,7 +100,29 @@ mysqli_close($db);
                 </tr>
                 <tr align="center">
                     <td>Time remaining:</td>
-                    <td><?php echo $interval->format(' %d days, %h hours, %m minutes') ?></td>
+                    <td>
+                        <div class="countdown">
+                            <span id="clock"></span>
+                        </div>
+                        <script>
+                            $('#clock').countdown(' <?php echo $end_date->format('Y/m/d H:i:s')?> ')
+                                .on('update.countdown', function (event) {
+                                    var format = '%H:%M:%S';
+                                    if (event.offset.totalDays > 0) {
+                                        format = '%-d day%!d ' + format;
+                                    }
+                                    if (event.offset.weeks > 0) {
+                                        format = '%-w week%!w ' + format;
+                                    }
+                                    $(this).html(event.strftime(format));
+                                })
+                                .on('finish.countdown', function (event) {
+                                    $(this).html('This offer has expired!')
+                                        .parent().addClass('disabled');
+
+                                });
+                        </script>
+                    </td>
                 </tr>
             </table>
 
@@ -111,33 +133,76 @@ mysqli_close($db);
 
 <h2>Customers have also bidded on</h2>
 <hr>
-<div class="container">
+
+<?php
+$arrSize = sizeof($watchlistArray);
+switch ($arrSize) {
+    case 0:
+        echo "No one has bidded on this item";
+        break;
+
+    case 1:
+        echo '<div class="container">
     <div class="row">
-        <div class="col-sm-4" align="center">
-            <a href="../product/productPage.php?prod_ID=<?php echo $watchlistArray[0]["prod_id"]; ?>">
-                <img src="../Browse/Images/<?php echo $watchlistArray[0]["prod_picture"] ?>"
-                     class="img-rounded img-responsive">
+        <div class="col-sm-4" align="center" id="watchlist0">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
-            <h4><?php echo $watchlistArray[0]["prod_name"] ?></h4>
-            Current price: <strong><?php echo $watchlistArray[0]["prod_highest_price"] ?></strong>
-        </div>
-        <div class="col-sm-4" align="center">
-            <a href="../product/productPage.php?prod_ID=<?php echo $watchlistArray[1]["prod_id"]; ?>">
-                <img src="../Browse/Images/<?php echo $watchlistArray[1]["prod_picture"] ?>"
-                     class="img-rounded img-responsive">
-            </a>
-            <h4><?php echo $watchlistArray[1]["prod_name"] ?></h4>
-            Current price: <strong><?php echo $watchlistArray[1]["prod_highest_price"] ?></strong>
-        </div>
-        <div class="col-sm-4" align="center">
-            <a href="../product/productPage.php?prod_ID=<?php echo $watchlistArray[2]["prod_id"]; ?>">
-                <img src="../Browse/Images/<?php echo $watchlistArray[2]["prod_picture"] ?>"
-                     class="img-rounded img-responsive">
-            </a>
-            <h4><?php echo $watchlistArray[2]["prod_name"] ?></h4>
-            Current price: <strong><?php echo $watchlistArray[2]["prod_highest_price"] ?></strong>
+            <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
         </div>
     </div>
-</div>
+</div>';
+        break;
+
+    case 2:
+        echo '<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center" id="watchlist0">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
+            </a>
+            <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
+        </div>
+        <div class="col-sm-4" align="center" id="watchlist1">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
+            </a>
+            <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[1]["prod_highest_price"] . '</strong>
+        </div>
+    </div>
+</div>';
+        break;
+
+    case 3:
+        echo '<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center" id="watchlist0">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
+            </a>
+            <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
+        </div>
+        <div class="col-sm-4" align="center" id="watchlist1">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
+            </a>
+            <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[1]["prod_highest_price"] . '</strong>
+        </div>
+        <div class="col-sm-4" align="center" id="watchlist2">
+            <a href="../product/productPage.php?prod_ID=' . $watchlistArray[2]["prod_id"] . '">
+            <img src="../Browse/Images/' . $watchlistArray[2]["prod_picture"] . '" class="img-rounded img-responsive">
+            </a>
+            <h4> ' . $watchlistArray[2]["prod_name"] . '</h4>
+            Current price: <strong>' . $watchlistArray[2]["prod_highest_price"] . '</strong>
+        </div>
+    </div>
+</div>';
+}
+?>
 </body>
 </html>
