@@ -1,6 +1,5 @@
 <?php 
-include '../../config.php';
-
+include '../../config.php'; 
 
 session_start();
 $userID = $_SESSION['userID'];
@@ -27,6 +26,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 } else {
     echo "0 results";
 }
+$getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_date, prod_end_date, prod_highest_price prod_buyerID FROM product WHERE prod_sellerID=(('$userID'))");
 ?>
 
 <!--    HEADER      -->

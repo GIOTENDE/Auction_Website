@@ -49,6 +49,8 @@ if (mysqli_num_rows($getProductDetails) > 0) :
         $count=1;
         $dateArray=[];
         while($row = mysqli_fetch_assoc($getProductDetails)) : ?>
+            <?php $buyerID = $row['prod_buyerID']?>
+            <?php $prodID = $row['prod_id']?>
 
         <!--    PRODUCT ID COLUMN    -->
           <td><?php echo $row['prod_id'] ?></td>
@@ -64,7 +66,8 @@ if (mysqli_num_rows($getProductDetails) > 0) :
             <td><?php echo $row['bids'] ?></td>
             <td><?php
             if($row['buyer_feedback_points']==NULL){?>
-                <script src="jquery-3.3.1.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
                 <script>
                 // function sendFeedbackScore(str) {
                 // if (str == "") {
@@ -88,15 +91,24 @@ if (mysqli_num_rows($getProductDetails) > 0) :
                 // // hide the form and show the posted value
                 // }
                 // }
+$(document).ready(function (){
+    $("#score").click(function(){
+        $.ajax({
+            url: 'postFeedbackScore.php',
+            data: {'sellerID': <?php echo $userID?>, 'feedback': $("#score").val(), 'prodID': <?php echo $prodID?>},
+            type: 'post',
+            success: function(output) {
 
-                    $("#score").select(function(){
-                        // $.post("postFeedbackScore.php"),
-                        //     {
+            }
+        })
+        $("#score").replaceWith($("#score").val())
 
-                            alert($("#score").val())
+        // alert($("#score").val())
 
-                            });
-                    });
+    });
+});
+
+
 
                 </script>
 
@@ -104,7 +116,7 @@ if (mysqli_num_rows($getProductDetails) > 0) :
                 <div id="container">
 <!--                    // you need to do AJAX or jQuery here-->
                     <form>
-                <select name="Score" id="score"  onchange="sendFeedbackScore(this.value)">
+                <select name="Score" id="score">
         <option value="" disabled selected>Score</option>
         <option value="1">1</option>
                     <option value="2">2</option>
