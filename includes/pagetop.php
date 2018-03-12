@@ -12,8 +12,8 @@
         </div>
         <div class="topnavbar-collapse collapse">
           <ul class="topnav navbar-nav">
-            <li class="topactive"><a>Home</a></li>
-            <li class="topactive"><a href="https://compgc06group35.azurewebsites.net/logout.php">Logout</a></li>
+            <!-- <li class="topactive"><a>Home</a></li> -->
+            <li class="topactive"><a>Logout</a></li>
           </ul>
         </div>
       </div>

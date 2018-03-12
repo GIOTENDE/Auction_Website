@@ -41,7 +41,7 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
+            <li class="active"><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
