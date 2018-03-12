@@ -23,8 +23,8 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
-            <li href="../BuyerProfile/BuyerChangeDetails.php" class="active"><a>Change Details</a></li>
+            <li> <a href="../../logout.php" class="active">Logout</a></li>
+            <li> <a href="../BuyerProfile/BuyerChangeDetails.php" class="active">Change Details</></li>
         </ul>
     </div>
 </div>
