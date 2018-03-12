@@ -60,8 +60,6 @@
         <p>
         Please Re-enter your login details!
         </p>
-        <div class= 'modal-footer'>
-       </div>
       </div>
       
     </div>
