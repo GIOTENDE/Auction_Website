@@ -44,14 +44,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			//echo "Username Already Exists!";
 			$usernameErr= "Username already exists! <br>";
 			$headerModal = "Woops! You haven't filled in your details correctly!";
-			include "modal.php";
+			include 'modal.php';
 		}
 	}
 	else{
 	//	$_SESSION['message'] = "Two Passwords to not match";
 		$passwordErr="Password do not match! <br>";
 		$headerModal = "Woops! You haven't filled in your details correctly!";
-		include "modal.php";
+		include 'modal.php';
 	} 
 	}else{echo "submit not working";}
 }
