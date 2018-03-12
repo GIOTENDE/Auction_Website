@@ -1,6 +1,6 @@
 
 <?php 
-include("config.php");
+include("configsignin.php");
 
 $usernameErr=$passwordErr="";
 $headerModal = "Sign up complete!";

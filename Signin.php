@@ -1,7 +1,7 @@
 
 <?php
 
-   include("config.php");
+   include("configsignin.php");
 
    $postCheck=true;
    $username=$password="";

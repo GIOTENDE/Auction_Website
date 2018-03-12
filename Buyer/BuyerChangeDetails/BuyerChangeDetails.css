@@ -1,0 +1,133 @@
+
+@import "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 60px;/* bottom has to be the same as footer height */
+    background: #f4f4f4;
+	color: #5a5656;
+	font: 'Open Sans', sans-serif;
+	font-size:15px;
+  	margin: 0;
+}
+
+input[type=submit]{
+  background-color: #D1D1D1;
+  border: none;
+  border-radius: 3px;
+  color: #000000;
+  cursor: pointer;
+  font-family: inherit;
+  height: 50px;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 300px;
+  -webkit-appearance:none;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
+h2{
+	text-align: center;
+}
+
+input[type="text"], [type="number"], [type="datetime-local"], [type="password"] {
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 300px;
+  -webkit-appearance:none;
+}
+select {
+  background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 300px;
+}
+
+textarea{
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 200px;
+	outline: none;
+	padding: 0px 10px;
+	width: 300px;
+  -webkit-appearance:none;
+}
+
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- FONTAWESOME ---------- */
+/* ---------- https://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+
+a { text-decoration: none; 
+	}
+
+h1 { font-size: 20px; }
+
+h1, p {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.uppercase { text-transform: uppercase; }
+
+/* ---------- LOGIN ---------- */
+
+#login {
+	margin: 50px auto;
+	width: 300px;
+}
+
+
+
+label{
+	font-size:20px; 
+	color:#000000;
+}
+
+h3{
+	font-size: 20px
+	color:#00000;
+}
