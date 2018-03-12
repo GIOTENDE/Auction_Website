@@ -184,9 +184,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
         <div id='button'> 
           <a href='../SellerProfile/SellerProfile.php'>Back to Seller Profile</a>
         </div>
-        <div id='button'> 
-          <a href='../SellerCreateNewAuction/SellerCreateNewAuction.php'>Auction another item</a>
-        </div>
+        <a href='Signin.php' ><button class='facebook'>Back to signin</button></a>
 
        </div>
       </div>
