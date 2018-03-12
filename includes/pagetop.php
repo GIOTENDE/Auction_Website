@@ -13,7 +13,7 @@
         <div class="topnavbar-collapse collapse">
           <ul class="topnav navbar-nav">
             <li class="topactive"><a>Home</a></li>
-            <li href="/../logout.php" class="topactive"><a>Logout</a></li>
+            <li href="../logout.php" class="topactive"><a>Logout</a></li>
           </ul>
         </div>
       </div>
