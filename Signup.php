@@ -33,7 +33,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		mysqli_query($db,$sql);
 		include 'SignupEmail.php';
-		echo 'COMPLETED';
+		$headerModal='Sign up suceessful!';
+		$modalSucess='Thank you for signing up Auction Website. <br>We will send you a confirmation email shortly! <br>Happy bidding!';
+		include 'modal.php';
+		//echo 'COMPLETED';
 		/*if ($mysqli->query($sql)=== true){
 			$_SESSION['message'] = 'Registration successful! Added $username to the database';
 		}
