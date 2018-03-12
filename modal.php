@@ -15,7 +15,7 @@ echo "
                 $modalSucess
             </p>
         </div>
-        <div id='button' class='facebook'> 
+        <div id='button' class='button'> 
           <a href='Signin.php'>Back to Signin</a>
         </div>
     </div>
