@@ -77,8 +77,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           <a class="navbar-brand" href="#">Project name</a>
         </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
+            <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
+            <li  class="active"><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -101,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	<div id="login">
 
-    <h1><strong><br>Create a new account:</strong></h1>
+    <h1><strong><br>Change Account Details:</strong></h1>
 
 		<form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="miltipart/form-data" autocomplete="off">
 		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
