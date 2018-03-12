@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if (mysqli_num_rows($getUserDetails) > 0) {
 		$username = validate_input(($_POST['username']));
 		$email_address = validate_input(($_POST['email_address']));
-		$password = md5($_POST['password']);// md5 hash passord security
+		$password = md5($_POST['password']);	// md5 hash passord security
 		$fullname = validate_input(($_POST['fullname']));
 		$mobilenumber = validate_input(($_POST['mobilenumber']));
 		$address = validate_input(($_POST['address']));
@@ -41,15 +41,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$_SESSION['message'] = "User could not be added to the database!";
 		}*/
 		}else{
-			echo "Username Already Exists!";
+			//echo "Username Already Exists!";
 			$usernameErr= "Username already exists! <br>";
 			$headerModal = "Woops! You haven't filled in your details correctly!";
+			include "modal.php";
 		}
 	}
 	else{
 	//	$_SESSION['message'] = "Two Passwords to not match";
 		$passwordErr="Password do not match! <br>";
 		$headerModal = "Woops! You haven't filled in your details correctly!";
+		include "modal.php";
 	} 
 	}else{echo "submit not working";}
 }
