@@ -30,7 +30,22 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 ?>
 
 <!--    HEADER      -->
-<?php require '../../includes/pagetop.php'; ?>
+<link rel="stylesheet" href="includes/styleheader.css">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li href="../../logout.php" class="active"><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+  </div>
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +65,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 <div id="button"> 
     <a href="../SellerCreateNewAuction/SellerCreateNewAuction.php">Auction an Item!</a>
 </div>
-
+<br>
 <!--        Button: CHANGE SELLER DETAILS -->
 <div id="button"> 
     <a href="../SellerChangeDetails/SellerChangeDetails.php">Change Customer Details</a>

@@ -194,7 +194,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
     </div>
   
   </div>";
-    echo "<p>Employee Added</p>";
+  //  echo "<p>Employee Added</p>";
     
 	//echo "<a href="index.html">Go Back</a>";
 } else {
@@ -266,8 +266,23 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
 <!-- //////////////////////       TEMPLATE    //////////////////////-->
 
-<?php require '../../includes/pagetop.php'; ?>
 <link rel="stylesheet" href="CreateNewAuctionItem.css" type="text/css">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li href="../../logout.php" class="active"><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+  </div>
+
 
 
 			<fieldset>
@@ -289,7 +304,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
   <!-- Add title -->
     <div class="controls">
-      <label class="label" for="name">Descriptive title of item:</label>
+      <label class="label" for="name"><h3>Descriptive title of item:</h3></label>
       <br>
       <input type="text" id="prod_name" class="floatLabel" name="prod_name" placeholder="Descriptive title" maxlength="50" value="<?php echo $prod_name_temp; ?>">
       <span class="error">* <?php echo $prod_nameErr;?></span>
@@ -298,7 +313,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
   <!-- Add category -->
     <div class="controls">
-      <label class="label" for="fruit">Select Category</label>
+      <label class="label" for="fruit"><h3>Select Category</h3>></label>
       <br>
       <i class="fa fa-sort"></i>
       <select class="floatLabel" name = "prod_category" id ="prod_category" selected="<?php echo $prod_category_temp; ?>">
@@ -319,7 +334,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
   <!-- Add Condition -->
   <div class="controls">
-    <label class="label" for="fruit">Select Condition</label>
+    <label class="label" for="fruit"><h3>Select Condition</h3></label>
       <br>
       <i class="fa fa-sort"></i>
       <select class="floatLabel" name = "prod_condition" id ="prod_condition" selected="<?php echo $prod_condition_temp; ?>">
@@ -333,7 +348,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
   <!-- Upload Image -->
 
-      <p class="label"> Select image to upload:</p>
+      <p class="label"> <h3>Select image to upload:</h3></p>
         <input type="file" name="prod_picture" onclick="add_image()"/>
         <span class="error">* <?php echo $prod_pictureErr;?></span>
   <script>
@@ -351,7 +366,7 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
 
 
   <div class="controls">
-     <label class="label" for="comments">Detailed Description of Item:</label>
+     <label class="label" for="comments"><h3>Detailed Description of Item:</h3></label>
     <br>
       <textarea name="prod_description" class="floatLabel" id="prod_description" rows="5" cols="40" ><?php echo $prod_description_temp; ?></textarea>
      
@@ -361,21 +376,21 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
 
     <div class="form-helper__symbol" data-symbol="£">
     
-      <label class="label" for="name">Auction Starting Price</label>
+      <label class="label" for="name"><h3>Auction Starting Price</h3></label>
       <br>
       <input type="number" id="prod_start_price" class="floatLabel" name="prod_start_price" placeholder="Starting Price" step="any" value="<?php echo $prod_start_price_temp; ?>">
       <span class="error">* <?php echo $prod_start_priceErr;?></span>
     </div>
 
     <div class="controls">
-      <label class="label" for="name">Auction Reserve Price:</label>
+      <label class="label" for="name"><h3>Auction Reserve Price:</h3></label>
       <br>
       <input type="number" id="prod_reserve_price" class="floatLabel" name="prod_reserve_price" placeholder="Reserve Price" step="any" value="<?php echo $prod_reserve_price_temp; ?>">
       <span class="error">* <?php echo $prod_reserve_priceErr;?></span>
     </div>
 
     <div class="controls">
-      <label class="label" for="name">End date of auction:</label>
+      <label class="label" for="name"><h3>End date of auction:</h3></label>
       <br>
       <input type="datetime-local" id="prod_end_date" class="floatLabel" name="prod_end_date" min="<?php echo date("Y-m-d")."T".date("H:i"); ?>" value="<?php echo $prod_end_date_temp; ?>">
       <span class="error">* <?php echo $prod_end_dateErr;?></span>
