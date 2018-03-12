@@ -37,6 +37,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		else{
 			$_SESSION['message'] = "User could not be added to the database!";
 		}*/
+		}else{
+			echo "Username Already Exists!";
 		}
 	}
 	else{
