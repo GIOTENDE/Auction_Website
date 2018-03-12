@@ -12,7 +12,23 @@
 
 <!--<!doctype html>-->
 <!--<html>-->
-
+<html lang="en-Us">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li> <a href="../../logout.php" class="active">Logout</a></li>
+            <li> <a href="../BuyerProfile/BuyerChangeDetails.php" class="active">Change Details</></li>
+        </ul>
+    </div>
+</div>
+</div>
 
 
 

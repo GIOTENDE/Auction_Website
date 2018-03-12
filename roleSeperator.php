@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("configsignin.php");
 session_start();
 
 $role=$_SESSION['Seller_or_Buyer'];

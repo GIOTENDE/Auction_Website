@@ -35,7 +35,7 @@ h2{
 	text-align: center;
 }
 
-input[type="text"], [type="number"], [type="datetime-local"]  {
+input[type="text"], [type="number"], [type="datetime-local"], [type="password"] {
 	background: #e5e5e5;
 	border: none;
 	border-radius: 3px;

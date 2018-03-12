@@ -8,12 +8,12 @@
             <span class="topicon-bar"></span>
             <span class="topicon-bar"></span>
           </button>
-          <i class="topnavbar-brand" href="">Project name</i>
+          <a class="topnavbar-brand" href="">Project name</a>
         </div>
         <div class="topnavbar-collapse collapse">
           <ul class="topnav navbar-nav">
-            <li class="topactive"><a>Home</a></li>
-            <i href="../../logout.php">Logout</i>
+            <!-- <li class="topactive"><a>Home</a></li> -->
+            <li class="topactive"><a>Logout</a></li>
           </ul>
         </div>
       </div>

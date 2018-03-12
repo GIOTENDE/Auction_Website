@@ -1,36 +1,60 @@
 
 <?php 
-include("config.php");
+include("configsignin.php");
 
+$usernameErr=$passwordErr="";
+$headerModal = "Sign up complete!";
 
+function validate_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+  }
 
-$_SESSION['message'] = '';
+  $getUserDetails = mysqli_query($db,"SELECT username FROM users WHERE username=(('$username'))");
+
+//$_SESSION['message'] = '';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST["submit"])){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
-		$username = ($_POST['username']);
-		$email_address = ($_POST['email_address']);
-		$password = md5($_POST['password']);// md5 hash passord security
-		$fullname = ($_POST['fullname']);
-		$mobilenumber = ($_POST['mobilenumber']);
-		$address = ($_POST['address']);
-		$Seller_or_Buyer= ($_POST['Seller_or_Buyer']);
+		//cant have an already existing username
+		if (!(mysqli_num_rows($getUserDetails) > 0)) {
+		$username = validate_input(($_POST['username']));
+		$email_address = validate_input(($_POST['email_address']));
+		$password = md5($_POST['password']);	// md5 hash passord security
+		$fullname = validate_input(($_POST['fullname']));
+		$mobilenumber = validate_input(($_POST['mobilenumber']));
+		$address = validate_input(($_POST['address']));
+		$Seller_or_Buyer= validate_input(($_POST['Seller_or_Buyer']));
 		$sql = "INSERT INTO users (username, email_address, password, fullname, mobilenumber, address, Seller_or_Buyer)"."VALUES ('$username','$email_address','$password','$fullname','$mobilenumber','$address','$Seller_or_Buyer')";
 		//if query is successful, redirect to signup.php page, done!
 		
 		mysqli_query($db,$sql);
 		include 'SignupEmail.php';
-		echo 'COMPLETED';
+		$headerModal='Sign up suceessful!';
+		$modalSucess='Thank you for signing up Auction Website. <br>We will send you a confirmation email shortly! <br>Happy bidding!';
+		include 'modal.php';
+		//echo 'COMPLETED';
 		/*if ($mysqli->query($sql)=== true){
 			$_SESSION['message'] = 'Registration successful! Added $username to the database';
 		}
 		else{
 			$_SESSION['message'] = "User could not be added to the database!";
 		}*/
+		}else{
+			//echo "Username Already Exists!";
+			$usernameErr= "Username already exists! <br>";
+			$headerModal = "Woops! You haven't filled in your details correctly!";
+			include 'modal.php';
+		}
 	}
 	else{
-		$_SESSION['message'] = "Two Passwords to not match";
+	//	$_SESSION['message'] = "Two Passwords to not match";
+		$passwordErr="Passwords do not match! <br>";
+		$headerModal = "Woops! You haven't filled in your details correctly!";
+		include 'modal.php';
 	} 
 	}else{echo "submit not working";}
 }
