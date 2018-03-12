@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
 		//cant have an already existing username
-		if (mysqli_num_rows($getUserDetails) > 0) {
+		if (!(mysqli_num_rows($getUserDetails) > 0)) {
 		$username = validate_input(($_POST['username']));
 		$email_address = validate_input(($_POST['email_address']));
 		$password = md5($_POST['password']);	// md5 hash passord security
