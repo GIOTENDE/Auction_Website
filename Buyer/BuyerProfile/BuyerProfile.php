@@ -70,10 +70,10 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 </div>
 
 <div id="button">
-    <a href="SellerHistoricAuctions.php">View historic auctions on your past items</a>
+    <a href="SellerHistoricAuctions.php">Previous Auctions</a>
 </div>
 
 <div id="button">
-    <a href="SellerOngoingAuctions.php">View current auctions</a>
+    <a href="SellerOngoingAuctions.php">Current Auctions</a>
 </div>
 
