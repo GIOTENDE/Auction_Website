@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}
 	else{
 	//	$_SESSION['message'] = "Two Passwords to not match";
-		$passwordErr="Password do not match! <br>";
+		$passwordErr="Passwords do not match! <br>";
 		$headerModal = "Woops! You haven't filled in your details correctly!";
 		include 'modal.php';
 	} 

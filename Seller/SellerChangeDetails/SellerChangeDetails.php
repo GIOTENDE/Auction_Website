@@ -6,7 +6,17 @@ $userID = $_SESSION['userID'];
 
 $username = $email_address = $password = $fullname = $mobilenumber = $address ="";
 
-$_SESSION['message']="";
+$usernameErr=$passwordErr="";
+$headerModal = "User details changed!";
+
+function validate_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+  }
+
+//$_SESSION['message']="";
 $getUserDetails=mysqli_query($db,"SELECT username, email_address, password, fullName, mobilenumber, address FROM users WHERE userID='$userID'");
 if (mysqli_num_rows($getUserDetails) > 0) {
     while($row = mysqli_fetch_assoc($getUserDetails)) {
@@ -21,29 +31,39 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 	}
 }
 
+$check = mysqli_query($db,"SELECT username FROM users WHERE username=(('$username'))");
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST["submit"])){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
-
-		$username = ($_POST['username']);
-		$email_address = ($_POST['email_address']);
+		//cant have an already existing username
+		if (mysqli_num_rows($check) > 0) {
+		$username = validate_input(($_POST['username']));
+		$email_address = validate_input(($_POST['email_address']));
 		$password = md5($_POST['password']);// md5 hash passord security
-		$fullname = ($_POST['fullname']);
-		$mobilenumber = ($_POST['mobilenumber']);
-		$address = ($_POST['address']);
+		$fullname = validate_input(($_POST['fullname']));
+		$mobilenumber = validate_input(($_POST['mobilenumber']));
+		$address = validate_input(($_POST['address']));
 
 		//if query is successful, redirect to signup.php page, done!
 		
 		mysqli_query($db,"UPDATE users SET username='$username', email_address='$email_address', password='$password', fullname='$fullname', mobilenumber='$mobilenumber', address='$address' WHERE userID='$userID'");
 		include 'SellerChangeDetailsEmail.php';
 		echo "Changes Saved!";
+		}else{
+			$usernameErr= "Username already exists! <br>";
+			$headerModal = "Woops! You haven't filled in your details correctly!";
+			include 'modal.php';
+		}
 	
 	}
 	else{
-		echo "Two Passwords to not match";
+		$passwordErr="Passwords do not match! <br>";
+		$headerModal = "Woops! You haven't filled in your details correctly!";
+		include 'modal.php';
 	} 
-	}else{echo "subbmit not working";}
+	}else{echo "submit not working";}
 }
 
 require '../../includes/pagetop.php'; 
