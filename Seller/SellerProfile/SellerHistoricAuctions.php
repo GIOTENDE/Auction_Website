@@ -2,7 +2,8 @@
 
 // !!set userID to test for nicolai development purposes
 // !!local host development only
-$userID = 26;
+session_start();
+$userID = $_SESSION['userID'];
 
 ?>
 <script type="text/javascript"
@@ -11,7 +12,7 @@ $userID = 26;
 
 <?php
 include '../../config.php';?>
-<?php require '../../includes/pagetop.php'; ?>
+<?php include '../../includes/pagetop.php'; ?>
 <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
 
 <!--        AUCTION HISTORY TABLE       -->
