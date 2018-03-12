@@ -66,7 +66,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 <br>
 <!--        Button: CHANGE SELLER DETAILS -->
 <div id="button"> 
-    <a href="../SellerChangeDetails/SellerChangeDetails.php">Change Customer Details</a>
+    <a href="BuyerChangeDetails.php">Change Details</a>
 </div>
 
 <div id="button">
