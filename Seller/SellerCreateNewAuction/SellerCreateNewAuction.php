@@ -194,7 +194,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
     </div>
   
   </div>";
-    echo "<p>Employee Added</p>";
+  //  echo "<p>Employee Added</p>";
     
 	//echo "<a href="index.html">Go Back</a>";
 } else {

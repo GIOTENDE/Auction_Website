@@ -2,6 +2,9 @@
 <?php 
 include("config.php");
 
+$usernameErr=$passwordErr="";
+$headerModal = "Sign up complete!";
+
 function validate_input($data) {
 	$data = trim($data);
 	$data = stripslashes($data);
@@ -11,7 +14,7 @@ function validate_input($data) {
 
   $getUserDetails = mysqli_query($db,"SELECT username FROM users WHERE username=(('$username'))");
 
-$_SESSION['message'] = '';
+//$_SESSION['message'] = '';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST["submit"])){
 	// two passwords are matching
@@ -39,10 +42,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		}*/
 		}else{
 			echo "Username Already Exists!";
+			$usernameErr= "Username already exists! <br>";
+			$headerModal = "Woops! You haven't filled in your details correctly!";
 		}
 	}
 	else{
-		$_SESSION['message'] = "Two Passwords to not match";
+	//	$_SESSION['message'] = "Two Passwords to not match";
+		$passwordErr="Password do not match! <br>";
+		$headerModal = "Woops! You haven't filled in your details correctly!";
 	} 
 	}else{echo "submit not working";}
 }
