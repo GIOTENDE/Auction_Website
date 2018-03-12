@@ -2,20 +2,29 @@
 <?php 
 include("config.php");
 
+function validate_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+  }
 
+  $getUserDetails = mysqli_query($db,"SELECT username FROM users WHERE username=(('$username'))");
 
 $_SESSION['message'] = '';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST["submit"])){
 	// two passwords are matching
 	if($_POST['password'] == $_POST['confirmpassword']){
-		$username = ($_POST['username']);
-		$email_address = ($_POST['email_address']);
+		//cant have an already existing username
+		if (mysqli_num_rows($getUserDetails) > 0) {
+		$username = validate_input(($_POST['username']));
+		$email_address = validate_input(($_POST['email_address']));
 		$password = md5($_POST['password']);// md5 hash passord security
-		$fullname = ($_POST['fullname']);
-		$mobilenumber = ($_POST['mobilenumber']);
-		$address = ($_POST['address']);
-		$Seller_or_Buyer= ($_POST['Seller_or_Buyer']);
+		$fullname = validate_input(($_POST['fullname']));
+		$mobilenumber = validate_input(($_POST['mobilenumber']));
+		$address = validate_input(($_POST['address']));
+		$Seller_or_Buyer= validate_input(($_POST['Seller_or_Buyer']));
 		$sql = "INSERT INTO users (username, email_address, password, fullname, mobilenumber, address, Seller_or_Buyer)"."VALUES ('$username','$email_address','$password','$fullname','$mobilenumber','$address','$Seller_or_Buyer')";
 		//if query is successful, redirect to signup.php page, done!
 		
@@ -28,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		else{
 			$_SESSION['message'] = "User could not be added to the database!";
 		}*/
+		}
 	}
 	else{
 		$_SESSION['message'] = "Two Passwords to not match";
