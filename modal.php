@@ -12,7 +12,7 @@ echo "
             <p>
                 $usernameErr
                 $passwordErr
-                Please Re-enter your login details!
+                $modalSucess
             </p>
         </div>
     </div>
