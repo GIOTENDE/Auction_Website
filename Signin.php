@@ -31,7 +31,7 @@
 		$password1 = validate_input($_POST["password"]);
 		$password = md5($password1);
 	  }
-
+session_start(); 
 	  if ($postCheck){
 		 
 		$getUserDetails=mysqli_query($db, "SELECT userID, Seller_or_Buyer, username FROM users WHERE username = '$username' and password = '$password'");
@@ -39,11 +39,11 @@
 		if (mysqli_num_rows($getUserDetails) > 0) {
 			
 			while($row = mysqli_fetch_assoc($getUserDetails)) {
-        session_start();
+    
 		$_SESSION['username']=$username;
 		$_SESSION['userID']=$row['userID'];
 		$_SESSION['Seller_or_Buyer']=$row['Seller_or_Buyer'];
-		header('Location: roleSeperator.php');
+    header('Location: roleSeperator.php');
    }
 }else{
 	echo "hello";
