@@ -132,3 +132,10 @@ h3{
 	font-size: 20px
 	color:#000000;
 }
+
+img{
+	width:300px;
+	height:200px;
+	max-width: 100%;
+	max-height: 100%;
+}
