@@ -15,10 +15,10 @@ body {
 }
 
 input[type=submit]{
-  background-color: #D1D1D1;
+  background-color: #008dde;
   border: none;
   border-radius: 3px;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
   font-family: inherit;
   height: 50px;
@@ -48,6 +48,7 @@ input[type="text"], [type="number"], [type="datetime-local"]  {
 	width: 300px;
   -webkit-appearance:none;
 }
+
 select {
   background: #e5e5e5;
 	border: none;
@@ -122,12 +123,12 @@ strong {
 
 
 
-label{
+#label{
 	font-size:20px; 
 	color:#000000;
 }
 
 h3{
 	font-size: 20px
-	color:#00000;
+	color:#000000;
 }
