@@ -32,9 +32,11 @@ body {
 }
 
 h1{
-  margin: auto;
+  text-align:center;
 }
-
+h3{
+text-align: center;
+}
 table, th, td {
   border: 1px solid black;
   vertical-align: middle;

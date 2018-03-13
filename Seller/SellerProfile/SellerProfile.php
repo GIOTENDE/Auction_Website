@@ -57,7 +57,8 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
     <!-- <script src="SellerProfile.js"></script> -->
 </head>
 <body>
-
+<br>
+<br>
 <h1 class="title"><?php echo $fullname;?>'s Seller Profile</h1> 
 <h3 class="title"><?php echo $fullname;?>'s user id:<?php echo $userID;?></h3> 
 
