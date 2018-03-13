@@ -59,14 +59,14 @@ echo $category1;
     <?php
     if (isset($category1)) {
 
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_category = '$category1' AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE prod_category = '$category1' AND '$dateNow' <= prod_end_date";
     } // run search for all categories
     else if ($category2 == "*") {
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
     } // run search within a category
     else {
 
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
     }
     $result = mysqli_query($db, $sql);
 
@@ -101,7 +101,7 @@ echo $category1;
                 <td><?php echo $row["prod_end_date"]; ?> </td>
                 <td><?php echo $row["prod_condition"]; ?> </td>
                 <td><?php echo $row["prod_reserve_price"]; ?> </td>
-                <td><?php echo $row["prod_highest_price"]; ?> </td>
+                <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
             <br>

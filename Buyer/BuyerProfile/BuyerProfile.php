@@ -2,8 +2,10 @@
 include '../../config.php'; 
 
 session_start();
+$_SESSION['userID'] = 33;
 $userID = $_SESSION['userID'];
 
+$userID = $_SESSION['userID'];
 
 
 
@@ -70,7 +72,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 </div>
 
 <div id="button">
-    <a href="SellerHistoricAuctions.php">Previous Auctions</a>
+    <a href="BuyerHistoricAuctions.php">Previous Auctions</a>
 </div>
 
 <div id="button">

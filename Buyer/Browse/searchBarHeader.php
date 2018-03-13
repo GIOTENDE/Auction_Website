@@ -33,7 +33,7 @@
                 <option value="Jewellery and Watches">Jewellery & Watches</option>
                 <option value="Toys and Games">Toys & Games</option>
                 <option value="Fashion">Fashion</option>
-                <option value="Motors">Fashion</option>
+                <option value="Motors">Motors</option>
                 <option value="Other">Other</option>
             </select>
 

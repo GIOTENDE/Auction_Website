@@ -6,11 +6,14 @@ if (mysqli_connect_errno($db)) {
 die('Failed to connect to MySQL: '.mysqli_connect_error());
 }
 //require $_SESSION['userID'];
-session_start();    
-  if (!isset($_SESSION['userID'])) {
-      echo "Accessed Denied!";
-    header('../../Signin.php');
-    exit(); // <-- terminates the current script
-  }
+
+// uncomment at the end
+
+//session_start();
+//  if (!isset($_SESSION['userID'])) {
+//      echo "Accessed Denied!";
+//    header('../../Signin.php');
+//    exit(); // <-- terminates the current script
+//  }
 
 ?>
