@@ -66,12 +66,17 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $prod_pictureErr = "Only JPG, JPEG, PNG & GIF files are allowed!"."<br>";
     $postCheck = false;
   } else{
-    //$prod_picture = $_FILES['prod_picture']['tmp_name'];
+    $prod_picture = addslashes(file_get_contents($_FILES['prod_picture']['tmp_name']));
+    /*
     $prod_picture = $prod_sellerID."_".$prod_start_date.".".$imageFileType; //SAVE FILE NAME TO DATABASE
     move_uploaded_file($_FILES["prod_picture"]["tmp_name"], "../../Images/" . $prod_picture);
     echo $prod_picture;
+    */
     //move_uploaded_file($_FILES["prod_picture"]["tmp_name"], "Images/" . $prod_picture);
     //$imgContent = addslashes(file_get_contents($prod_picture));
+//
+
+
   }
 
       } else {

@@ -59,14 +59,14 @@ echo $category1;
     <?php
     if (isset($category1)) {
 
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_category = '$category1' AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE prod_category = '$category1' AND '$dateNow' <= prod_end_date";
     } // run search for all categories
     else if ($category2 == "*") {
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE prod_name LIKE '%$productSearch%' AND '$dateNow' <= prod_end_date";
     } // run search within a category
     else {
 
-        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_price FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
+        $sql = "SELECT prod_ID, prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture, prod_highest_bid FROM product WHERE (prod_name LIKE '%$productSearch%') AND (prod_category = '$category2')  AND '$dateNow' <= prod_end_date";
     }
     $result = mysqli_query($db, $sql);
 
@@ -90,18 +90,18 @@ echo $category1;
             ?>
 
             <tr>
-                <td> <?php $picture1 = $row["prod_picture"];
-                    $picture2 = "Images/" . $picture1; ?>
-                    <a href="../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>">
-                        <img src="<?php echo $picture2 ?>" alt="Image picture" width="300" height="200">
-                    </a>
+
+                <td>
+                <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/>';
+                ?>
                 </td>
+
                 <td><?php echo $row["prod_name"]; ?> </td>
                 <td><?php echo $row["prod_category"]; ?> </td>
                 <td><?php echo $row["prod_end_date"]; ?> </td>
                 <td><?php echo $row["prod_condition"]; ?> </td>
                 <td><?php echo $row["prod_reserve_price"]; ?> </td>
-                <td><?php echo $row["prod_highest_price"]; ?> </td>
+                <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
             <br>
