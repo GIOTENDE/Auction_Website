@@ -316,7 +316,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 
   <!-- Add category -->
     <div class="controls">
-      <p class="label" for="fruit"><h3>Select Category</h3>></p>
+      <p class="label" for="fruit"><h3>Select Category</h3></p>
       <br>
       <i class="fa fa-sort"></i>
       <select class="floatLabel" name = "prod_category" id ="prod_category" selected="<?php echo $prod_category_temp; ?>">
@@ -367,7 +367,7 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
   <!--  IMAGE PREVIEW   -->
   <img src="" id="preview" />
 
-
+<br><br><br>
   <div class="controls">
      <p class="label" for="comments"><h3>Detailed Description of Item:</h3></p>
     <br>
@@ -406,9 +406,9 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
 </div>
 <pre>
 <?php
-if (isset($_POST['submit'])){
-  print_r($_POST);
-}
+// if (isset($_POST['submit'])){
+//   print_r($_POST);
+// }
 ?>
 </pre>
 </body>
