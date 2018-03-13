@@ -30,7 +30,7 @@ include '../../config.php';?>
   </div>
   <br>
   <br>
-<h1>Auction History Table</h1>
+<h1>Live Auction Table</h1>
 <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
         <thead>
@@ -40,7 +40,8 @@ include '../../config.php';?>
             <th>Date Product Added</th>
             <th>Date Will End</th>
             <th>Condition</th>
-            <th>Sale price</th>
+            <th>Bid Amount</th>
+            <th>Winning Bid</th>
             <th>Winning Bidder</th>
             <th>Number of Bids</th>
 
@@ -54,7 +55,14 @@ include '../../config.php';?>
 
     <?php
     $dateNow = date("Y-m-d H:i:s");
-    $getProductDetails = mysqli_query($db,"SELECT a.prod_id, a.prod_name, a.prod_start_date, a.prod_end_date, a.prod_condition, a.prod_highest_price, a.prod_buyerID, COUNT(b.prod_ID) AS bids FROM product AS a LEFT JOIN bids AS b USING(prod_id) WHERE prod_sellerID = (('$userID')) AND '$dateNow' <= prod_end_date");
+    $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
+b.amount AS bid_amount, p.prod_highest_bid
+AS current_highest_bid, b.buyer_id, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
+, f.seller_feedback_points, f.buyer_feedback_points
+FROM bids AS b
+  LEFT JOIN product AS p ON b.prod_id = p.prod_id
+  LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
+WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
 
 
 
@@ -72,9 +80,11 @@ include '../../config.php';?>
     <td><?php echo $row['prod_end_date'] ?></td>
     <!--    PRODUCT STATE COLUMN    -->
     <td><?php echo $row['prod_condition'] ?></td>
-    <td><?php echo $row['prod_highest_price'] ?></td>
-    <td><?php echo $row['prod_buyerID'] ?></td>
-    <td><?php echo $row['bids'] ?></td>
+    <td><?php echo $row['bid_amount'] ?></td>
+
+    <td><?php echo $row['current_highest_bid'] ?></td>
+    <td><?php echo $row['buyer_id'] ?></td>
+    <td><?php echo $row['total_bids_on_product'] ?></td>
 
 
 
