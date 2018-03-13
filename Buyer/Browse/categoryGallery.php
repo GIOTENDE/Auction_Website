@@ -1,10 +1,7 @@
 <?php include '../../config.php'; ?>
 <?php require '../../includes/pagetop.php'; ?>
 <?php include 'searchBarHeader.php';?>
-<?php 
-//  $query = "SELECT * FROM messages ORDER BY id DESC";
-//  $messages = mysqli_query($connection, $query);
-?>
+
 
 
 

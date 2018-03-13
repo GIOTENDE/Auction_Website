@@ -90,12 +90,12 @@ echo $category1;
             ?>
 
             <tr>
-                <td> <?php $picture1 = $row["prod_picture"];
-                    $picture2 = "Images/" . $picture1; ?>
-                    <a href="../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>">
-                        <img src="<?php echo $picture2 ?>" alt="Image picture" width="300" height="200">
-                    </a>
+
+                <td>
+                <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/>';
+                ?>
                 </td>
+
                 <td><?php echo $row["prod_name"]; ?> </td>
                 <td><?php echo $row["prod_category"]; ?> </td>
                 <td><?php echo $row["prod_end_date"]; ?> </td>
