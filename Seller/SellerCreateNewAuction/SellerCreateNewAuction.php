@@ -406,7 +406,6 @@ if (isset($_POST['submit'])){
 }
 ?>
 </pre>
-<?php require '../../includes/footer.php'; ?>
 </body>
 </html>
 <script>
