@@ -35,11 +35,11 @@
 	  if ($postCheck){
 		 
 		$getUserDetails=mysqli_query($db, "SELECT userID, Seller_or_Buyer, username FROM users WHERE username = '$username' and password = '$password'");
-		session_start();
+		//session_start();
 		if (mysqli_num_rows($getUserDetails) > 0) {
 			
 			while($row = mysqli_fetch_assoc($getUserDetails)) {
-			
+        session_start();
 		$_SESSION['username']=$username;
 		$_SESSION['userID']=$row['userID'];
 		$_SESSION['Seller_or_Buyer']=$row['Seller_or_Buyer'];
