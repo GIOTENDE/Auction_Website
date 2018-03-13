@@ -4,7 +4,7 @@
 // !!local host development only
 session_start();
 
-$userID = $_SESSION['userID'] = 26;
+$userID = $_SESSION['userID'];
 
 ?>
 <script type="text/javascript"
@@ -76,7 +76,7 @@ if (mysqli_num_rows($getProductDetails) > 0) :
         $count=1;
         $dateArray=[];
         while($row = mysqli_fetch_assoc($getProductDetails)) : ?>
-            <?php $buyerID = $row['prod_buyerID']?>
+<!--            --><?php //$buyerID = $row['prod_buyerID']?>
             <?php $prodID = $row['prod_id']?>
 
         <!--    PRODUCT ID COLUMN    -->
