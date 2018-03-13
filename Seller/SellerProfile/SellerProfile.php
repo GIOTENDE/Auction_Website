@@ -69,13 +69,16 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
 <!--        Button: CHANGE SELLER DETAILS -->
 <div id="button"> 
     <a href="../SellerChangeDetails/SellerChangeDetails.php">Change Customer Details</a>
+    <br>
 </div>
 
 <div id="button">
     <a href="SellerHistoricAuctions.php">View historic auctions on your past items</a>
+    <br>
 </div>
 
 <div id="button">
     <a href="SellerOngoingAuctions.php">View current auctions</a>
+    <br>
 </div>
 
