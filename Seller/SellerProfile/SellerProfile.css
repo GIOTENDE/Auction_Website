@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    margin: 0 0 60px;/* bottom has to be the same as footer height */
+  margin: 0 0 60px;/* bottom has to be the same as footer height */
 }
  
 #button{
@@ -20,6 +20,12 @@ body {
   text-transform: uppercase;
   width: 300px;
   -webkit-appearance:none;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.containerButton{
   text-align: center;
   vertical-align: middle;
   margin: auto;
