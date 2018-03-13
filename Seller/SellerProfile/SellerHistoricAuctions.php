@@ -12,10 +12,27 @@ $userID = $_SESSION['userID'];
 
 <?php
 include '../../config.php';?>
-<?php include '../../includes/pagetop.php'; ?>
 <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
 
 <!--        AUCTION HISTORY TABLE       -->
+<link rel="stylesheet" href="CreateNewAuctionItem.css" type="text/css">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Auction Website</a>
+        </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
+            <li href="../../logout.php" class="active"><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+  </div>
+<br>
+<br>
 <h1>Auction History Table</h1>
 <div class="tbl-header">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -196,5 +213,5 @@ $(document).ready(function (){
 
 
 
-<?php require '../../includes/footer.php'; ?>
+
 </html>

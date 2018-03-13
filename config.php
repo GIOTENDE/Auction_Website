@@ -1,4 +1,4 @@
- <?php
+<?php
 $db = mysqli_init();
 mysqli_ssl_set($db,NULL,NULL, "/var/www/html/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL) ; 
 mysqli_real_connect($db, 'compgc06group35db.mysql.database.azure.com', 'compgc06group35@compgc06group35db', 'Aakash123', 'auctionwebsite', 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
