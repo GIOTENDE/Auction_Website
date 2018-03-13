@@ -57,25 +57,27 @@ if (mysqli_num_rows($getUserDetails) > 0) {
     <!-- <script src="SellerProfile.js"></script> -->
 </head>
 <body>
-
+<br>
+<br>
 <h1 class="title"><?php echo $fullname;?>'s Buyer Profile</h1>
 <h3 class="title"><?php echo $fullname;?>'s user id:<?php echo $userID;?></h3> 
 
 <!--        Button: ADD NEW ITEM        -->
-<div id="button"> 
-    <a href="../Browse/categoryGallery.php">Browse Items</a>
+<div class="containerButton"> 
+    <a href="../Browse/categoryGallery.php"><button id="button">Browse Items</Button></a>
 </div>
 <br>
 <!--        Button: CHANGE SELLER DETAILS -->
-<div id="button"> 
-    <a href="BuyerChangeDetails.php">Change Details</a>
+<div class="containerButton"> 
+    <a href="BuyerChangeDetails.php"><button id="button">Change Details</button></a>
 </div>
-
-<div id="button">
-    <a href="BuyerHistoricAuctions.php">Previous Auctions</a>
+<br>
+<div class="containerButton">
+    <a href="BuyerHistoricAuctions.php"><button id="button"> Previous Auctions</button></a>
 </div>
+<br>
 
-<div id="button">
-    <a href="SellerOngoingAuctions.php">Current Auctions</a>
+<div class="containerButton">
+    <a href="SellerOngoingAuctions.php"><button id="button">Current Auctions</button></a>
 </div>
 
