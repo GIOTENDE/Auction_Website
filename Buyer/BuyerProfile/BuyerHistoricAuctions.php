@@ -3,9 +3,13 @@
 // !!set userID to test for nicolai development purposes
 // !!local host development only
 //session_start();
-//$userID = $_SESSION['userID'];
 
-$userID = 33;
+session_start();
+
+$_SESSION['userID'] = 33;
+$userID = $_SESSION['userID'];
+
+//$userID = 33;
 
 ?>
 <!--<script type="text/javascript"-->
@@ -27,10 +31,10 @@ include '../../config.php';?>
           <th>Product Name</th>
             <th>Date Auction Ends</th>
           <th>Condition</th>
-          <th>Highest Bid</th>
-          <th>Your Highest Bid</th>
-            <th>Outcome</th>
+          <th>Bid Amount</th>
+          <th>The Highest Bid</th>
             <th>Number of Bids</th>
+            <th>Outcome</th>
             <th>Seller Feedback Score</th>
             <th>Your Feedback Score</th>
 
@@ -44,18 +48,14 @@ include '../../config.php';?>
 
 <?php
 $dateNow = date("Y-m-d H:i:s");
-$getProductDetails = mysqli_query($db,"SELECT a.prod_id, 
-a.prod_name, a.prod_end_date, a.prod_condition, a.prod_highest_price, 
-COUNT(b.prod_ID) AS bids, 
-MAX(b.amount) AS max_bid, c.buyer_feedback_points, 
-c.seller_feedback_points 
-FROM product 
-AS a, feedback 
-AS c 
-LEFT JOIN bids AS b 
-USING(prod_id) 
-WHERE prod_sellerID = (('$userID')) 
-AND '$dateNow' >= prod_end_date");
+$getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, 
+b.amount AS bid_amount, p.prod_highest_bid
+AS current_highest_bid, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
+, f.seller_feedback_points, f.buyer_feedback_points
+FROM bids AS b
+  LEFT JOIN product AS p ON b.prod_id = p.prod_id
+  LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
+WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
 
 
 
@@ -73,42 +73,28 @@ if (mysqli_num_rows($getProductDetails) > 0) :
             <td><?php echo $row['prod_end_date'] ?></td>
            <!--    PRODUCT STATE COLUMN    -->
             <td><?php echo $row['prod_condition'] ?></td>
-            <td><?php echo $row['prod_highest_price'] ?></td>
+            <td><?php echo $row['bid_amount'] ?></td>
+            <td><?php echo $row['current_highest_bid'] ?></td>
 
-            <td><?php echo $row['prod_buyerID'] ?></td>
-            <td><?php echo $row['bids'] ?></td>
+            <td><?php echo $row['total_bids_on_product'] ?></td>
             <td><?php
-            if($row['buyer_feedback_points']==NULL){?>
+                if($row['bid_amount'] == $row['current_highest_bid']){ ?>
+                    <h2>You Won!</h2>
+                <?php } else { ?>
+                    <h2>Someone else is higher...!</h2>
+                <?php } ?></td>
+
+            <td><?php
+            if($row['bid_amount'] == $row['current_highest_bid'] && $row['f.seller_feedback_points']==NULL){?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
                 <script>
-                // function sendFeedbackScore(str) {
-                // if (str == "") {
-                // document.getElementById("container").innerHTML = "";
-                // return;
-                // } else {
-                // if (window.XMLHttpRequest) {
-                // // code for IE7+, Firefox, Chrome, Opera, Safari
-                // xmlhttp = new XMLHttpRequest();
-                // } else {
-                // // code for IE6, IE5
-                // xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                // }
-                // xmlhttp.onreadystatechange = function() {
-                // if (this.readyState == 4 && this.status == 200) {
-                // document.getElementById("container").innerHTML = this.responseText;
-                // }
-                // };
-                // xmlhttp.open("POST","postFeedbackScore.php",true);
-                // xmlhttp.send();
-                // // hide the form and show the posted value
-                // }
-                // }
+
 $(document).ready(function (){
     $("#score").click(function(){
         $.ajax({
             url: 'postFeedbackScore.php',
-            data: {'sellerID': <?php echo $userID?>, 'feedback': $("#score").val(), 'prodID': <?php echo $prodID?>},
+            data: {'buyerID': <?php echo $userID?>, 'feedback': $("#score").val(), 'prodID': <?php echo $prodID?>},
             type: 'post',
             success: function(output) {
 
@@ -140,12 +126,12 @@ $(document).ready(function (){
                     </form>
                 </div>
                 <?php
-            } else {echo $row['buyer_feedback_points'];
+            } else {echo $row['f.seller_feedback_pointsbuyer_feedback_points'];
 
                 }
             ?>
             </td>
-            <td><?php echo $row['seller_feedback_points'] ?></td>
+            <td><?php echo $row['f.buyer_feedback_points'] ?></td>
 
 
 

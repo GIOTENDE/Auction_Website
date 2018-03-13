@@ -15,10 +15,10 @@ body {
 }
 
 input[type=submit]{
-  background-color: #D1D1D1;
+  background-color: #008dde;
   border: none;
   border-radius: 3px;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
   font-family: inherit;
   height: 50px;

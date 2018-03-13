@@ -8,7 +8,7 @@
             <span class="topicon-bar"></span>
             <span class="topicon-bar"></span>
           </button>
-          <a class="topnavbar-brand" href="">Project name</a>
+          <a class="topnavbar-brand" href="">Auction Website</a>
         </div>
         <div class="topnavbar-collapse collapse">
           <ul class="topnav navbar-nav">
