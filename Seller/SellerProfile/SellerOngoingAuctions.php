@@ -23,7 +23,7 @@ include '../../config.php';?>
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
+            <li  class="active"><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
