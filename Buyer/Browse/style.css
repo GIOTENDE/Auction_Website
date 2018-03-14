@@ -6,6 +6,7 @@
 
 }
 
+<<<<<<< HEAD
 html {
     position: relative;
     min-height: 100%;
@@ -14,6 +15,12 @@ html {
 body {
   margin: 0 0 60px;/* bottom has to be the same as footer height */
 }
+=======
+table tr {
+  cursor: pointer;
+}
+
+>>>>>>> origin/GioCode
 /*.left {*/
   /*background-color:#2196F3;*/
   /*padding:5px;*/
