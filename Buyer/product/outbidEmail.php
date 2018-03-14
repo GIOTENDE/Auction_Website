@@ -6,7 +6,8 @@ $url = 'https://api.sendgrid.com/';
  $pass = 'Group35Email';
 //$to = $email_address;
 
-$to = 'donalmclaughlin@outlook.com';
+$email_address = 'donalmclaughlin@outlook.com';
+$to = $email_address;
 //$fullname = 'Aakash Bhalla';
 //$name = 'Xbox';
 

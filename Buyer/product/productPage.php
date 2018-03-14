@@ -1,6 +1,7 @@
 <?php include '../../config.php'; ?>
 
 <?php
+session_start();
 $userID = $_SESSION['userID'];
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
@@ -41,6 +42,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $watchlistArray[] = $row;
 }
 mysqli_close($db);
+
+include 'outbidEmail.php';
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +68,7 @@ mysqli_close($db);
                 if ($(this).html() == 'Save to watch list <span class="glyphicon glyphicon-heart"></span>') {
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'save', 'buyer_ID': <?php echo $userID?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'save', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
                         type: 'post',
                         success: function (output) {
                         }
@@ -75,7 +78,7 @@ mysqli_close($db);
                     alert ($(this).html());
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'remove', 'buyer_ID': <?php echo $userID?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'remove', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
                         type: 'post',
                         success: function (output) {
                         }
@@ -122,7 +125,7 @@ mysqli_close($db);
                         //ajax to update the database - insert into bids table & update product table
                         $.ajax({
                             url: 'successfulBid.php',
-                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': 1}, // TODO: update buyer_ID
+                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': <?php echo $userID ?>}, // TODO: update buyer_ID
                             type: 'post',
                             success: function(output) {
                             }
@@ -164,6 +167,7 @@ mysqli_close($db);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<?php echo $userID ?>
 <h1 align="center"><?php echo $prod_name; ?></h1>
 <hr>
 
