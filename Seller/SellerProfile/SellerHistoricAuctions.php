@@ -98,28 +98,7 @@ if (mysqli_num_rows($getProductDetails) > 0) :
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
                 <script>
-                // function sendFeedbackScore(str) {
-                // if (str == "") {
-                // document.getElementById("container").innerHTML = "";
-                // return;
-                // } else {
-                // if (window.XMLHttpRequest) {
-                // // code for IE7+, Firefox, Chrome, Opera, Safari
-                // xmlhttp = new XMLHttpRequest();
-                // } else {
-                // // code for IE6, IE5
-                // xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                // }
-                // xmlhttp.onreadystatechange = function() {
-                // if (this.readyState == 4 && this.status == 200) {
-                // document.getElementById("container").innerHTML = this.responseText;
-                // }
-                // };
-                // xmlhttp.open("POST","postFeedbackScore.php",true);
-                // xmlhttp.send();
-                // // hide the form and show the posted value
-                // }
-                // }
+
 $(document).ready(function (){
     $("#score").click(function(){
         $.ajax({
@@ -132,7 +111,7 @@ $(document).ready(function (){
         })
         $("#score").replaceWith($("#score").val())
 
-        // alert($("#score").val())
+
 
     });
 });
@@ -143,7 +122,7 @@ $(document).ready(function (){
 
 
                 <div id="container">
-<!--                    // you need to do AJAX or jQuery here-->
+
                     <form>
                 <select name="Score" id="score">
         <option value="" disabled selected>Score</option>
