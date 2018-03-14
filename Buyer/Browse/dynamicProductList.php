@@ -4,6 +4,17 @@
         src="dynamicProductListController.js">
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script>
+            $(document).ready(function(){
+                $('table tr').click(function(){
+                    window.location = $(this).data('href');
+                    return false;
+                });
+            });
+            </script>
+
+
 <?php
 
 $productSearch = $_POST["search"];
@@ -88,9 +99,9 @@ $dateNow = date("Y-m-d H:i:s");
             ?>
 
 
-            <tr>
+            <tr data-href='../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>'  >
 
-                <td>
+                <td >
                 <?php echo '<a href="../product/productPage.php?prod_ID='. $prod_ID .'"><img src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/></a>';
                 ?>
                 </td>
@@ -103,8 +114,6 @@ $dateNow = date("Y-m-d H:i:s");
                 <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
-
-
             <br>
         <?php }
         ?>

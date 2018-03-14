@@ -78,6 +78,6 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 <br>
 
 <div class="containerButton">
-    <a href="SellerOngoingAuctions.php"><button id="button">Current Auctions</button></a>
+    <a href="BuyerOngoingAuctions.php"><button id="button">Current Auctions</button></a>
 </div>
 
