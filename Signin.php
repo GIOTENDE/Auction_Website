@@ -142,7 +142,7 @@ include 'includes/pagetopsignin.php';
 	</div> <!-- end login -->
 
 </body>
-<?php include '../Auction_Website/includes/footer.php'; ?>
+
 </html>
 <script>
   window.onload = function(){
