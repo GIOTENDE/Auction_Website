@@ -14,12 +14,11 @@
 
     <div id="container">
       <header>
-        <h1>Auction Site</h1>
           <h3>Find yourself a deal!!</h3>
       </header>
       <div id="searchBar">
 
-        <ul>
+        
             <form action="dynamicProductList.php" method ="post">
             <input type="text" id="search" name="search" placeholder="Search for an item"/>
 
@@ -36,15 +35,13 @@
                 <option value="Motors">Motors</option>
                 <option value="Other">Other</option>
             </select>
-
             <input id="show-btn" type="submit" name="submit" value="Search">
-            </form>
-        </ul>
-
       </div>
-
-
-
     </div>
+            </form>
+      
+
+
+
 
 

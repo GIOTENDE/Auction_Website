@@ -1,3 +1,4 @@
+@import "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
 *{
   margin: 0;
   padding: 0;
@@ -5,6 +6,14 @@
 
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  margin: 0 0 60px;/* bottom has to be the same as footer height */
+}
 /*.left {*/
   /*background-color:#2196F3;*/
   /*padding:5px;*/
@@ -31,13 +40,17 @@
 
 div.gallery {
   margin: 5px;
-  border: 1px solid #ccc;
+  border: 5px solid #ccc;
+  margin:auto;
   float: left;
-  width: 180px;
+  width:252.4px;
 }
 
 div.gallery:hover {
-  border: 1px solid #777;
+  background-color:#008dde
+}
+div.desc:hover {
+  color:#ffffff;
 }
 
 div.gallery img {
@@ -46,7 +59,7 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -60,34 +73,33 @@ body {
 
 #container {
   background: #333333;
-  margin: 50px auto;
-
+  margin: auto;
+  margin-top: 50px;
   overflow: auto;
-  width: 65%;
+  width: 60%;
 
 }
 
 #container2 {
   background: #f4f4f4;
-  margin: 50px auto;
-
+  margin: auto;
   overflow: auto;
-  width: 65%;
-
+  width: 60%;
 }
 
 header h1 {
   color: #ffffff;
   font-size: 22px;
-  padding: 15px 0 10px 10px;
+  padding: 10px 10px 10px 10px;
   border-bottom: 1px solid #ffffff;
 }
 
 header h3 {
   color: #ffffff;
-  font-size: 16px;
-  padding: 15px 0 10px 10px;
-  border-bottom: 1px solid #ffffff;
+  font-size: 50px;
+  padding-bottom:10px; 
+  text-align:center;
+  font-family: inherit;
 }
 
 #messages {
@@ -108,11 +120,11 @@ header h3 {
   color:#aaaaaa;
 }
 
-#input {
+/*#input {
   width: 90%;
   margin: auto;
   padding: 0;
-}
+}*/
 
 #searchBar {
   color: #ffffff;
@@ -145,14 +157,7 @@ header h3 {
   float: right;
 }
 
-input#show-btn {
- -webkit-appearance:button;
-  height: 30px;
-  padding: 5px;
-  width: 100%;
-  margin: 10px auto;
-  margin-bottom: 30px;
-}
+
 
 .error {
   background: red;
@@ -167,3 +172,46 @@ input#show-btn {
     float: none;
   }
 }
+
+select {
+  background: #e5e5e5;
+  border: none;
+  border-radius: 3px;
+  color: #5a5656;
+  font-family: inherit;
+  font-size: 14px;
+  height: 50px;
+  outline: none;
+  padding: 0px 10px;
+  width: 300px;
+  float: right;
+}
+
+input[type="text"] {
+  background: #e5e5e5;
+  border: none;
+  border-radius: 3px;
+  color: #5a5656;
+  font-family: inherit;
+  font-size: 14px;
+  height: 50px;
+  outline: none;
+  padding: 0px 0px;
+  width: 300px;
+  -webkit-appearance:none;
+}
+input[type="submit"]{
+  background: #008dde;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 20px;
+  height: 50px;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+
