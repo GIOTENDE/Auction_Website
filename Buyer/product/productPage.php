@@ -18,7 +18,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $prod_highest_bid = $row["prod_highest_bid"];
     $prod_condition = $row["prod_condition"];
     $prod_picture = $row["prod_picture"];
-    //$prod_picture = "../Browse/Images/" . $prod_picture_directory; //TODO:needs changing?
     $prod_views = $row["prod_views"];
 }
 
@@ -48,7 +47,6 @@ mysqli_close($db);
 <html>
 <head>
     <meta charset="utf-8">
-<!--    <meta http-equiv="refresh" content="5">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -88,18 +86,6 @@ mysqli_close($db);
             $('#bidbtn').click(function() {
                 if ($('#bid').val().match("^[0-9]+(.[0-9]{1,2})?$")) {
                     if ($('#bid').val() > <?php echo ($prod_highest_bid != null)? $prod_highest_bid : $prod_start_price - 0.01?>) {
-
-                        // generate outbid email
-
-                        // $.ajax({
-                        //     url: 'outbidEmail.php',
-                        //     data: {},
-                        //     type: 'post',
-                        //     success:function(output) {
-                        //         alert ("email sent");
-                        //     }
-                        // });
-
                         var amount = $('#bid').val();
 
                         // Update text if this was the first bid
@@ -172,7 +158,7 @@ mysqli_close($db);
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img class="img-rounded img-responsive" style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode( <?php echo $prod_picture ?>).'"/>
+            <?php echo '<img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($prod_picture).'"/> '?>
 <!--            <img src="--><?php //echo $prod_picture; ?><!--" class="img-rounded img-responsive">-->
             <button type="button" id="watchlist"
                     class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
@@ -244,7 +230,7 @@ switch ($arrSize) {
     <div class="row">
         <div class="col-sm-4" align="center" id="watchlist0">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[0]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
@@ -258,14 +244,14 @@ switch ($arrSize) {
     <div class="row">
         <div class="col-sm-4" align="center" id="watchlist0">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[0]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist1">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[1]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[1]["prod_highest_bid"] . '</strong>
@@ -279,21 +265,21 @@ switch ($arrSize) {
     <div class="row">
         <div class="col-sm-4" align="center" id="watchlist0">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[0]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[0]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist1">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[1]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[1]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist2">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[2]["prod_id"] . '">
-            <img src="../Browse/Images/' . $watchlistArray[2]["prod_picture"] . '" class="img-rounded img-responsive">
+            <img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($watchlistArray[2]["prod_picture"]).'"/>
             </a>
             <h4> ' . $watchlistArray[2]["prod_name"] . '</h4>
             Current price: <strong>' . $watchlistArray[2]["prod_highest_bid"] . '</strong>
