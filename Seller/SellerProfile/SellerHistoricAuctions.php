@@ -91,61 +91,75 @@ if (mysqli_num_rows($getProductDetails) > 0) :
             <td><?php echo $row['prod_condition'] ?></td>
             <td><?php echo $row['bid_amount'] ?></td>
             <td><?php if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
+                //started here
                 echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'Yes' : 'No';
                 } else {
                 echo 'Reserve price not met.';
                 } ?></td>
-
             <td><?php echo $row['buyer_id'] ?></td>
             <td><?php echo $row['total_bids_on_product'] ?></td>
             <td><?php
-            if($row['bid_amount'] == $row['current_highest_bid'] && $row['buyer_feedback_points']==NULL){?>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+               if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
+                   if ($row['bid_amount'] == $row['current_highest_bid'] && $row['buyer_feedback_points'] == NULL) {
+                       ?>
+                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                       <script>
+                           $(document).ready(function () {
+                               $("#score").click(function () {
+                                   $.ajax({
+                                       url: 'postFeedbackScore.php',
+                                       data: {
+                                           'sellerID': <?php echo $userID?>,
+                                           'feedback': $("#score").val(),
+                                           'prodID': <?php echo $prodID?>},
+                                       type: 'post',
+                                       success: function (output) {
+                                       }
+                                   })
+                                   $("#score").replaceWith($("#score").val())
+                               });
+                           });
+                       </script>
+                       <div id="container">
 
-                <script>
+                           <form>
+                               <select name="Score" id="score">
+                                   <option value="" disabled selected>Score</option>
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5</option>
+                               </select>
+                           </form>
+                       </div>
+                       <?php
+                   } else if($row['bid_amount'] != $row['current_highest_bid']) {
+                       echo 'Not highest bid';
+                   }
+                   else {
+                       echo $row['buyer_feedback_points'];
 
-$(document).ready(function (){
-    $("#score").click(function(){
-        $.ajax({
-            url: 'postFeedbackScore.php',
-            data: {'sellerID': <?php echo $userID?>, 'feedback': $("#score").val(), 'prodID': <?php echo $prodID?>},
-            type: 'post',
-            success: function(output) {
-
-            }
-        })
-        $("#score").replaceWith($("#score").val())
-
-
-
-    });
-});
-
-
-
-                </script>
-
-
-                <div id="container">
-
-                    <form>
-                <select name="Score" id="score">
-        <option value="" disabled selected>Score</option>
-        <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                    </form>
-                </div>
-                <?php
-            } else {echo $row['buyer_feedback_points'];
-
-                }
+                   }
+               } else {echo 'Reserve Price Not Met';}
             ?>
             </td>
-            <td><?php echo $row['seller_feedback_points'] ?></td>
+            <td>
+                <?php if($row['current_highest_bid'] > $row['prod_reserve_price']) {
+                                    if($row['bid_amount'] == $row['current_highest_bid'] && $row['seller_feedback_points'] == NULL) {
+                                        echo 'No buyer feedback received';
+                                    } else if($row['bid_amount'] != $row['current_highest_bid']) {
+                                        echo 'Not highest bid';
+                                    } else {echo $row['seller_feedback_points'];
+
+                                    }
+                } else { echo 'Reserve Price Not Met';
+
+                }
+
+
+
+                  ?></td>
             <td><?php echo $row['prod_views'] ?></td>
 
 
