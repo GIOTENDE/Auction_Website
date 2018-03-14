@@ -41,9 +41,10 @@ include '../../config.php';?>
             <th>Date Will End</th>
             <th>Condition</th>
             <th>Bid Amount</th>
-            <th>Winning Bid</th>
+            <th>Highest Bid</th>
             <th>Winning Bidder</th>
             <th>Number of Bids</th>
+            <th>Product Views</th>
 
         </tr>
         </thead>
@@ -57,7 +58,7 @@ include '../../config.php';?>
     $dateNow = date("Y-m-d H:i:s");
     $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
 b.amount AS bid_amount, p.prod_highest_bid
-AS current_highest_bid, b.buyer_id, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
+AS current_highest_bid, p.prod_reserve_price, p.prod_views, b.buyer_id, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
 , f.seller_feedback_points, f.buyer_feedback_points
 FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
@@ -82,10 +83,15 @@ WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
     <td><?php echo $row['prod_condition'] ?></td>
     <td><?php echo $row['bid_amount'] ?></td>
 
-    <td><?php echo $row['current_highest_bid'] ?></td>
+    <td><?php if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
+            //started here
+            echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'Yes' : 'No';
+        } else {
+            echo 'Yes but reserve price not met.';
+        } ?></td>
     <td><?php echo $row['buyer_id'] ?></td>
     <td><?php echo $row['total_bids_on_product'] ?></td>
-
+    <td><?php echo $row['prod_views'] ?></td>
 
 
 

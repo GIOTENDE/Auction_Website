@@ -94,7 +94,7 @@ if (mysqli_num_rows($getProductDetails) > 0) :
                 //started here
                 echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'Yes' : 'No';
                 } else {
-                echo 'Reserve price not met.';
+                echo 'Yes but reserve price not met.';
                 } ?></td>
             <td><?php echo $row['buyer_id'] ?></td>
             <td><?php echo $row['total_bids_on_product'] ?></td>

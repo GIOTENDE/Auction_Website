@@ -67,12 +67,13 @@ if (mysqli_num_rows($getProductDetails) > 0) :
 
         <!--    PRODUCT ID COLUMN    -->
           <td><?php echo $row['prod_id'] ?></td>
-          <!--    PRODUCT TITLE COLUMN    -->
+          <!--    PRODUCT NAME COLUMN    -->
           <td><?php echo $row['prod_name'] ?></td>
-          <!--    PRODUCT START DATE COLUMN    -->
+          <!--    AUCTION START DATE COLUMN    -->
             <td><?php echo $row['prod_end_date'] ?></td>
-           <!--    PRODUCT STATE COLUMN    -->
+           <!--    PRODUCT CONDITION COLUMN    -->
             <td><?php echo $row['prod_condition'] ?></td>
+            <!--    PRODUCT TITLE COLUMN    -->
             <td><?php echo $row['bid_amount'] ?></td>
             <td><?php echo $row['current_highest_bid'] ?></td>
 
