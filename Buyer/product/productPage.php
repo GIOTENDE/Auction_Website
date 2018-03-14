@@ -17,8 +17,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $prod_end_date = $row["prod_end_date"];
     $prod_highest_bid = $row["prod_highest_bid"];
     $prod_condition = $row["prod_condition"];
-    $prod_picture_directory = $row["prod_picture"];
-    $prod_picture = "../Browse/Images/" . $prod_picture_directory; //TODO:needs changing?
+    $prod_picture = $row["prod_picture"];
+    //$prod_picture = "../Browse/Images/" . $prod_picture_directory; //TODO:needs changing?
     $prod_views = $row["prod_views"];
 }
 
@@ -172,7 +172,8 @@ mysqli_close($db);
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img src="<?php echo $prod_picture; ?>" class="img-rounded img-responsive">
+            <img class="img-rounded img-responsive" style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode( <?php echo $prod_picture ?>).'"/>
+<!--            <img src="--><?php //echo $prod_picture; ?><!--" class="img-rounded img-responsive">-->
             <button type="button" id="watchlist"
                     class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
