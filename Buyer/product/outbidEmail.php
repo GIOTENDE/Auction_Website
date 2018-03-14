@@ -4,8 +4,11 @@ include("../../config.php");
 $url = 'https://api.sendgrid.com/';
  $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
  $pass = 'Group35Email';
-// needs email address,
-$to = $email_address;
+//$to = $email_address;
+$to = 'aakashbhalla30@hotmail.com';
+$fullname = 'Aakash Bhalla';
+$name = 'Xbox';
+
 $subject = "Auction Website: You have been outbidded!";
 $message = "
 <html>
@@ -18,7 +21,6 @@ $message = "
 <p>Dear $fullname,<p>
 
 <p>You have been outbidded!</p>
-<p>Account Details</p>
 <p>
 You have been outbidded on the item: $name. <br> 
 Please <a href='https://compgc06group35.azurewebsites.net'>click here</a> to increase your bid.
