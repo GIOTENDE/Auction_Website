@@ -79,7 +79,7 @@ body {
 }
 
 #container {
-  background: #333333;
+  background: #f4f4f4;
   margin: auto;
   margin-top: 50px;
   overflow: auto;
@@ -87,7 +87,7 @@ body {
 
 }
 #container1 {
-  background: #333333;
+  background: #f4f4f4;
   margin: auto;
   overflow: auto;
   width: 60%;
@@ -110,7 +110,7 @@ header h1 {
 }
 
 header h3 {
-  color: #ffffff;
+  color: #666666;
   font-size: 50px;
   padding-bottom:10px; 
   text-align:center;
