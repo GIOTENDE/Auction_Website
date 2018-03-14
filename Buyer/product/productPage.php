@@ -134,7 +134,7 @@ mysqli_close($db);
                 data: {'prod_ID': <?php echo $prod_ID ?>},
                 type: 'post',
                 success: function (output) {
-                    if ($('#priceText').html() != '£ ' + output) {
+                    if (($('#priceText').html() != '£ ' + output) && (output != "")) {
                         $('#priceText').html('£ ' + output);
                         //TODO: the php variable itself should be updated??, placeholder update, Starting price update
                         // $('#modal-title').html('Alert');
@@ -157,9 +157,8 @@ mysqli_close($db);
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" align="center">
             <?php echo '<img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($prod_picture).'"/> '?>
-<!--            <img src="--><?php //echo $prod_picture; ?><!--" class="img-rounded img-responsive">-->
             <button type="button" id="watchlist"
                     class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
