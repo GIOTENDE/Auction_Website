@@ -5,9 +5,10 @@ $url = 'https://api.sendgrid.com/';
  $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
  $pass = 'Group35Email';
 //$to = $email_address;
-$to = 'aakashbhalla30@hotmail.com';
-$fullname = 'Aakash Bhalla';
-$name = 'Xbox';
+
+$to = 'donalmclaughlin@outlook.com';
+//$fullname = 'Aakash Bhalla';
+//$name = 'Xbox';
 
 $subject = "Auction Website: You have been outbidded!";
 $message = "
@@ -17,31 +18,10 @@ $message = "
 </head>
 
 <body>
-<div style='font-family:arial, sans-serif; font-size:15px; color: #444; max-width:720px; margin:0 auto; line-height:120%'>
-<p>Dear $fullname,<p>
-
-<p>You have been outbidded!</p>
-<p>
-You have been outbidded on the item: $name. <br> 
-Please <a href='https://compgc06group35.azurewebsites.net'>click here</a> to increase your bid.
-
-Good Luck and Happy Bidding!
-
-</p>
-</div>
+<p>Heljko</p>
 </body>
 </html>
 ";
-
-// Always set content-type when sending HTML email
-// $headers = "MIME-Version: 1.0" . "\r\n";
-// $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-// // More headers
-// $headers .= 'From: <noreply@auction_website.com>' . "\r\n";
-//$headers .= 'Cc: myboss@example.com' . "\r\n";
-
-//mail($to,$subject,$message,$headers);
 
  $params = array(
       'api_user' => $user,

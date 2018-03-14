@@ -1,5 +1,4 @@
 <?php include 'config.php'; ?>
-<html lang="en-Us">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -16,6 +15,7 @@
 </div>
 </div>
 <?php include 'searchBarHeader.php'; ?>
+
 <script type="text/javascript"
         src="dynamicProductListController.js">
 </script>
