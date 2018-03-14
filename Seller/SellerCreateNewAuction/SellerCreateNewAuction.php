@@ -178,20 +178,14 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
     <div class='modal-content'>
       <div class='modal-header'>
         <span class='close'>&times;</span>
-        <h2>Congratulations! You have listed an item successfully!</h2>
+        <h3 class='modaltitle' >Congratulations! You have listed an item successfully!</h3>
       </div>
-      <div class='modal-body'>
-        <p>
-        Item Listed!
-        </p>
-        <div class= 'modal-footer'>
 
-        <div id='button'> 
-          <a href='../SellerProfile/SellerProfile.php'>Back to Seller Profile</a>
+        <div id='button' class='button'> 
+          <a class='buttontext' href='../SellerProfile/SellerProfile.php'>Back to Seller Profile</a>
         </div>
-        <a href='Signin.php' ><button class='facebook'>Back to signin</button></a>
 
-       </div>
+       <!--/div-->
       </div>
       
     </div>
@@ -205,7 +199,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
 	echo mysqli_error ($db);
 }
 } else{
-  echo "Error! Forms must be correctly filled out!";
+  //echo "Error! Forms must be correctly filled out!";
   echo "<script>
   window.onload = function(){
   // Get the modal
@@ -241,7 +235,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
   <div class='modal-content'>
     <div class='modal-header'>
       <span class='close'>&times;</span>
-      <h2>Woops! It seems some of the form data was filled in incorrectly!</h2>
+      <h3>Woops! It seems some of the form data was filled in incorrectly!</h3>
     </div>
     <div class='modal-body'>
       <p>
