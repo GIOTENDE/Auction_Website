@@ -13,9 +13,6 @@ $category1 = $_GET["category"];
 
 $dateNow = date("Y-m-d H:i:s");
 
-echo $productSearch;
-echo $category2;
-echo $category1;
 ?>
 
 <div id="container">
