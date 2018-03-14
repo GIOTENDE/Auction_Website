@@ -118,7 +118,7 @@ $dateNow = date("Y-m-d H:i:s");
             <tr data-href='../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>'  >
 
                 <td >
-                <?php echo '<a href="../product/productPage.php?prod_ID='. $prod_ID .'"><img class="image" src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/></a>';
+                <?php echo '<a href="../product/productPage.php?prod_ID='. $prod_ID .'"><img class="productimage" src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/></a>';
                 ?>
                 </td>
 

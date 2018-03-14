@@ -11,19 +11,16 @@ html {
     min-height: 100%;
 }
 
-<<<<<<< HEAD
 body {
   margin: 0 0 60px;/* bottom has to be the same as footer height */
 }
-=======
-.image{
+
+.productimage{
 width: 20vw;
 max-width: 100%;
 height: 20vw;
 max-height: 100%;
 }
-
->>>>>>> origin/GioCode
 /*.left {*/
   /*background-color:#2196F3;*/
   /*padding:5px;*/
