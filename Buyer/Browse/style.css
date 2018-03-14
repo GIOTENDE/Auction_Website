@@ -79,6 +79,14 @@ body {
   width: 60%;
 
 }
+#container1 {
+  background: #333333;
+  margin: auto;
+  overflow: auto;
+  width: 60%;
+
+}
+
 
 #container2 {
   background: #f4f4f4;
@@ -185,6 +193,19 @@ select {
   padding: 0px 10px;
   width: 300px;
   float: right;
+}
+select.smaller{
+background: #e5e5e5;
+  border: none;
+  border-radius: 3px;
+  color: #5a5656;
+  font-family: inherit;
+  font-size: 14px;
+  height: 40px;
+  outline: none;
+  padding-right: 1px;
+  width: 153.5px;
+  float: left;
 }
 
 input[type="text"] {

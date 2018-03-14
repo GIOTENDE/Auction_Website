@@ -1,4 +1,20 @@
 <?php include 'config.php'; ?>
+<html lang="en-Us">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Auction Website</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../BuyerProfile/BuyerProfile.php">My Account</a></li>
+            <li> <a href="../../logout.php" class="active">Logout</a></li>
+        </ul>
+    </div>
+</div>
+</div>
 <?php include 'searchBarHeader.php'; ?>
 <script type="text/javascript"
         src="dynamicProductListController.js">
@@ -27,33 +43,33 @@ $dateNow = date("Y-m-d H:i:s");
 
 ?>
 
-<div id="container">
+<div id="container1">
 
-    <select name="Name Alphabetical" id="nameAlphabetical" onclick="sortName()">
+    <select class="smaller" name="Name Alphabetical" id="nameAlphabetical" onclick="sortName()">
         <option value="" disabled selected>Name</option>
         <option value="Name Alphabetical">Name Alphabetical</option>
     </select>
 
-    <select name="Ending soon" id="endingSoon" onclick="endingSoon(value)">
+    <select class="smaller" name="Ending soon" id="endingSoon" onclick="endingSoon(value)">
         <option value="" disabled selected>Sort by End Date</option>
         <option value="End soon first">End soon first</option>
         <option value="End soon last">End soon last</option>
     </select>
 
-    <select name="Condition Filter" id="condition" onclick="filterCategory()">
+    <select class="smaller" name="Condition Filter" id="condition" onclick="filterCategory()">
         <option value="" disabled selected>Condition</option>
         <option value="e">New or Used</option>
         <option value="New">New</option>
         <option value="Used">Used</option>
     </select>
 
-    <select name="Reserve price" id="reservePrice" onclick="sortReservePrice(value)">
+    <select class="smaller" name="Reserve price" id="reservePrice" onclick="sortReservePrice(value)">
         <option value="" disabled selected>Sort Reserve Price</option>
         <option value="High to Low">High to Low</option>
         <option value="Low to High">Low to High</option>
     </select>
 
-    <select name="Highest bid" id="highestBid" onclick="sortHighestBid(value)">
+    <select class="smaller" name="Highest bid" id="highestBid" onclick="sortHighestBid(value)">
         <option value="" disabled selected>Sort Highest Bid</option>
         <option value="High to Low">High to Low</option>
         <option value="Low to High">Low to High</option>
