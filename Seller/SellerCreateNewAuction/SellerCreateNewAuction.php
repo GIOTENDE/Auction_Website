@@ -359,7 +359,8 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
 });
   </script>
   <!--  IMAGE PREVIEW   -->
-  <img src="" id="preview" />
+  
+  <img src="" id="preview" onerror="this.src='noimage.png'"/>
 
 <br><br><br>
   <div class="controls">
