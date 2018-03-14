@@ -74,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Auction Website</a>
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="../BuyerProfile/BuyerProfile.php">Home</a></li>
@@ -88,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	<meta charset="utf-8">
 
-	<link rel="stylesheet" href="CreateNewAuctionItem1.css">
+	<link rel="stylesheet" href="BuyerChangeDetails.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
 	<!--[if lt IE 9]>
@@ -139,7 +139,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	</div> <!-- end login -->
 
 </body>
-
-<?php require '../../includes/footer.php'; ?>
 
 </html>

@@ -37,7 +37,7 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Auction Website</a>
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
@@ -57,25 +57,28 @@ $getProductDetails = mysqli_query($db,"SELECT prod_id, prod_name, prod_start_dat
     <!-- <script src="SellerProfile.js"></script> -->
 </head>
 <body>
-
+<br>
+<br>
 <h1 class="title"><?php echo $fullname;?>'s Seller Profile</h1> 
 <h3 class="title"><?php echo $fullname;?>'s user id:<?php echo $userID;?></h3> 
 
 <!--        Button: ADD NEW ITEM        -->
-<div id="button"> 
-    <a href="../SellerCreateNewAuction/SellerCreateNewAuction.php">Auction an Item!</a>
+<div class="containerButton" > 
+    <a href="../SellerCreateNewAuction/SellerCreateNewAuction.php"><button id= "button">Auction an Item!</button></a>
 </div>
 <br>
 <!--        Button: CHANGE SELLER DETAILS -->
-<div id="button"> 
-    <a href="../SellerChangeDetails/SellerChangeDetails.php">Change Customer Details</a>
+<div class="containerButton" > 
+    <a href="../SellerChangeDetails/SellerChangeDetails.php"><button id="button"> Change Customer Details</button></a>
 </div>
+ <br>
+<div class="containerButton">
+    <a href="SellerHistoricAuctions.php"><button id="button">View historic auctions on your past items</button></a>
+</div> 
+<br>
 
-<div id="button">
-    <a href="SellerHistoricAuctions.php">View historic auctions on your past items</a>
+<div class="containerButton">
+    <a href="SellerOngoingAuctions.php"><button id="button"> View current auctions</button></a>
 </div>
-
-<div id="button">
-    <a href="SellerOngoingAuctions.php">View current auctions</a>
-</div>
+ <br>
 

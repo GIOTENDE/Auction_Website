@@ -4,46 +4,29 @@
 
 // !!set userID to test for nicolai development purposes
 // !!local host development only
-$userID = 26;
+$_SESSION['userID'] = 33;
+$userID = $_SESSION['userID']
 
 ?>
 <?php
 include '../../config.php';?>
+<?php require '../../includes/pagetop.php'; ?>
 <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
 
 <!--        AUCTION HISTORY TABLE       -->
-<link rel="stylesheet" href="CreateNewAuctionItem.css" type="text/css">
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Auction Website</a>
-        </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
-          </ul>
-        </div>
-      </div>
-  </div>
-  <br>
-  <br>
-<h1>Live Auction Table</h1>
+<h1>Auction History Table</h1>
 <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
         <thead>
         <tr>
             <th>Product ID</th>
             <th>Product Name</th>
-            <th>Date Product Added</th>
             <th>Date Will End</th>
             <th>Condition</th>
-            <th>Bid Amount</th>
-            <th>Winning Bid</th>
-            <th>Winning Bidder</th>
+            <th>Bid amount</th>
+            <th>Current Highest Bid</th>
             <th>Number of Bids</th>
+            <th>Are you winning?</th>
 
         </tr>
         </thead>
@@ -55,14 +38,11 @@ include '../../config.php';?>
 
     <?php
     $dateNow = date("Y-m-d H:i:s");
-    $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
-b.amount AS bid_amount, p.prod_highest_bid
-AS current_highest_bid, b.buyer_id, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
-, f.seller_feedback_points, f.buyer_feedback_points
+    $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, b.amount AS bid_amount, p.prod_highest_bid
+AS current_highest_bid, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
 FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
-  LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
-WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
+WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
 
 
 
@@ -76,15 +56,21 @@ WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
     <!--    PRODUCT TITLE COLUMN    -->
     <td><?php echo $row['prod_name'] ?></td>
     <!--    PRODUCT START DATE COLUMN    -->
-    <td><?php echo $row['prod_start_date'] ?></td>
     <td><?php echo $row['prod_end_date'] ?></td>
     <!--    PRODUCT STATE COLUMN    -->
     <td><?php echo $row['prod_condition'] ?></td>
     <td><?php echo $row['bid_amount'] ?></td>
-
     <td><?php echo $row['current_highest_bid'] ?></td>
-    <td><?php echo $row['buyer_id'] ?></td>
+
     <td><?php echo $row['total_bids_on_product'] ?></td>
+    <td><?php
+        if($row['bid_amount'] == $row['current_highest_bid']){ ?>
+            <h2>You Are Winning!</h2>
+        <?php } else { ?>
+            <h2>There is a higher bid...</h2>
+        <?php } ?></td>
+
+    <td>
 
 
 
@@ -146,5 +132,5 @@ endif;
 <br>
 <br><br>
 
-
+<?php require '../../includes/footer.php'; ?>
 </html>
