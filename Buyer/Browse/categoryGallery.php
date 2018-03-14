@@ -18,7 +18,6 @@ $userID = $_SESSION['userID'];
         </ul>
     </div>
 </div>
-</div>
 
 <?php include 'searchBarHeader.php';?>
 

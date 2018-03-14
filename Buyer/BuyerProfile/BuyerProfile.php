@@ -1,4 +1,4 @@
-k<?php 
+<?php
 include '../../config.php'; 
 
 session_start();
@@ -9,9 +9,7 @@ $fullname = "";
 $dateWOtime = "";
 $timeWOdate = "";
 $jsformat="";
-//echo $_SESSION['username'];
 
-//
 $getUserDetails = mysqli_query($db,"SELECT userID, username, fullName FROM users WHERE userID=(('$userID'))");
 if (mysqli_num_rows($getUserDetails) > 0) {
     while($row = mysqli_fetch_assoc($getUserDetails)) {
@@ -23,7 +21,6 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 }
 ?>
 
-<!--    HEADER      -->
 <link rel="stylesheet" href="includes/styleheader.css">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -48,30 +45,27 @@ if (mysqli_num_rows($getUserDetails) > 0) {
     <title>Seller Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
-    <!-- <script src="SellerProfile.js"></script> -->
 </head>
 <body>
 <br>
 <br>
-<h1 class="title"><?php echo $fullname;?>'s Buyer Profile</h1>
-<h3 class="title"><?php echo $fullname;?>'s user id:<?php echo $userID;?></h3> 
+<h1 class="title"><?php echo $fullname;?>'s Profile</h1>
 
-<!--        Button: ADD NEW ITEM        -->
 <div class="containerButton"> 
     <a href="../Browse/categoryGallery.php"><button id="button">Browse Items</Button></a>
 </div>
 <br>
-<!--        Button: CHANGE SELLER DETAILS -->
+
 <div class="containerButton"> 
-    <a href="../BuyerChangeDetails/BuyerChangeDetails.php"><button id="button">Change Details</button></a>
+    <a href="../BuyerChangeDetails/BuyerChangeDetails.php"><button id="button">Update Details</button></a>
 </div>
 <br>
 <div class="containerButton">
-    <a href="BuyerHistoricAuctions.php"><button id="button"> Previous Auctions</button></a>
+    <a href="BuyerHistoricAuctions.php"><button id="button">Expired Auctions</button></a>
 </div>
 <br>
 
 <div class="containerButton">
-    <a href="BuyerOngoingAuctions.php"><button id="button">Current Auctions</button></a>
+    <a href="BuyerOngoingAuctions.php"><button id="button">Ongoing Auctions</button></a>
 </div>
 
