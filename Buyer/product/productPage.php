@@ -5,7 +5,7 @@ $userID = $_SESSION['userID']; //TODO: does this work?
 $userID = 2; //TODO: delete this
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
-$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture FROM product WHERE prod_ID = '$prod_ID'";
+$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture, prod_views FROM product WHERE prod_ID = '$prod_ID'";
 $result = mysqli_query($db, $sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -19,6 +19,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $prod_condition = $row["prod_condition"];
     $prod_picture_directory = $row["prod_picture"];
     $prod_picture = "../Browse/Images/" . $prod_picture_directory; //TODO:needs changing?
+    $prod_views = $row["prod_views"];
 }
 
 $sql2 = "SELECT buyer_ID, prod_ID FROM watchlist WHERE buyer_ID = '$userID' AND prod_ID = '$prod_ID'";
@@ -53,6 +54,14 @@ mysqli_close($db);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            $.ajax({
+                url: 'updateViews.php',
+                data: {'prod_ID': <?php echo $prod_ID ?>},
+                type: 'post',
+                success: function(output) {
+                }
+            });
+
             $('#watchlist').click(function () {
                 if ($(this).html() == 'Save to watch list <span class="glyphicon glyphicon-heart"></span>') {
                     $.ajax({
@@ -79,6 +88,17 @@ mysqli_close($db);
             $('#bidbtn').click(function() {
                 if ($('#bid').val().match("^[0-9]+(.[0-9]{1,2})?$")) {
                     if ($('#bid').val() > <?php echo ($prod_highest_bid != null)? $prod_highest_bid : $prod_start_price - 0.01?>) {
+
+                        // generate outbid email
+                        $.ajax({
+                            url: 'outbidEmail.php',
+                            data: {},
+                            type: 'post',
+                            success:function(output) {
+                                alert ("email sent");
+                            }
+                        });
+
                         var amount = $('#bid').val();
 
                         // Update text if this was the first bid
