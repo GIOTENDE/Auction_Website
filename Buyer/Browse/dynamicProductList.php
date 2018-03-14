@@ -57,8 +57,8 @@ $dateNow = date("Y-m-d H:i:s");
 
     <select class="smaller" name="Ending soon" id="endingSoon" onclick="endingSoon(value)">
         <option value="" disabled selected>Sort by End Date</option>
-        <option value="End soon first">End soon first</option>
-        <option value="End soon last">End soon last</option>
+        <option value="Ending soonest">Ending soonest</option>
+        <option value="Ending latest">Ending latest</option>
     </select>
 
     <select class="smaller" name="Condition Filter" id="condition" onclick="filterCategory()">
