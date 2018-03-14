@@ -1,4 +1,4 @@
-<?php 
+k<?php 
 include '../../config.php'; 
 
 session_start();
@@ -41,7 +41,7 @@ if (mysqli_num_rows($getUserDetails) > 0) {
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
+            <li class="active"><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
       </div>

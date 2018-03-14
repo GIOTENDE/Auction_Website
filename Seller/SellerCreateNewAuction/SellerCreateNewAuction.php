@@ -146,7 +146,8 @@ if (empty($_POST["prod_reserve_price"])) {
 if (empty($_POST["prod_end_date"])) {
   $prod_end_dateErr = "Product end date is required!"."<br>";
   $postCheck = false;
-} else {
+} 
+  else {
   $unformattedDate=validate_input($_POST["prod_end_date"]);
 
           //   $splitDate = explode("T", $unformattedDate);
@@ -274,7 +275,7 @@ mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,pr
         </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
-            <li href="../../logout.php" class="active"><a>Logout</a></li>
+            <li class="active"><a href="../../logout.php">Logout</a></li>
           </ul>
         </div>
       </div>
