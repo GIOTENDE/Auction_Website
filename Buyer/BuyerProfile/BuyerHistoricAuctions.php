@@ -18,7 +18,23 @@ $userID = $_SESSION['userID'];
 
 <?php
 include '../../config.php';?>
-<?php include '../../includes/pagetop.php'; ?>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Auction Website</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../BuyerProfile/BuyerProfile.php">My Account</a></li>
+            <li> <a href="../../logout.php" class="active">Logout</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+<br>
+<br>
 <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
 
 <!--        AUCTION HISTORY TABLE       -->
@@ -213,11 +229,5 @@ $(document).ready(function (){
 <!--        FOOTER          -->
 
 
-<br>
-<br>
-<br><br>
 
-
-
-<?php require '../../includes/footer.php'; ?>
 </html>
