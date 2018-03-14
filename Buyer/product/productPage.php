@@ -1,12 +1,10 @@
 <?php include '../../config.php'; ?>
 
 <?php
-session_start();
-//$userID = $_SESSION['userID']; // uncomment this
-$userID = 1;
+$userID = $_SESSION['userID'];
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
-$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_condition, prod_picture FROM product WHERE prod_ID = '$prod_ID'";
+$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture FROM product WHERE prod_ID = '$prod_ID'";
 $result = mysqli_query($db, $sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -16,6 +14,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $prod_start_price = $row["prod_start_price"];
     $prod_reserve_price = $row["prod_reserve_price"];
     $prod_end_date = $row["prod_end_date"];
+    $prod_highest_bid = $row["prod_highest_bid"];
     $prod_condition = $row["prod_condition"];
     $prod_picture_directory = $row["prod_picture"];
     $prod_picture = "../Browse/Images/" . $prod_picture_directory; //needs changing?
@@ -34,7 +33,7 @@ $now = new DateTime("now");
 $interval = $now->diff($end_date);
 
 $dateNow = date("Y-m-d H:i:s");
-$sql3 = "SELECT DISTINCT bids.prod_id, product.prod_name, product.prod_highest_price, product.prod_picture, product.prod_end_date FROM bids INNER JOIN product ON bids.prod_id = product.prod_id WHERE buyer_id IN (SELECT buyer_id FROM bids WHERE bids.prod_id = '$prod_ID') AND NOT bids.prod_ID = '$prod_ID' AND '$dateNow' <= prod_end_date ORDER BY bid_id DESC LIMIT 3";
+$sql3 = "SELECT DISTINCT bids.prod_id, product.prod_name, product.prod_highest_bid, product.prod_picture, product.prod_end_date FROM bids INNER JOIN product ON bids.prod_id = product.prod_id WHERE buyer_id IN (SELECT buyer_id FROM bids WHERE bids.prod_id = '$prod_ID') AND NOT bids.prod_ID = '$prod_ID' AND '$dateNow' <= prod_end_date ORDER BY bid_id DESC LIMIT 3";
 $result = mysqli_query($db, $sql3);
 $watchlistArray = array();
 while ($row = mysqli_fetch_assoc($result)) {
@@ -74,6 +73,15 @@ mysqli_close($db);
                     $(this).html('Save to watch list <span class="glyphicon glyphicon-heart"></span>');
                 }
             });
+
+            $('#bidbtn').click(function() {
+                alert($('#bid').val())
+                if ($('#bid').val().match("^[0-9]+(.[0-9]{1,2})?$")) {
+                    alert ("valid");
+                } else {
+                    alert("invalid");
+                }
+            })
         })
     </script>
     <script src="jquery.countdown.js"></script>
@@ -91,12 +99,19 @@ mysqli_close($db);
             <button type="button" id="watchlist"
                     class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
-        <div class="col-sm-4"><?php echo $prod_description ?></div>
+        <div class="col-sm-4">
+            <p><?php echo $prod_description ?></p>
+            <p>Condition: <b><?php echo $prod_condition; ?></b></p>
+        </div>
         <div class="col-sm-4 well">
             <table style="width:100%">
                 <tr align="center">
-                    <td>Condition:</td>
-                    <td><b><?php echo $prod_condition; ?></b></td>
+                    <td><?php echo ($prod_highest_bid != null)? 'Current price:' : 'Starting price' ?></td>
+                    <td><b><?php echo ($prod_highest_bid != null)? '£' . $prod_highest_bid: '£' . $prod_start_price ?></b></td>
+                </tr>
+                <tr align="center">
+                    <td>Reserve price:</td>
+                    <td><b>£ <?php echo $prod_reserve_price ?></b></td>
                 </tr>
                 <tr align="center">
                     <td>Time remaining:</td>
@@ -117,16 +132,21 @@ mysqli_close($db);
                                     $(this).html(event.strftime(format));
                                 })
                                 .on('finish.countdown', function (event) {
-                                    $(this).html('This offer has expired!')
+                                    $(this).html('This auction has expired!')
                                         .parent().addClass('disabled');
-
+                                    $('#watchlist').prop("disabled", true);
+                                    $('#bid').prop("disabled", true);
                                 });
                         </script>
                     </td>
                 </tr>
             </table>
 
-            <button type="button" class="btn btn-warning btn-block">Bid</button>
+            <div class="form-group">
+                <input type="text" style="text-align: center" placeholder="<?php echo ($prod_highest_bid != null)? $prod_highest_bid + 0.01 : $prod_start_price?>" class="form-control" id="bid">
+            </div>
+
+            <button type="button" class="btn btn-warning btn-block" id="bidbtn">Bid</button>
         </div>
     </div>
 </div>
@@ -138,7 +158,7 @@ mysqli_close($db);
 $arrSize = sizeof($watchlistArray);
 switch ($arrSize) {
     case 0:
-        echo "No one has bidded on this item";
+        echo "<h4>No one has bidded on this item yet! What are you waiting for?</h4>";
         break;
 
     case 1:
@@ -149,7 +169,7 @@ switch ($arrSize) {
             <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
         </div>
     </div>
 </div>';
@@ -163,14 +183,14 @@ switch ($arrSize) {
             <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist1">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
             <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[1]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[1]["prod_highest_bid"] . '</strong>
         </div>
     </div>
 </div>';
@@ -184,21 +204,21 @@ switch ($arrSize) {
             <img src="../Browse/Images/' . $watchlistArray[0]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[0]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[0]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[0]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist1">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[1]["prod_id"] . '">
             <img src="../Browse/Images/' . $watchlistArray[1]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[1]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[1]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[1]["prod_highest_bid"] . '</strong>
         </div>
         <div class="col-sm-4" align="center" id="watchlist2">
             <a href="../product/productPage.php?prod_ID=' . $watchlistArray[2]["prod_id"] . '">
             <img src="../Browse/Images/' . $watchlistArray[2]["prod_picture"] . '" class="img-rounded img-responsive">
             </a>
             <h4> ' . $watchlistArray[2]["prod_name"] . '</h4>
-            Current price: <strong>' . $watchlistArray[2]["prod_highest_price"] . '</strong>
+            Current price: <strong>' . $watchlistArray[2]["prod_highest_bid"] . '</strong>
         </div>
     </div>
 </div>';
