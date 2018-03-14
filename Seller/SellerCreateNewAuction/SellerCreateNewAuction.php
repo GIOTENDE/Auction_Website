@@ -146,7 +146,8 @@ if (empty($_POST["prod_reserve_price"])) {
 if (empty($_POST["prod_end_date"])) {
   $prod_end_dateErr = "Product end date is required!"."<br>";
   $postCheck = false;
-} else {
+} 
+  else {
   $unformattedDate=validate_input($_POST["prod_end_date"]);
 
           //   $splitDate = explode("T", $unformattedDate);
