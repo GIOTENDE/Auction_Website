@@ -102,6 +102,12 @@ body {
   width: 60%;
 }
 
+#container3 {
+  background: #f4f4f4;
+  margin: auto;
+  overflow: auto;
+  width: auto;
+}
 header h1 {
   color: #ffffff;
   font-size: 22px;
@@ -243,3 +249,7 @@ input[type="submit"]{
 }
 
 
+table tr, td{
+   border: 1px solid black;
+   text-align: center;
+}
