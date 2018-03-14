@@ -39,7 +39,7 @@ include '../../config.php';?>
     <?php
     $dateNow = date("Y-m-d H:i:s");
     $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, b.amount AS bid_amount, p.prod_highest_bid
-AS current_highest_bid, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
+AS current_highest_bid, p.prod_reserve_price, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
 FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
 WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
@@ -63,12 +63,11 @@ WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
     <td><?php echo $row['current_highest_bid'] ?></td>
 
     <td><?php echo $row['total_bids_on_product'] ?></td>
-    <td><?php
-        if($row['bid_amount'] == $row['current_highest_bid']){ ?>
-            <h2>You Are Winning!</h2>
-        <?php } else { ?>
-            <h2>There is a higher bid...</h2>
-        <?php } ?></td>
+    <td><?php if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
+            echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'You are winning the auction! #tigerblood' : 'You have been outbid... #growapair';
+        } else {
+            echo 'You are winning but you havent even met the reserve price...';
+        } ?></td>
 
     <td>
 
