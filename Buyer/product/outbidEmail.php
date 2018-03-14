@@ -16,7 +16,6 @@ $message = "
 <head>
 <title>You have been outbidded!</title>
 </head>
-
 <body>
 <p>Heljko</p>
 </body>
