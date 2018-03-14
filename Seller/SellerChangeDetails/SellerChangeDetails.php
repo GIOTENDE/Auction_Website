@@ -50,18 +50,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		mysqli_query($db,"UPDATE users SET username='$username', email_address='$email_address', password='$password', fullname='$fullname', mobilenumber='$mobilenumber', address='$address' WHERE userID='$userID'");
 		include 'SellerChangeDetailsEmail.php';
-		echo "Changes Saved!";
+		$usernameErr = "<div id='button' class='button'> 
+		<a class='buttontext' href='../SellerProfile/SellerProfile.php'>Back to Seller Profile</a>
+	  </div>";
+		include 'modalSellerChangeDetails.php';
+	//	echo "Changes Saved!";
 		}else{
 			$usernameErr= "Username already exists! <br>";
 			$headerModal = "Woops! You haven't filled in your details correctly!";
-			include 'modal.php';
+			include 'modalSellerChangeDetails.php';
 		}
 	
 	}
 	else{
 		$passwordErr="Passwords do not match! <br>";
 		$headerModal = "Woops! You haven't filled in your details correctly!";
-		include 'modal.php';
+		include 'modalSellerChangeDetails.php';
 	} 
 	}else{echo "submit not working";}
 }
@@ -104,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <h1><strong><br>Change Account Details:</strong></h1>
 
 		<form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="miltipart/form-data" autocomplete="off">
-		<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+		
 
 			<fieldset>
 			<h1>Change Full Name: </h1>
