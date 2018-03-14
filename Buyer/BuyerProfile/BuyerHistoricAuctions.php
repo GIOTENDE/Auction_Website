@@ -84,11 +84,9 @@ if (mysqli_num_rows($getProductDetails) > 0) :
                     echo 'Highest bid but reserve price not met, dont be so cheap...';
                 } ?></td>
 
-            <td><?php
-                if($row['bid_amount'] != $row['current_highest_bid']){ ?>
-                    <h5>No feedback, didn't win</h5>
-                <?php }
-                if($row['bid_amount'] == $row['current_highest_bid'] && $row['seller_feedback_points']==NULL){?>
+            <td><?php if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
+                   if ($row['bid_amount'] == $row['current_highest_bid'] && $row['seller_feedback_points'] == NULL) {
+                       ?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
                 <script>
@@ -129,16 +127,36 @@ $(document).ready(function (){
                     </form>
                 </div>
                 <?php
-            } else {echo $row['seller_feedback_points'];
+            } else if($row['bid_amount'] != $row['current_highest_bid']) {
+                   echo 'Not highest bid';
+                   } else {
+                       echo $row['seller_feedback_points'];
+                   }
+            } else {echo 'Reserve price not met';}
 
-                }
             ?>
             </td>
-            <td><?php
-                if($row['bid_amount'] != $row['current_highest_bid']){ ?>
-                    <h5>No feedback, didn't win</h5>
-                <?php } else {
-                    echo $row['buyer_feedback_points'];} ?></td>
+            <td>
+                <?php
+
+                    if($row['current_highest_bid'] > $row['prod_reserve_price']){
+                          if($row['bid_amount'] == $row['current_highest_bid'] && $row['seller_feedback_points'] == NULL){ echo 'No seller feedback received';
+
+                          } else if($row['bid_amount'] != $row['current_highest_bid']){ echo 'Not highest bid';
+
+                        } else {echo $row['buyer_feedback_points'];
+
+                          }
+                    } else {
+                        echo 'Reserve price not met';
+                    }?>
+
+
+
+
+
+
+            </td>
 
 
 
