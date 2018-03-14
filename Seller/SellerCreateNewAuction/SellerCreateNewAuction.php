@@ -167,8 +167,8 @@ if (empty($_POST["prod_end_date"])) {
 
 //Execute the query
 if ($postCheck){
-mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,prod_picture,prod_description,prod_start_price,prod_reserve_price,prod_end_date,prod_sellerID,prod_start_date)
-		        VALUES ('$prod_name','$prod_category','$prod_condition','$prod_picture','$prod_description','$prod_start_price','$prod_reserve_price','$prod_end_date','$prod_sellerID','$prod_start_date')");
+mysqli_query($db,"INSERT INTO product (prod_name,prod_category,prod_condition,prod_picture,prod_description,prod_start_price,prod_reserve_price,prod_end_date,prod_sellerID,prod_start_date, prod_views)
+		        VALUES ('$prod_name','$prod_category','$prod_condition','$prod_picture','$prod_description','$prod_start_price','$prod_reserve_price','$prod_end_date','$prod_sellerID','$prod_start_date', '0')");
 				
 	if(mysqli_affected_rows($db) > 0){
    // header('Location: ../SellerProfile/SellerProfile.php'); 
@@ -359,7 +359,8 @@ document.getElementsByName('prod_picture')[0].addEventListener('change', functio
 });
   </script>
   <!--  IMAGE PREVIEW   -->
-  <img src="" id="preview" />
+  
+  <img src="" id="preview" onerror="this.src='noimage.png'"/>
 
 <br><br><br>
   <div class="controls">
