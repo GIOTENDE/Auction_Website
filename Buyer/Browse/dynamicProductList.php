@@ -3,6 +3,7 @@
 <script type="text/javascript"
         src="dynamicProductListController.js">
 </script>
+
 <?php
 
 $productSearch = $_POST["search"];
@@ -86,6 +87,7 @@ $dateNow = date("Y-m-d H:i:s");
             $prod_ID = $row["prod_ID"];
             ?>
 
+
             <tr>
 
                 <td>
@@ -101,6 +103,8 @@ $dateNow = date("Y-m-d H:i:s");
                 <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
+
+
             <br>
         <?php }
         ?>

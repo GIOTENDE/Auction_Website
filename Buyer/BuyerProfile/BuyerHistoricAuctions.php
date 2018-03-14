@@ -79,13 +79,16 @@ if (mysqli_num_rows($getProductDetails) > 0) :
             <td><?php echo $row['total_bids_on_product'] ?></td>
             <td><?php
                 if($row['bid_amount'] == $row['current_highest_bid']){ ?>
-                    <h2>You Won!</h2>
+                    <h5>You Won!</h5>
                 <?php } else { ?>
-                    <h2>Someone else is higher...!</h2>
+                    <h5>Someone else was higher...!</h5>
                 <?php } ?></td>
 
             <td><?php
-            if($row['bid_amount'] == $row['current_highest_bid'] && $row['f.seller_feedback_points']==NULL){?>
+                if($row['bid_amount'] != $row['current_highest_bid']){ ?>
+                    <h5>No feedback, didn't win</h5>
+                <?php }
+                if($row['bid_amount'] == $row['current_highest_bid'] && $row['seller_feedback_points']==NULL){?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
                 <script>
@@ -126,12 +129,16 @@ $(document).ready(function (){
                     </form>
                 </div>
                 <?php
-            } else {echo $row['f.seller_feedback_pointsbuyer_feedback_points'];
+            } else {echo $row['seller_feedback_points'];
 
                 }
             ?>
             </td>
-            <td><?php echo $row['f.buyer_feedback_points'] ?></td>
+            <td><?php
+                if($row['bid_amount'] != $row['current_highest_bid']){ ?>
+                    <h5>No feedback, didn't win</h5>
+                <?php } else {
+                    echo $row['buyer_feedback_points'];} ?></td>
 
 
 
