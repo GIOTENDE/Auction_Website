@@ -1,8 +1,7 @@
 <?php include '../../config.php'; ?>
 
 <?php
-$userID = $_SESSION['userID']; //TODO: does this work?
-$userID = 2; //TODO: delete this
+$userID = $_SESSION['userID'];
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
 $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture, prod_views FROM product WHERE prod_ID = '$prod_ID'";
@@ -66,7 +65,7 @@ mysqli_close($db);
                 if ($(this).html() == 'Save to watch list <span class="glyphicon glyphicon-heart"></span>') {
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'save', 'buyer_ID': 1, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'save', 'buyer_ID': <?php echo $userID?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
                         type: 'post',
                         success: function (output) {
                         }
@@ -76,7 +75,7 @@ mysqli_close($db);
                     alert ($(this).html());
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'remove', 'buyer_ID': 1, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'remove', 'buyer_ID': <?php echo $userID?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
                         type: 'post',
                         success: function (output) {
                         }
@@ -140,7 +139,7 @@ mysqli_close($db);
                     $('#myModal').modal('show');
                 }
             })
-        })
+        });
 
         setInterval(function() {
             $.ajax({
