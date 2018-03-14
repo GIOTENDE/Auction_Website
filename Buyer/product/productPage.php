@@ -42,8 +42,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $watchlistArray[] = $row;
 }
 mysqli_close($db);
-
-include 'outbidEmail.php';
 ?>
 
 <!DOCTYPE html>
@@ -93,14 +91,14 @@ include 'outbidEmail.php';
 
                         // generate outbid email
 
-                        $.ajax({
-                            url: 'outbidEmail.php',
-                            data: {},
-                            type: 'post',
-                            success:function(output) {
-                                alert ("email sent");
-                            }
-                        });
+                        // $.ajax({
+                        //     url: 'outbidEmail.php',
+                        //     data: {},
+                        //     type: 'post',
+                        //     success:function(output) {
+                        //         alert ("email sent");
+                        //     }
+                        // });
 
                         var amount = $('#bid').val();
 

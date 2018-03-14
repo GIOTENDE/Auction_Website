@@ -1,7 +1,13 @@
 <?php include '../../config.php';
 
-//get user that has been outbid
-include 'outbidEmail.php';
+$getOutbidUser = "SELECT users.userID, users.fullName, users.email_address, product.prod_name, product.prod_buyerID FROM users INNER JOIN product ON users.userID = product.prod_buyerID WHERE product.prod_id = '" . $_POST['prod_ID'] . "' ;";
+$result = mysqli_query($db, $getOutbidUser);
+while ($row = mysqli_fetch_assoc($result)) {
+    $fullName = $row["fullName"];
+    $email_address = $row["email_address"];
+    $name = $row["prod_name"];
+    include 'outbidEmail.php';
+}
 
 //insert into bids table
 $seller_ID = 26; //delete this column from table?
