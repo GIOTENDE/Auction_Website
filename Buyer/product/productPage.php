@@ -42,6 +42,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $watchlistArray[] = $row;
 }
 mysqli_close($db);
+
+include 'outbidEmail.php';
 ?>
 
 <!DOCTYPE html>
