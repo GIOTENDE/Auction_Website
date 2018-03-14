@@ -92,7 +92,7 @@ echo $category1;
             <tr>
 
                 <td>
-                <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/>';
+                <?php echo '<a href="../product/productPage.php?prod_ID='. $prod_ID .'"><img src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/></a>';
                 ?>
                 </td>
 

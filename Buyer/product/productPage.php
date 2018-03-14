@@ -2,6 +2,7 @@
 
 <?php
 $userID = $_SESSION['userID'];
+$userID = 1; //delete this
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
 $sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture FROM product WHERE prod_ID = '$prod_ID'";
@@ -75,11 +76,17 @@ mysqli_close($db);
             });
 
             $('#bidbtn').click(function() {
-                alert($('#bid').val())
+                alert(<?php echo $userID ?>);
+                alert($('#bid').val());
                 if ($('#bid').val().match("^[0-9]+(.[0-9]{1,2})?$")) {
                     alert ("valid");
+                    if ($('#bid').val() > <?php echo ($prod_highest_bid != null)? $prod_highest_bid : $prod_start_price - 0.01?>) {
+                        alert ("Bid is enough.");
+                    } else {
+                        alert ("Higher bid required.");
+                    }
                 } else {
-                    alert("invalid");
+                    alert("Invalid amount entered.");
                 }
             })
         })
