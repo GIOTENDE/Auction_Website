@@ -90,7 +90,7 @@ mysqli_close($db);
                     if ($('#bid').val() > <?php echo ($prod_highest_bid != null)? $prod_highest_bid : $prod_start_price - 0.01?>) {
 
                         // generate outbid email
-                        
+                        <?php include 'outbidEmail.php'; ?>
 
                         // $.ajax({
                         //     url: 'outbidEmail.php',
