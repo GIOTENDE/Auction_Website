@@ -18,3 +18,14 @@ mysqli_query($db, $insertBid);
 //update product table
 $updateProduct = "UPDATE product SET prod_highest_bid = '" . $_POST['amount'] . "', prod_buyerID = '" . $_POST['buyer_ID'] . "' WHERE prod_id = '" . $_POST['prod_ID'] . "' ";
 mysqli_query($db, $updateProduct);
+
+
+$getWatchlistUsers = "SELECT users.fullName, users.email_address, product.prod_name, product.prod_highest_bid FROM users INNER JOIN watchlist ON users.userID = watchlist.buyer_id INNER JOIN product ON  watchlist.prod_id = product.prod_id WHERE '" . $_POST['prod_ID'] . "' ;";
+$result = mysqli_query($db, $getWatchlistUsers);
+while ($row = mysqli_fetch_assoc($result)) {
+    $fullName = $row["fullName"];
+    $email_address = $row["email_address"];
+    $name = $row["prod_name"];
+    $price = $row["prod_highest_bid"];
+    include 'watchlistEmail.php';
+}

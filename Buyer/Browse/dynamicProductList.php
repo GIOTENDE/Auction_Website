@@ -84,8 +84,7 @@ $dateNow = date("Y-m-d H:i:s");
 </div>
 
 
-<div id="container2">
-
+<div id="container3">
     <?php
     if (isset($category1)) {
 
@@ -135,7 +134,7 @@ $dateNow = date("Y-m-d H:i:s");
                 <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
-            <br>
+            
         <?php }
         ?>
 

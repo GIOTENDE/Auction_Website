@@ -154,6 +154,7 @@ mysqli_close($db);
                         // $('#modal-title').html('Alert');
                         $('#modal-body2').html('The price has been updated as a new bid of £ ' + output + ' has been received.');
                         $('#myModal2').modal('show');
+                        window.location.reload();
                     }
                 }
             });
