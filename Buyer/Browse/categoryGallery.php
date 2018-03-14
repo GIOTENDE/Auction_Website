@@ -1,4 +1,8 @@
-<?php include '../../config.php'; ?>
+<?php include '../../config.php';
+
+session_start();
+$userID = $_SESSION['userID'];
+?>
 <html lang="en-Us">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
