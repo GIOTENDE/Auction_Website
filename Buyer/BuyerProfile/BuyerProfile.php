@@ -2,13 +2,7 @@ k<?php
 include '../../config.php'; 
 
 session_start();
-$_SESSION['userID'] = 33;
 $userID = $_SESSION['userID'];
-
-$userID = $_SESSION['userID'];
-
-
-
 
 $username="";
 $fullname = "";

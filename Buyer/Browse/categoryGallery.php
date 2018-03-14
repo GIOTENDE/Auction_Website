@@ -22,21 +22,7 @@ $userID = $_SESSION['userID'];
 
 <?php include 'searchBarHeader.php';?>
 
-
-
-
-
-
-<!--<!doctype html>-->
-<!--<html>-->
-
-
-
-
-
-
     <div id="container2">
-
     <div class="gallery">
         <a href="dynamicProductList.php?category=Collectables and antiques">
             <img src="Images/pic_antique.jpg" alt="Collectables and antiques" width="300" height="200">
@@ -99,39 +85,6 @@ $userID = $_SESSION['userID'];
             </a>
             <div class="desc">Other</div>
         </div>
-
-
     </div>
-
-
-
-<!--    <div id="container">-->
-<!--        <header>-->
-<!--            <h1>Chat Room</h1>-->
-<!--        </header>-->
-<!--        <div id="messages">-->
-<!--            <ul>-->
-<!--                --><?php //while($row = mysqli_fetch_assoc($messages)) : ?>
-<!--                    <li class="message">-->
-<!--                        <span>--><?php //echo $row['time'] ?><!-- - </span><strong>-->
-<!--                            --><?php //echo $row['user']?><!--</strong>-->
-<!--                        : --><?php //echo $row['message'] ?>
-<!--                    </li>-->
-<!--                --><?php //endwhile; ?>
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <div id="input">-->
-<!--            --><?php //if (isset($_GET['error'])) : ?>
-<!--                <div class="error">--><?php //echo $_GET['error']; ?><!--</div>-->
-<!--            --><?php //endif; ?>
-<!--            <form method="post" action="process.php">-->
-<!--                <input type="text" id="user" name="user" placeholder="Enter Your Name"/>-->
-<!--                <input type="text" id="newmessage" name="message" placeholder="Enter A Message"/>-->
-<!--                <input id="show-btn" type="submit" name="submit" value="Show It"/>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
   </body>
 </html>
