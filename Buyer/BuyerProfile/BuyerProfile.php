@@ -21,23 +21,6 @@ if (mysqli_num_rows($getUserDetails) > 0) {
 }
 ?>
 
-<link rel="stylesheet" href="includes/styleheader.css">
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Auction Website</a>
-        </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="active"><a href="../../logout.php">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-  </div>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,8 +30,17 @@ if (mysqli_num_rows($getUserDetails) > 0) {
     <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
 </head>
 <body>
-<br>
-<br>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">Auction Website</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
 <h1 class="title"><?php echo $fullname;?>'s Profile</h1>
 
 <div class="containerButton"> 
