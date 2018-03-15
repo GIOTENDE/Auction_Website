@@ -13,7 +13,7 @@ include ("../config.php");
         $(document).ready(function() {
             $('#advertisebtn').click(function () {
                 $.ajax({
-                    url: 'getSellers.php',
+                    url: 'getUsers.php',
                     type: 'post',
                     success: function(output) {
                         alert("Emails have been sent!");
