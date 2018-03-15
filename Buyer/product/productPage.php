@@ -163,6 +163,23 @@ mysqli_close($db);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">Auction Website</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
+                    My Account</a></li>
+            <li><a href="../../logout.php" class="active"><span
+                            class="glyphicon glyphicon-shopping-cart"></span> Categories</a>
+            <li class="active"><a href="../../logout.php" class="active"><span
+                            class="glyphicon glyphicon-log-out"></span> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <h1 align="center"><?php echo $prod_name; ?></h1>
 <hr>
 
