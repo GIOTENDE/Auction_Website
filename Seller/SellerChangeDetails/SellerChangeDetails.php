@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "submit not working";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -100,32 +99,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </nav>
 
 <div id="login">
-    <h1><strong><br>Change Account Details:</strong></h1>
+    <h2><strong><br>Update Account Details:</strong></h2>
     <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
           enctype="miltipart/form-data" autocomplete="off">
         <fieldset>
-            <h1>Change Full Name: </h1>
+            <h3>Full Name: </h3>
             <p><input type="text" value="<?php echo $fullname; ?>" name="fullname" required></p>
-            <h1>Change Username: </h1>
+            <h3>Username: </h3>
             <p><input type="text" value="<?php echo $username; ?>" name="username"></p>
             <!-- JS because of IE support; better: placeholder="Username" -->
-            <h1><strong>Change Password:</h1>
+            <h3><strong>Change Password:</h3>
             <p><input type="password" required placeholder="Please a new/old password" name="password"
                       onBlur="if(this.value=='')this.value='Password'"
                       onFocus="if(this.value=='Password')this.value='' " required></p>
 
-            <h1><strong>Re-enter Password:</h1>
+            <h3><strong>Re-enter Password:</h3>
             <p><input type="password" required placeholder="Re-enter your new/old password" name="confirmpassword"
                       onBlur="if(this.value=='')this.value='Password'"
                       onFocus="if(this.value=='Password')this.value='' " required></p>
 
             <!-- JS because of IE support; better: placeholder="Password" -->
 
-            <h1>Change Email Address: </h1>
+            <h3>Email Address: </h3>
             <p><input type="text" value="<?php echo $email_address; ?>" name="email_address" required></p>
-            <h1>Change Phone Number:</h1>
+            <h3>Phone Number:</h3>
             <p><input type="text" value="<?php echo $mobilenumber; ?>" name="mobilenumber" required></p>
-            <h1>Change Postal Address:</h1>
+            <h3>Postal Address:</h3>
             <p><input type="text" value="<?php echo $address; ?>" name="address" required></p>
         </fieldset>
     </form>

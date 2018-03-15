@@ -30,7 +30,6 @@ $userID = $_SESSION['userID'];
     </div>
 </nav>
 
-
 <!--        AUCTION HISTORY TABLE       -->
 <h1>Your Expired Auctions</h1>
 <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-hover">
@@ -43,7 +42,7 @@ $userID = $_SESSION['userID'];
         <th style="text-align: center">Bid Amount</th>
         <th style="text-align: center">Winning Bid?</th>
         <th style="text-align: center">Bidder</th>
-        <th style="text-align: center">Number of Bids</th>
+        <th style="text-align: center">Total Number of Bids</th>
         <th style="text-align: center">Buyer Feedback Score</th>
         <th style="text-align: center">Your Feedback Score</th>
         <th style="text-align: center">Product Views</th>
