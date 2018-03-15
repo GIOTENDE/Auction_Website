@@ -1,62 +1,53 @@
-<?php
+<?php include '../../config.php';
+session_start();
+$userID = $_SESSION['userID'];
 ?>
-<?php
 
-// !!set userID to test for nicolai development purposes
-// !!local host development only
-$userID = 26;
-
-?>
-<?php
-include '../../config.php';?>
-<link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
-
-<!--        AUCTION HISTORY TABLE       -->
-<link rel="stylesheet" href="CreateNewAuctionItem.css" type="text/css">
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Your Ongoing Auctions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Auction Website</a>
+            <a class="navbar-brand">Auction Website</a>
         </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="../SellerProfile/SellerProfile.php">Home</a></li>
-            <li  class="active"><a href="../../logout.php">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-  </div>
-  <br>
-  <br>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="../SellerProfile/SellerProfile.php"><span
+                            class="glyphicon glyphicon-user"></span>
+                    My Account</a></li>
+            <li><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <h1>Live Auction Table</h1>
-<div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Date Product Added</th>
-            <th>Date Will End</th>
-            <th>Condition</th>
-            <th>Bid Amount</th>
-            <th>Highest Bid</th>
-            <th>Winning Bidder</th>
-            <th>Number of Bids</th>
-            <th>Product Views</th>
-
+            <th style="text-align: center">Product Name</th>
+            <th style="text-align: center">Date Product Added</th>
+            <th style="text-align: center">Date Will End</th>
+            <th style="text-align: center">Condition</th>
+            <th style="text-align: center">Bid Amount</th>
+            <th style="text-align: center">Highest Bid</th>
+            <th style="text-align: center">Winning Bidder</th>
+            <th style="text-align: center">Number of Bids</th>
+            <th style="text-align: center">Product Views</th>
         </tr>
         </thead>
-
-</div>
-
 <tbody>
 <tr>
-
     <?php
     $dateNow = date("Y-m-d H:i:s");
-    $getProductDetails = mysqli_query($db,"SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
+    $getProductDetails = mysqli_query($db, "SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
 b.amount AS bid_amount, p.prod_highest_bid
 AS current_highest_bid, p.prod_reserve_price, p.prod_views, b.buyer_id, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
 , f.seller_feedback_points, f.buyer_feedback_points
@@ -64,16 +55,10 @@ FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
   LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
 WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
-
-
-
     if (mysqli_num_rows($getProductDetails) > 0) :
-    $count=1;
-    $dateArray=[];
-    while($row = mysqli_fetch_assoc($getProductDetails)) : ?>
-
-    <!--    PRODUCT ID COLUMN    -->
-    <td><?php echo $row['prod_id'] ?></td>
+    $count = 1;
+    $dateArray = [];
+    while ($row = mysqli_fetch_assoc($getProductDetails)) : ?>
     <!--    PRODUCT TITLE COLUMN    -->
     <td><?php echo $row['prod_name'] ?></td>
     <!--    PRODUCT START DATE COLUMN    -->
@@ -92,65 +77,14 @@ WHERE b.seller_id = (('$userID')) AND '$dateNow' <= prod_end_date");
     <td><?php echo $row['buyer_id'] ?></td>
     <td><?php echo $row['total_bids_on_product'] ?></td>
     <td><?php echo $row['prod_views'] ?></td>
-
-
-
 </tr>
-<?php $count+=1; endwhile;
+<?php $count += 1;
+endwhile;
 else :
     echo "no results";
 endif;
 ?>
 </tbody>
 </table>
-
-
-
-
-<!--        FEEDBACK TABLE   ?????    -->
-
-<!--</body>-->
-<!---->
-<!--<script type ="text/javascript">-->
-<!---->
-<!--    // End date-->
-<!--    var countDownDate = new Date('--><?php //echo $convertdate-> format('M d, Y H:i:s');?><!--').getTime();-->
-<!--//-->
-<!--//    //var c = <!--?php echo json_encode($count); ?-->
-<!--//    // document.getElementById('countdown').innerHTML = c;-->
-<!--//    // Update the count down every 1 second-->
-<!--//    var x = setInterval(function() {-->
-<!--//-->
-<!--//        // Today's date-->
-<!--//        var now = new Date().getTime();-->
-<!--//-->
-<!--//        // Find the difference between now an the count down date-->
-<!--//        var difference = countDownDate - now;-->
-<!--//-->
-<!--//        // Time calculations for days, hours, minutes and seconds-->
-<!--//        var days = Math.floor(difference / (1000 * 60 * 60 * 24));-->
-<!--//        var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));-->
-<!--//        var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));-->
-<!--//        var seconds = Math.floor((difference % (1000 * 60)) / 1000);-->
-<!--//-->
-<!--//        // Output the result in an element with id='countdown'-->
-<!--//        document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h '-->
-<!--//            + minutes + 'm ' + seconds + 's ';-->
-<!--//-->
-<!--//        // If the count down is over, write some text-->
-<!--//        if (difference < 0) {-->
-<!--//            clearInterval(x);-->
-<!--//            document.getElementById('countdown').innerHTML = 'EXPIRED';-->
-<!--//        }-->
-<!--//    }, 1000);-->
-<!--//-->
-<!--//</script>-->
-<!--        FOOTER          -->
-
-<br>
-<br>
-<br>
-<br><br>
-
-
+</body>
 </html>

@@ -176,7 +176,7 @@ function endingSoon(value) {
     table = document.getElementById("myTable");
     switching = true;
 
-    if (value == "End soon first") {
+    if (value == "Ending soonest") {
         while (switching) {
             // Start by saying that no switching is done
             switching = false;
@@ -201,7 +201,7 @@ function endingSoon(value) {
                 switching = true;
             }
         }
-    } else if (value == "End soon last") {
+    } else if (value == "Ending latest") {
         while (switching) {
             // Start by saying that no switching is done
             switching = false;
