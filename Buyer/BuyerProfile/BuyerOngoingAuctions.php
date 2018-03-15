@@ -43,14 +43,14 @@ include '../../config.php';?>
     <tr>
         <?php
         $dateNow = date("Y-m-d H:i:s");
-        $getProductDetails = mysqli_query($db,"SELECT p.prod_name, p.prod_end_date, p.prod_condition, b.amount AS bid_amount, p.prod_highest_bid AS current_highest_bid, p.prod_reserve_price, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
+        $getProductDetails = mysqli_query($db,"SELECT p.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, b.amount AS bid_amount, p.prod_highest_bid AS current_highest_bid, p.prod_reserve_price, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
 
         if (mysqli_num_rows($getProductDetails) > 0) :
         $count=1;
         $dateArray=[];
         while($row = mysqli_fetch_assoc($getProductDetails)) : ?>
         <!--    PRODUCT TITLE COLUMN    -->
-        <td><?php echo $row['prod_name'] ?></td>
+        <td><a href='../product/productPage.php?prod_ID=<?php echo $row['prod_id'] ?>' ><?php echo $row['prod_name'] ?></a></td>
         <!--    PRODUCT START DATE COLUMN    -->
         <td><?php echo $row['prod_end_date'] ?></td>
         <!--    PRODUCT STATE COLUMN    -->

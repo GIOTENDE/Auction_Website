@@ -1,39 +1,54 @@
 <?php include 'config.php';
-
 session_start();
 $userID = $_SESSION['userID'];
-
 ?>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Product list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="dynamicProductListController.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table tr').click(function () {
+                window.location = $(this).data('href');
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Auction Website</a>
+            <a class="navbar-brand">Auction Website</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="../BuyerProfile/BuyerProfile.php">My Account</a></li>
-            <li> <a href="../../logout.php" class="active">Logout</a></li>
+            <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
+                    My Account</a></li>
+            <li><a href="categoryGallery.php"><span class="glyphicon glyphicon-shopping-bag"></span> Categories</a></li>
+            <li class="active"><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+            </li>
         </ul>
     </div>
-</div>
-</div>
+</nav>
+
+
+</body>
+</html>
+
+
 <?php include 'searchBarHeader.php'; ?>
 
-<script type="text/javascript"
-        src="dynamicProductListController.js">
-</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script>
-            $(document).ready(function(){
-                $('table tr').click(function(){
-                    window.location = $(this).data('href');
-                    return false;
-                });
-            });
-            </script>
 
 
 <?php

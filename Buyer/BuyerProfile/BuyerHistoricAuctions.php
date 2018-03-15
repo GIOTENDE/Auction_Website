@@ -49,7 +49,7 @@ include '../../config.php';
 
         <?php
         $dateNow = date("Y-m-d H:i:s");
-        $getProductDetails = mysqli_query($db, "SELECT p.prod_name, p.prod_end_date, p.prod_condition, 
+        $getProductDetails = mysqli_query($db, "SELECT p.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, 
 b.amount AS bid_amount, p.prod_highest_bid
 AS current_highest_bid, p.prod_reserve_price, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product
 , f.seller_feedback_points, f.buyer_feedback_points
@@ -63,7 +63,7 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
         $dateArray = [];
         while ($row = mysqli_fetch_assoc($getProductDetails)) : ?>
         <!--    PRODUCT NAME COLUMN    -->
-        <td><?php echo $row['prod_name'] ?></td>
+        <td><a href='../product/productPage.php?prod_ID=<?php echo $row['prod_id'] ?>' ><?php echo $row['prod_name'] ?></a></td>
         <!--    AUCTION START DATE COLUMN    -->
         <td><?php echo $row['prod_end_date'] ?></td>
         <!--    PRODUCT CONDITION COLUMN    -->
