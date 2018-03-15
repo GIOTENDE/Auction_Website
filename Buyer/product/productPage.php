@@ -52,6 +52,9 @@ mysqli_close($db);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            $("#alert").hide();
+
+            // when the page loads, the view count is increased
             $.ajax({
                 url: 'updateViews.php',
                 data: {'prod_ID': <?php echo $prod_ID ?>},
@@ -60,21 +63,21 @@ mysqli_close($db);
                 }
             });
 
+            // when the watchlist button is pressed, the user is either saved or removed from the watchlist.
             $('#watchlist').click(function () {
                 if ($(this).html() == 'Save to watch list <span class="glyphicon glyphicon-heart"></span>') {
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'save', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'save', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>},
                         type: 'post',
                         success: function (output) {
                         }
                     });
                     $(this).html('Remove from watch list <span class="glyphicon glyphicon-heart"></span>');
                 } else {
-                    alert ($(this).html());
                     $.ajax({
                         url: 'watchlist.php',
-                        data: {action: 'remove', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>}, //TODO: update buyer_ID
+                        data: {action: 'remove', 'buyer_ID': <?php echo $userID; ?>, 'prod_ID': <?php echo $prod_ID ?>},
                         type: 'post',
                         success: function (output) {
                         }
@@ -84,21 +87,23 @@ mysqli_close($db);
             });
 
             $('#bidbtn').click(function() {
+                // check if valid money amount has been entered
                 if ($('#bid').val().match("^[0-9]+(.[0-9]{1,2})?$")) {
-                    if ($('#bid').val() > <?php echo ($prod_highest_bid != null)? $prod_highest_bid : $prod_start_price - 0.01?>) {
+                    // check if amount is more than current highest bid or equal to start price
+                    if ($('#bid').val() > $('#priceText').html()) {
                         var amount = $('#bid').val();
 
                         // Update text if this was the first bid
                         if ($('#priceTitle').html() == 'Starting price:') {
                             $('#priceTitle').html('Current price:')
-                        }
+                        };
 
                         // Update the current price
                         $('#priceText').html('£' + amount);
 
                         //Update the placeholder and empty it
                         var newAmount = Number(amount) + 0.01;
-                        $('#bid').attr("placeholder", newAmount);
+                        $('#bid').attr("placeholder", newAmount.toFixed(2));
                         $('#bid').val('');
 
                         // popup for valid bid
@@ -106,10 +111,10 @@ mysqli_close($db);
                         $('#modal-body').html('Your bid has been received for: <?php echo $prod_name ?>');
                         $('#myModal').modal('show');
 
-                        //ajax to update the database - insert into bids table & update product table
+                        //ajax to update the database - insert into bids table & update product table; also generate email for outbid user, and watching users
                         $.ajax({
                             url: 'successfulBid.php',
-                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': <?php echo $userID ?>}, // TODO: update buyer_ID
+                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': <?php echo $userID ?>},
                             type: 'post',
                             success: function(output) {
                             }
@@ -128,18 +133,25 @@ mysqli_close($db);
             })
         });
 
+        // checks for updates in the price every second and informs all users of bids as they are received
         setInterval(function() {
             $.ajax({
                 url: 'getPrice.php',
                 data: {'prod_ID': <?php echo $prod_ID ?>},
                 type: 'post',
                 success: function (output) {
-                    if (($('#priceText').html() != '£ ' + output) && (output != "")) {
-                        $('#priceText').html('£ ' + output);
-                        //TODO: the php variable itself should be updated??, placeholder update, Starting price update
-                        // $('#modal-title').html('Alert');
-                        $('#modal-body2').html('The price has been updated as a new bid of £ ' + output + ' has been received.');
-                        $('#myModal2').modal('show');
+                    if (($('#priceText').html() != output) && (output != "")) {
+                        $("#alert").show();
+
+                        $('#priceText').html(output);
+
+                        if ($('#priceTitle').html() == 'Starting price:') {
+                            $('#priceTitle').html('Current price:')
+                        };
+
+                        var newAmount = output + 0.01;
+                        $('#bid').attr("placeholder", newAmount.toFixed(2));
+                        $('#bid').val('');
                     }
                 }
             });
@@ -151,7 +163,6 @@ mysqli_close($db);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php echo $userID ?>
 <h1 align="center"><?php echo $prod_name; ?></h1>
 <hr>
 
@@ -160,61 +171,67 @@ mysqli_close($db);
         <div class="col-sm-4" align="center">
             <?php echo '<img style="width: 20vw; height: 20vw;" src="data:image/jpeg;base64,'.base64_encode($prod_picture).'"/> '?>
             <button type="button" id="watchlist"
-                    class="btn btn-warning"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
+                    class="btn btn-primary"><?php echo $onWatchlist ? 'Remove from watch list' : 'Save to watch list' ?> <span class="glyphicon glyphicon-heart"></button>
         </div>
         <div class="col-sm-4">
             <p><?php echo $prod_description ?></p>
             <p>Condition: <b><?php echo $prod_condition; ?></b></p>
         </div>
-        <div class="col-sm-4 well">
-            <table style="width:100%">
-                <tr align="center">
-                    <td id ="priceTitle"><?php echo ($prod_highest_bid != null)? 'Current price:' : 'Starting price:' ?></td>
-                    <td><b id ="priceText">£ <?php echo ($prod_highest_bid != null)? $prod_highest_bid: $prod_start_price ?></b></td>
-                </tr>
-                <tr align="center">
-                    <td>Reserve price:</td>
-                    <td><b>£ <?php echo $prod_reserve_price ?></b></td>
-                </tr>
-                <tr align="center">
-                    <td>Time remaining:</td>
-                    <td>
-                        <div class="countdown">
-                            <span id="clock"></span>
-                        </div>
-                        <script>
-                            $('#clock').countdown(' <?php echo $end_date->format('Y/m/d H:i:s')?> ')
-                                .on('update.countdown', function (event) {
-                                    var format = '%H:%M:%S';
-                                    if (event.offset.totalDays > 0) {
-                                        format = '%-d day%!d ' + format;
-                                    }
-                                    if (event.offset.weeks > 0) {
-                                        format = '%-w week%!w ' + format;
-                                    }
-                                    $(this).html(event.strftime(format));
-                                })
-                                .on('finish.countdown', function (event) {
-                                    $(this).html('This auction has expired!')
-                                        .parent().addClass('disabled');
-                                    $('#watchlist').prop("disabled", true);
-                                    $('#bid').prop("disabled", true);
-                                });
-                        </script>
-                    </td>
-                </tr>
-            </table>
+        <div class="col-sm-4">
+            <div class="well">
+                <table style="width:100%">
+                    <tr align="center">
+                        <td id ="priceTitle"><?php echo ($prod_highest_bid != null)? 'Current price:' : 'Starting price:' ?></td>
+                        <td><b>£ </b><b id ="priceText"><?php echo ($prod_highest_bid != null)? $prod_highest_bid: $prod_start_price ?></b></td>
+                    </tr>
+                    <tr align="center">
+                        <td>Reserve price:</td>
+                        <td><b>£ <?php echo $prod_reserve_price ?></b></td>
+                    </tr>
+                    <tr align="center">
+                        <td>Time remaining:</td>
+                        <td>
+                            <div class="countdown">
+                                <span id="clock"></span>
+                            </div>
+                            <script>
+                                $('#clock').countdown(' <?php echo $end_date->format('Y/m/d H:i:s')?> ')
+                                    .on('update.countdown', function (event) {
+                                        var format = '%H:%M:%S';
+                                        if (event.offset.totalDays > 0) {
+                                            format = '%-d day%!d ' + format;
+                                        }
+                                        if (event.offset.weeks > 0) {
+                                            format = '%-w week%!w ' + format;
+                                        }
+                                        $(this).html(event.strftime(format));
+                                    })
+                                    .on('finish.countdown', function (event) {
+                                        $(this).html('This auction has expired!')
+                                            .parent().addClass('disabled');
+                                        $('#watchlist').prop("disabled", true);
+                                        $('#bid').prop("disabled", true);
+                                    });
+                            </script>
+                        </td>
+                    </tr>
+                </table>
 
-            <div class="form-group">
-                <input type="text" style="text-align: center" placeholder="<?php echo ($prod_highest_bid != null)? $prod_highest_bid + 0.01 : $prod_start_price?>" class="form-control" id="bid">
+                <div class="form-group">
+                    <input type="number" style="text-align: center" placeholder="<?php echo ($prod_highest_bid != null)? $prod_highest_bid + 0.01 : $prod_start_price?>" class="form-control" id="bid">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" id="bidbtn">Bid</button>
             </div>
-
-            <button type="button" class="btn btn-warning btn-block" id="bidbtn">Bid</button>
+            <div class="alert alert-danger alert-dismissable fade in" align="center" id="alert">
+                <a class="close" onclick="$('#alert').hide()" aria-label="close">&times;</a>
+                <strong>The price has been updated as a new bid has been received!</strong>
+            </div>
         </div>
     </div>
 </div>
 
-<h2>Customers have also bidded on</h2>
+<h2 align="center">Customers have also bidded on</h2>
 <hr>
 
 <?php
@@ -305,24 +322,5 @@ switch ($arrSize) {
 
     </div>
 </div>
-
-<div id="myModal2" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"">Alert!</h4>
-            </div>
-            <div class="modal-body" >
-                <p id="modal-body2"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
 </body>
 </html>
