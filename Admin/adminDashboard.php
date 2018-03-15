@@ -12,7 +12,14 @@ include ("../config.php");
     <script>
         $(document).ready(function() {
             $('#advertisebtn').click(function () {
-                // insert ajax call
+                $.ajax({
+                    url: 'advertiseEmail.php',
+                    data: {},
+                    type: 'post',
+                    success: function(output) {
+                        alert("Emails have been sent!");
+                    }
+                });
             });
         });
     </script>
