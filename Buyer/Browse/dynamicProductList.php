@@ -34,7 +34,7 @@ $userID = $_SESSION['userID'];
         <ul class="nav navbar-nav">
             <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
                     My Account</a></li>
-            <li><a href="../../logout.php" class="active"><span
+            <li><a href="../Browse/categoryGallery.php" class="active"><span
                             class="glyphicon glyphicon-shopping-cart"></span> Categories</a>
             <li class="active"><a href="../../logout.php" class="active"><span
                             class="glyphicon glyphicon-log-out"></span> Logout</a>
