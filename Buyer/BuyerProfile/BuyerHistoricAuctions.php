@@ -3,33 +3,6 @@ session_start();
 $userID = $_SESSION['userID'];
 include '../../config.php';
 ?>
-<<<<<<< HEAD
-<!--<script type="text/javascript"-->
-<!--        src="BuyerHistoricAuctionsController.js">-->
-<!--</script>-->
-
-<?php
-include '../../config.php';?>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Auction Website</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="../BuyerProfile/BuyerProfile.php">My Account</a></li>
-            <li> <a href="../../logout.php" class="active">Logout</a></li>
-        </ul>
-    </div>
-</div>
-</div>
-<br>
-<br>
-<link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css" />
-=======
->>>>>>> origin/GioCode
 
 <!DOCTYPE html>
 <html>
@@ -90,7 +63,9 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
         $dateArray = [];
         while ($row = mysqli_fetch_assoc($getProductDetails)) : ?>
         <!--    PRODUCT NAME COLUMN    -->
-        <td><a href='../product/productPage.php?prod_ID=<?php echo $row['prod_id'] ?>' ><?php echo $row['prod_name'] ?></a></td>
+        <td>
+            <a href='../product/productPage.php?prod_ID=<?php echo $row['prod_id'] ?>'><?php echo $row['prod_name'] ?></a>
+        </td>
         <!--    AUCTION START DATE COLUMN    -->
         <td><?php echo $row['prod_end_date'] ?></td>
         <!--    PRODUCT CONDITION COLUMN    -->
@@ -169,61 +144,9 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
     endwhile;
     else :
         echo "no results";
-<<<<<<< HEAD
-     endif;
-?>
-        </tbody>
-    </table>
-
-<!---->
-<!--<!--        FEEDBACK TABLE   ?????    -->
-<!---->
-<!--</body>-->
-<!---->
-<!--<script type ="text/javascript">-->
-<!---->
-<!--                // End date-->
-<!--                var countDownDate = new Date('--><?php //echo $convertdate-> format('M d, Y H:i:s');?><!--').getTime();-->
-<!--//-->
-<!--//                //var c = <!--?php echo json_encode($count); ?-->
-<!--//               // document.getElementById('countdown').innerHTML = c;-->
-<!--//                // Update the count down every 1 second-->
-<!--//                var x = setInterval(function() {-->
-<!--//-->
-<!--//                // Today's date-->
-<!--//                var now = new Date().getTime();-->
-<!--//-->
-<!--//                // Find the difference between now an the count down date-->
-<!--//                var difference = countDownDate - now;-->
-<!--//-->
-<!--//                // Time calculations for days, hours, minutes and seconds-->
-<!--//                var days = Math.floor(difference / (1000 * 60 * 60 * 24));-->
-<!--//                var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));-->
-<!--//                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));-->
-<!--//                var seconds = Math.floor((difference % (1000 * 60)) / 1000);-->
-<!--//-->
-<!--//                // Output the result in an element with id='countdown'-->
-<!--//                document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h '-->
-<!--//                + minutes + 'm ' + seconds + 's ';-->
-<!--//-->
-<!--//                // If the count down is over, write some text-->
-<!--//                if (difference < 0) {-->
-<!--//                clearInterval(x);-->
-<!--//                document.getElementById('countdown').innerHTML = 'EXPIRED';-->
-<!--//                }-->
-<!--//                 }, 1000);-->
-<!--//-->
-<!--//                </script>-->
-<!--        FOOTER          -->
-
-
-
-=======
     endif;
     ?>
     </tbody>
 </table>
 </body>
->>>>>>> origin/GioCode
 </html>
-
