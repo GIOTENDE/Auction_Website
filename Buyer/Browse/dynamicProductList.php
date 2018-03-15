@@ -35,23 +35,15 @@ $userID = $_SESSION['userID'];
             <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
                     My Account</a></li>
             <li><a href="categoryGallery.php"><span class="glyphicon glyphicon-shopping-bag"></span> Categories</a></li>
-            <li class="active"><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+            <li class="active"><a href="../../logout.php" class="active"><span
+                            class="glyphicon glyphicon-log-out"></span> Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 
 
-</body>
-</html>
-
-
-<?php include 'searchBarHeader.php'; ?>
-
-
-
-
-<?php
+<?php include 'searchBarHeader.php';
 
 $productSearch = $_POST["search"];
 
@@ -94,10 +86,7 @@ $dateNow = date("Y-m-d H:i:s");
         <option value="High to Low">High to Low</option>
         <option value="Low to High">Low to High</option>
     </select>
-
-
 </div>
-
 
 <div id="container3">
     <?php
@@ -134,11 +123,11 @@ $dateNow = date("Y-m-d H:i:s");
             ?>
 
 
-            <tr data-href='../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>'  >
+            <tr data-href='../product/productPage.php?prod_ID=<?php echo $prod_ID; ?>'>
 
-                <td >
-                <?php echo '<a href="../product/productPage.php?prod_ID='. $prod_ID .'"><img class="productimage" src="data:image/jpeg;base64,'.base64_encode( $row['prod_picture'] ).'"/></a>';
-                ?>
+                <td>
+                    <?php echo '<a href="../product/productPage.php?prod_ID=' . $prod_ID . '"><img class="productimage" src="data:image/jpeg;base64,' . base64_encode($row['prod_picture']) . '"/></a>';
+                    ?>
                 </td>
 
                 <td><?php echo $row["prod_name"]; ?> </td>
@@ -149,7 +138,7 @@ $dateNow = date("Y-m-d H:i:s");
                 <td><?php echo $row["prod_highest_bid"]; ?> </td>
 
             </tr>
-            
+
         <?php }
         ?>
 
@@ -160,8 +149,10 @@ $dateNow = date("Y-m-d H:i:s");
 
         mysqli_close($db);
         ?>
-
 </div>
+</body>
+</html>
+
 
 
 
