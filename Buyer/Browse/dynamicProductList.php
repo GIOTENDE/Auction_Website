@@ -34,7 +34,8 @@ $userID = $_SESSION['userID'];
         <ul class="nav navbar-nav">
             <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
                     My Account</a></li>
-            <li><a href="categoryGallery.php"><span class="glyphicon glyphicon-shopping-bag"></span> Categories</a></li>
+            <li><a href="../../logout.php" class="active"><span
+                            class="glyphicon glyphicon-shopping-cart"></span> Categories</a>
             <li class="active"><a href="../../logout.php" class="active"><span
                             class="glyphicon glyphicon-log-out"></span> Logout</a>
             </li>
@@ -56,7 +57,6 @@ $dateNow = date("Y-m-d H:i:s");
 ?>
 
 <div id="container1">
-
     <select class="smaller" name="Name Alphabetical" id="nameAlphabetical" onclick="sortName()">
         <option value="" disabled selected>Name</option>
         <option value="Name Alphabetical">Name Alphabetical</option>
@@ -106,15 +106,15 @@ $dateNow = date("Y-m-d H:i:s");
     if (mysqli_num_rows($result) > 0) {
     // output data of each row
     ?>
-    <table id="myTable">
+    <table id="myTable" class="table table-bordered table-hover">
         <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>End date</th>
-            <th>Condition</th>
-            <th>Reserve Price</th>
-            <th>Current Bid</th>
+            <th style="text-align: center"></th>
+            <th style="text-align: center">Name</th>
+            <th style="text-align: center">Category</th>
+            <th style="text-align: center">End date</th>
+            <th style="text-align: center">Condition</th>
+            <th style="text-align: center">Reserve Price</th>
+            <th style="text-align: center">Current Bid</th>
         </tr>
 
         <?php
