@@ -30,6 +30,7 @@ include ("../config.php");
             <a class="navbar-brand">Auction Website</a>
         </div>
         <ul class="nav navbar-nav">
+            <li class="active"><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
     </div>
 </nav>
