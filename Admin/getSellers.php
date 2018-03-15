@@ -2,7 +2,5 @@
 
 //sql statement needed here
 
-$email_address = "aakashbhalla30@hotmail.com";
+$email_address = 'aakash.bhalla.13@ucl.ac.uk';
 include 'advertiseEmail.php';
-
-?>
