@@ -5,6 +5,8 @@ $url = 'https://api.sendgrid.com/';
  $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
  $pass = 'Group35Email';
 
+
+$email_address = 'aakash.bhalla.13@ucl.ac.uk';
 $to = $email_address;
 $subject = "Auction Website: come take a look!";
 $message = "
