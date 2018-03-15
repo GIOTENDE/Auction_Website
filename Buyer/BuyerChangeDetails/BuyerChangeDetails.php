@@ -76,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html>
 <head>
     <meta charset="utf-8">
-
+    <title>Update Details</title>
     <link rel="stylesheet" href="BuyerChangeDetails.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
