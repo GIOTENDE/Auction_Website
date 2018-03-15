@@ -16,7 +16,6 @@ function validate_input($data)
     return $data;
 }
 
-//$_SESSION['message']="";
 $getUserDetails = mysqli_query($db, "SELECT username, email_address, password, fullName, mobilenumber, address FROM users WHERE userID='$userID'");
 if (mysqli_num_rows($getUserDetails) > 0) {
     while ($row = mysqli_fetch_assoc($getUserDetails)) {
@@ -77,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <meta charset="utf-8">
-
+    <title>Update Details</title>
     <link rel="stylesheet" href="CreateNewAuctionItem1.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -92,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="navbar-brand">Auction Website</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="../BuyerProfile/BuyerProfile.php"><span class="glyphicon glyphicon-user"></span>
+            <li class="active"><a href="../SellerProfile/SellerProfile.php"><span class="glyphicon glyphicon-user"></span>
                     My Account</a></li>
             <li><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
             </li>
