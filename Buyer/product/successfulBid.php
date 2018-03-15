@@ -9,10 +9,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     include 'outbidEmail.php';
 }
 
-//insert into bids table
-$seller_ID = 26; //delete this column from table?
 
-$insertBid = "INSERT INTO bids (prod_id, buyer_id, seller_id, amount) VALUES ('" . $_POST['prod_ID'] . "', '" . $_POST['buyer_ID'] . "', '26', '" . $_POST['amount'] . "')";
+$insertBid = "INSERT INTO bids (prod_id, buyer_id, seller_id, amount) VALUES ('" . $_POST['prod_ID'] . "', '" . $_POST['buyer_ID'] . "', '" . $_POST['seller_ID'] . "', '" . $_POST['amount'] . "')";
 mysqli_query($db, $insertBid);
 
 //update product table
