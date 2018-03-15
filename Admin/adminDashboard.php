@@ -12,7 +12,6 @@ include ("../config.php");
     <script>
         $(document).ready(function() {
             $('#advertisebtn').click(function () {
-                <?php include 'advertiseEmail.php' ?>
                 $.ajax({
                     url: 'advertiseEmail.php',
                     data: {},
