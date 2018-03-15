@@ -13,7 +13,7 @@ include ("../config.php");
         $(document).ready(function() {
             $('#advertisebtn').click(function () {
                 $.ajax({
-                    url: 'getSellers.php',
+                    url: 'getUsers.php',
                     type: 'post',
                     success: function(output) {
                         alert("Emails have been sent!");
@@ -30,6 +30,7 @@ include ("../config.php");
             <a class="navbar-brand">Auction Website</a>
         </div>
         <ul class="nav navbar-nav">
+            <li class="active"><a href="../../logout.php" class="active"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
     </div>
 </nav>

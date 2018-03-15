@@ -5,8 +5,6 @@ $url = 'https://api.sendgrid.com/';
  $user = 'azure_b3bf9e2e616acbdbf70787d4d712f06a@azure.com';
  $pass = 'Group35Email';
 
-
-$email_address = 'aakash.bhalla.13@ucl.ac.uk';
 $to = $email_address;
 $subject = "Auction Website: come take a look!";
 $message = "
@@ -15,7 +13,14 @@ $message = "
 <title>New items have been added!</title>
 </head>
 <div style='font-family:arial, sans-serif; font-size:15px; color: #444; max-width:720px; margin:0 auto; line-height:120%'>
-<p> Does this work? </p>
+<p>Dear $fullName,<p>
+
+<p>New items have been added to the site!</p>
+
+<p>Please <a href='https://compgc06group35.azurewebsites.net'>click here</a> to take a look.</p>
+
+Good luck and happy bidding!
+</p>
 </div>
 </html>
 ";
