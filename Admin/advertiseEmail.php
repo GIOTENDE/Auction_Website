@@ -13,9 +13,7 @@ $message = "
 <title>New items have been added!</title>
 </head>
 <div style='font-family:arial, sans-serif; font-size:15px; color: #444; max-width:720px; margin:0 auto; line-height:120%'>
-<p>
-Does this work?
-</p>
+<p> Does this work? </p>
 </div>
 </html>
 ";
