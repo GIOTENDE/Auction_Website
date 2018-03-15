@@ -5,7 +5,7 @@ session_start();
 $userID = $_SESSION['userID'];
 $onWatchlist = False;
 $prod_ID = $_GET["prod_ID"];
-$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture, prod_views FROM product WHERE prod_ID = '$prod_ID'";
+$sql = "SELECT prod_name, prod_category, prod_description, prod_start_price, prod_reserve_price, prod_end_date, prod_highest_bid, prod_condition, prod_picture, prod_sellerID, prod_views FROM product WHERE prod_ID = '$prod_ID'";
 $result = mysqli_query($db, $sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -18,6 +18,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $prod_highest_bid = $row["prod_highest_bid"];
     $prod_condition = $row["prod_condition"];
     $prod_picture = $row["prod_picture"];
+    $prod_sellerID = $row["prod_sellerID"];
     $prod_views = $row["prod_views"];
 }
 
@@ -115,7 +116,7 @@ mysqli_close($db);
                         //ajax to update the database - insert into bids table & update product table; also generate email for outbid user, and watching users
                         $.ajax({
                             url: 'successfulBid.php',
-                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': <?php echo $userID ?>},
+                            data: {'prod_ID': <?php echo $prod_ID ?>, 'amount': amount, 'buyer_ID': <?php echo $userID ?>, 'seller_ID': <?php echo $prod_sellerID ?>},
                             type: 'post',
                             success: function(output) {
                             }
