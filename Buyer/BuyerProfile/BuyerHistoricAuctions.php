@@ -4,12 +4,11 @@ $userID = $_SESSION['userID'];
 include '../../config.php';
 
 
-$getProdID = mysqli_query($db, "SELECT p.prod_id FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
-
-while ($row = mysqli_fetch_assoc($getProdID)) {
-    $prodID = $row['prod_id'];
-}
-?>
+//$getProdID = mysqli_query($db, "SELECT p.prod_id FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
+//while ($row = mysqli_fetch_assoc($getProdID)) {
+//    $prodID = $row['prod_id'];
+//}
+//?>
 
 <!DOCTYPE html>
 <html>
