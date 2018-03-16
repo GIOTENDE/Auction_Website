@@ -17,6 +17,7 @@ include '../../config.php';
     <script>
         $(document).ready(function () {
             $("#score").on('change', function () {
+                alert("check");
                 $.ajax({
                     url: 'postFeedbackScore.php',
                     data: {
@@ -25,6 +26,7 @@ include '../../config.php';
                         'prodID': <?php echo $prodID?>},
                     type: 'post',
                     success: function (output) {
+                        alert("Feedback sent!")
                     }
                 })
                 $("#score").replaceWith($("#score").val());
