@@ -52,6 +52,7 @@ $category2 = $_POST["searchCategories"];
 
 $category1 = $_GET["category"];
 
+date_default_timezone_set('Europe/London');
 $dateNow = date("Y-m-d H:i:s");
 
 ?>

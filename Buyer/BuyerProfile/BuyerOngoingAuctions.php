@@ -42,6 +42,7 @@ include '../../config.php';?>
     <tbody>
     <tr>
         <?php
+        date_default_timezone_set('Europe/London');
         $dateNow = date("Y-m-d H:i:s");
         $getProductDetails = mysqli_query($db,"SELECT p.prod_id, p.prod_name, p.prod_end_date, p.prod_condition, b.amount AS bid_amount, p.prod_highest_bid AS current_highest_bid, p.prod_reserve_price, (SELECT COUNT(prod_id) FROM bids WHERE prod_id = p.prod_id) AS total_bids_on_product FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID')) AND '$dateNow' <= prod_end_date");
         if (mysqli_num_rows($getProductDetails) > 0) :
