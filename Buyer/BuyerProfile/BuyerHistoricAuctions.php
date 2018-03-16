@@ -2,6 +2,13 @@
 session_start();
 $userID = $_SESSION['userID'];
 include '../../config.php';
+
+
+$getProdID = mysqli_query($db, "SELECT p.prod_id FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
+
+while ($row = mysqli_fetch_assoc($getProdID)) {
+    $prodID = $row['prod_id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,10 +83,6 @@ FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
   LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
 WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
-
-        while ($row = mysqli_fetch_assoc($getProductDetails)) {
-            $prodID = $row['prod_id'];
-        }
 
         if (mysqli_num_rows($getProductDetails) > 0) :
         $count = 1;
