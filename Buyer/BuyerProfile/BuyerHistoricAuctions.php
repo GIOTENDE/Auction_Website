@@ -21,7 +21,8 @@ include '../../config.php';
                 $.ajax({
                     url: 'postFeedbackScore.php',
                     data: {
-                        'feedback': $("#score").val(),
+                        'buyerID': <?php echo $userID?>,
+                        'prodID': <?php echo $prodID?>},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
