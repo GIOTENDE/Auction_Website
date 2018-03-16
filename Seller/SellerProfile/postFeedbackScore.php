@@ -13,5 +13,5 @@ while ($row = mysqli_fetch_assoc($result)) {
 $postFeedbackScore = mysqli_query($db,"INSERT INTO feedback 
 (prod_id, buyer_id, seller_id, buyer_feedback_points, 
 seller_feedback_points)
-VALUES(" . $_POST['prodID']. ", NULL, ". $_POST['sellerID'] .", ". $_POST['feedback'] .", NULL) ON DUPLICATE KEY UPDATE
+VALUES(" . $prod_id . ", NULL, ". $_POST['sellerID'] .", ". $_POST['feedback'] .", NULL) ON DUPLICATE KEY UPDATE
 seller_id= ". $_POST['sellerID'] .", buyer_feedback_points= ". $_POST['feedback'] ." ");
