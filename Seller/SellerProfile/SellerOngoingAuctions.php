@@ -46,6 +46,7 @@ $userID = $_SESSION['userID'];
 <tbody>
 <tr>
     <?php
+    date_default_timezone_set('Europe/London');
     $dateNow = date("Y-m-d H:i:s");
     $getProductDetails = mysqli_query($db, "SELECT b.prod_id, p.prod_name, p.prod_start_date, p.prod_end_date, p.prod_condition,
 b.amount AS bid_amount, p.prod_highest_bid
