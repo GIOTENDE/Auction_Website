@@ -1,8 +1,14 @@
-<?php
+<?php include '../../config.php';
 
-include '../../config.php';
+date_default_timezone_set('Europe/London');
+$dateNow = date("Y-m-d H:i:s");
+$sql = "SELECT prod_id FROM product WHERE prod_sellerID = ". $_POST['sellerID'] ." AND '$dateNow' >= prod_end_date";
+$result = mysqli_query($db, $sql);
 
-//$postFeedbackScore = mysqli_query($db,"REPLACE INTO feedback (prod_id, seller_id, buyer_feedback_points) VALUES( " . $_POST['prodID']. ", ". $_POST['sellerID'] .", ". $_POST['feedback'] ." ) ");
+while ($row = mysqli_fetch_assoc($result)) {
+    $prod_id = $row["prod_id"];
+}
+
 
 $postFeedbackScore = mysqli_query($db,"INSERT INTO feedback 
 (prod_id, buyer_id, seller_id, buyer_feedback_points, 

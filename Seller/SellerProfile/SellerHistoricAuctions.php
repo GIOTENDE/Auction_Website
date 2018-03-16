@@ -17,13 +17,12 @@ $userID = $_SESSION['userID'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#score").click(function () {
+            $("#score").on('change', function () {
                 $.ajax({
                     url: 'postFeedbackScore.php',
                     data: {
                         'sellerID': <?php echo $userID?>,
-                        'feedback': $("#score").val(),
-                        'prodID': <?php echo $prodID?>},
+                        'feedback': $("#score").val()},
                     type: 'post',
                     success: function (output) {
                     }
@@ -32,7 +31,6 @@ $userID = $_SESSION['userID'];
             });
         });
     </script>
-
 </head>
 <body>
 <nav class="navbar navbar-default">
