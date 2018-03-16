@@ -81,7 +81,7 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
         $count = 1;
         $dateArray = [];
         while ($row = mysqli_fetch_assoc($getProductDetails)) :
-        $prodID = $row['prod_id'];
+        $GLOBALS['prodID'] = $row['prod_id'];
         ?>
         <!--    PRODUCT NAME COLUMN    -->
         <td>
