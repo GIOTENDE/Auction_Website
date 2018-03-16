@@ -20,7 +20,7 @@ include '../../config.php';
                 alert($("#score").val());
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {
+                    data: {},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
