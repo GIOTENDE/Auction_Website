@@ -61,7 +61,7 @@ include '../../config.php';?>
         <td><?php if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
                 echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'You are winning the auction! #tigerblood' : 'You have been outbid... #growapair';
             } else {
-                echo 'You are winning but you havent even met the reserve price...';
+                echo ($row['current_highest_bid'] == $row['bid_amount']) ? 'You are winning but you havent even met the reserve price...': 'You have been outbid... #growapair';
             } ?></td>
     </tr>
     <?php $count+=1; endwhile;
