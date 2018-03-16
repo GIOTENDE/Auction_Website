@@ -20,7 +20,7 @@ include '../../config.php';
                 var feedback = $("#score").val();
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': '1'},
+                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': <?php echo $prodID?>},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
@@ -76,6 +76,10 @@ FROM bids AS b
   LEFT JOIN product AS p ON b.prod_id = p.prod_id
   LEFT JOIN feedback AS f ON p.prod_id = f.prod_id
 WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
+
+        while ($row = mysqli_fetch_assoc($getProductDetails)) {
+            $prodID = $row['prod_id'];
+        }
 
         if (mysqli_num_rows($getProductDetails) > 0) :
         $count = 1;
