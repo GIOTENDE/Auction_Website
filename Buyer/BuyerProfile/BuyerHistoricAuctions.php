@@ -2,8 +2,6 @@
 session_start();
 $userID = $_SESSION['userID'];
 include '../../config.php';
-
-echo $GLOBALS['prodID'];
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +20,7 @@ echo $GLOBALS['prodID'];
                 var feedback = $("#score").val();
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': <?php echo $GLOBALS['prodID'] ?>},
+                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID':'.json_encode($GLOBALS['prodID']).'},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
