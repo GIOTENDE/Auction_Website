@@ -2,6 +2,8 @@
 session_start();
 $userID = $_SESSION['userID'];
 include '../../config.php';
+
+echo $GLOBALS['prodID'];
 ?>
 
 <!DOCTYPE html>
