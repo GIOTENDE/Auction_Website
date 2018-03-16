@@ -26,7 +26,7 @@ include '../../config.php';
                 var feedback = $("#score").val();
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': '1'},
+                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': $GLOBALS['prodID']},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
@@ -87,7 +87,7 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
         $count = 1;
         $dateArray = [];
         while ($row = mysqli_fetch_assoc($getProductDetails)) :
-        $prodID = $row['prod_id'];
+        $GLOBALS['prodID'] = $row['prod_id'];
         ?>
         <!--    PRODUCT NAME COLUMN    -->
         <td>
