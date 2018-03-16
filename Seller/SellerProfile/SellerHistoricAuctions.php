@@ -13,6 +13,26 @@ $userID = $_SESSION['userID'];
     <link rel="stylesheet" type="text/css" media="screen" href="SellerProfile.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="SellerHistoricAuctionsController.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#score").click(function () {
+                $.ajax({
+                    url: 'postFeedbackScore.php',
+                    data: {
+                        'sellerID': <?php echo $userID?>,
+                        'feedback': $("#score").val(),
+                        'prodID': <?php echo $prodID?>},
+                    type: 'post',
+                    success: function (output) {
+                    }
+                })
+                $("#score").replaceWith($("#score").val())
+            });
+        });
+    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -84,26 +104,7 @@ WHERE b.seller_id = (('$userID')) AND '$dateNow' >= prod_end_date");
             if ($row['current_highest_bid'] > $row['prod_reserve_price']) {
                 if ($row['bid_amount'] == $row['current_highest_bid'] && $row['buyer_feedback_points'] == NULL) {
                     ?>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                    <script>
-                        $(document).ready(function () {
-                            $("#score").click(function () {
-                                $.ajax({
-                                    url: 'postFeedbackScore.php',
-                                    data: {
-                                        'sellerID': <?php echo $userID?>,
-                                        'feedback': $("#score").val(),
-                                        'prodID': <?php echo $prodID?>},
-                                    type: 'post',
-                                    success: function (output) {
-                                    }
-                                })
-                                $("#score").replaceWith($("#score").val())
-                            });
-                        });
-                    </script>
                     <div id="container">
-
                         <form>
                             <select name="Score" id="score">
                                 <option value="" disabled selected>Score</option>
