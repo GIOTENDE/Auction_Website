@@ -17,12 +17,10 @@ include '../../config.php';
     <script>
         $(document).ready(function () {
             $("#score").on('change', function () {
-                alert($("#score").val());
+                var feedback = $("#score").val();
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {
-                        'buyerID': <?php echo $userID?>,
-                        'prodID': <?php echo $prodID?>},
+                    data: {'buyerID': <?php echo $userID?>, 'feedback': $("#score").val(), 'prodID': <?php echo $prodID?>},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
