@@ -16,7 +16,7 @@ include '../../config.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#score").click(function () {
+            $("#score").on('change', function () {
                 $.ajax({
                     url: 'postFeedbackScore.php',
                     data: {
