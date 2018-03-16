@@ -2,13 +2,7 @@
 session_start();
 $userID = $_SESSION['userID'];
 include '../../config.php';
-
-
-//$getProdID = mysqli_query($db, "SELECT p.prod_id FROM bids AS b LEFT JOIN product AS p ON b.prod_id = p.prod_id WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
-//while ($row = mysqli_fetch_assoc($getProdID)) {
-//    $prodID = $row['prod_id'];
-//}
-//?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +20,7 @@ include '../../config.php';
                 var feedback = $("#score").val();
                 $.ajax({
                     url: 'postFeedbackScore.php',
-                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': $GLOBALS['prodID']},
+                    data: {'buyerID': <?php echo $userID ?>, 'feedback': feedback, 'prodID': <?php echo $prodID ?>},
                     type: 'post',
                     success: function (output) {
                         alert("Feedback sent!")
@@ -87,7 +81,7 @@ WHERE b.buyer_id = (('$userID'))  AND '$dateNow' >= prod_end_date");
         $count = 1;
         $dateArray = [];
         while ($row = mysqli_fetch_assoc($getProductDetails)) :
-        $GLOBALS['prodID'] = $row['prod_id'];
+        $prodID = $row['prod_id'];
         ?>
         <!--    PRODUCT NAME COLUMN    -->
         <td>
